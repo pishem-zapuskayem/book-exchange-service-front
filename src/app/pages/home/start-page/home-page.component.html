@@ -4,11 +4,12 @@
     <div class="buttons">
       <button (click)="'info1'">Главная</button>
       <button (click)="'info2'">Начать обмен</button>
-      <button (click)="'info3'">Мои обмены</button>
+      <button nz-button (click)="createMessage('warning')">Мои обмены</button>
       <button (click)="'info4'">Задать вопрос</button>
+
     </div>
     <div class="auth">
-      <button (click)="'showLogin'">Login</button>
+      <button (click)="showLogin()">Login</button>
       <a routerLink="/registration"> Registration</a>
     </div>
 </div>

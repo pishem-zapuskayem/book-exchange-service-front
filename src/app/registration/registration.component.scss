@@ -1,0 +1,63 @@
+body {
+  background: linear-gradient( to bottom, cornflowerblue, #9474E8);
+}
+.centered-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.registration-form{
+  width: 500px;
+  height: 830px;
+  border: 1px solid aliceblue;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  background-color: aliceblue;
+}
+
+.forbox {
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+.forbox1 {
+  width: 49%;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+.forbox2 {
+  width: 32%;
+
+  border: 1px solid white;
+  border-radius: 20px;
+}
+.text1 {
+  margin-left: 40%;
+}
+.text2 {
+  margin-left: 25%;
+}
+.text3 {
+  margin-left: 22%;
+}
+.flex
+{
+  display: flex;
+  justify-content: space-between;
+}
+.custom-btn {
+  width: 100%;
+  background-color: cornflowerblue;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+.btn-back {
+  width: 100%;
+  background-color: #9474E8;
+  color: white;
+  border: none;
+  padding: 10px;
+}

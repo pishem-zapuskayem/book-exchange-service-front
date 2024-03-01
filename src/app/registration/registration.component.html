@@ -1,0 +1,64 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+<div class="centered-container">
+  <div class="registration-form">
+    <form ng-submit="ctrl.submitForm()">
+      <button (click)="goToHomePage()" class = "btn-back" type="submit"> Вернуться на главную </button><br><br>
+      <label for="surname"> Фамилия* </label><br>
+      <input class="forbox" type="text" id="surname" ng-model="ctrl.surname" required><br><br>
+
+      <label for="name">Имя* </label><br>
+      <input class="forbox" type="text" id="name" ng-model="ctrl.name" required><br><br>
+
+      <label for="middlename">Отчество </label><br>
+      <input class="forbox" type="text" id="middlename" ng-model="ctrl.middlename"><br><br>
+
+      <label for="email">Email* </label><br>
+      <input class="forbox" type="email" id="email" ng-model="ctrl.email" required><br><br>
+
+      <label for="nickname">Ник* </label><br>
+      <input class="forbox" type="text" id="nickname" ng-model="ctrl.nickname" required><br><br>
+
+      <label for="password">Пароль* </label><br>
+      <input class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
+
+      <label for="index">Индекс* </label> <label class="text1" for="city">Город </label> <br>
+      <div class="flex">
+        <input  class="forbox1"  type="index" id="index" ng-model="ctrl.index" required>
+        <input class="forbox1" type="city" id="city" ng-model="ctrl.city" required><br>
+      </div><br>
+      <label for="street">Улица* </label> <label class="text2" for="house">Дом* </label> <label class="text3" for="apartment">Квартира </label><br>
+      <div class="flex"> <input class="forbox2" type="street" id="street" ng-model="ctrl.street" required>
+        <input class="forbox2" type="house" id="house" ng-model="ctrl.house" required>
+        <input class="forbox2" type="apartment" id="apartment" ng-model="ctrl.apartment" required><br></div><br>
+
+      <input type="checkbox" id="agreementCheckbox"> <label for="agreementCheckbox" required> Нажимая эту кнопку, вы подтверждаете, что прочитали и согласны с условиями пользовательского соглашения и даёте согласие на обработку ваших персональных данных.</label><br><br>
+
+      <button class = "custom-btn" type="submit">Зарегистрироваться</button><br><br>
+      <label> * - поля, обязательные к заполнению </label>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  var app = angular.module('registrationApp', []);
+
+  app.controller('RegistrationController', function () {
+    this.submitForm = function () {
+// Автозаполнение
+      console.log('Username: ' + this.username);
+      console.log('Email: ' + this.email);
+      console.log('Password: ' + this.password);
+    };
+  });
+</script>
+</body>
+
