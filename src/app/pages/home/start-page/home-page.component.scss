@@ -1,5 +1,81 @@
+body {
+  background: linear-gradient( to bottom, #7491E7, #9474E8);
+}
+
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
 .spin-container {
   display: flex;
   justify-content: center;
   padding: 15% 0;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.buttons button{
+  background-color: #555;
+  color: white;
+  padding: 8px 16px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.auth button {
+  background-color: #777;
+  color: white;
+  padding: 8px 16px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.centered-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.logo img {
+  width: 100px;
+  height: auto;
+}
+.form{
+  width: 1000px;
+  height: 700px;
+  border: 1px solid aliceblue;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 50px;
+  background-color: aliceblue;
+}
+
+p {
+  font-size: 30px;
+  font-family: TimesNewRoman;
+}
+.segment-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  margin-block-end: 1rem;
+}
+
+.btn-wrappers {
+  block-size: 10rem;
+  border: 1px solid var(--ant-primary-6);
 }

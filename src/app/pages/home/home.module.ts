@@ -6,7 +6,6 @@ import {RouterModule} from "@angular/router";
 import {NzSpinModule} from "ng-zorro-antd/spin";
 
 
-
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -18,6 +17,8 @@ import {NzSpinModule} from "ng-zorro-antd/spin";
     CommonModule,
     SharedModule,
     NzSpinModule,
+
+
   ]
 })
 export class HomeModule { }
