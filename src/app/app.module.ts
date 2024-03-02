@@ -7,6 +7,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { MainComponent } from './pages/home/main/main.component';
 import { StartexchangeComponent } from './startexchange/startexchange.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {ReactiveFormsModule} from "@angular/forms";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MainComponent,
     StartexchangeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        CoreModule
+    ],
   providers: [
     provideAnimationsAsync()
   ],

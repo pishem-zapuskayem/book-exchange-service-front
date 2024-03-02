@@ -9,39 +9,49 @@
 <body>
 <div class="centered-container">
   <div class="registration-form">
-    <form ng-submit="ctrl.submitForm()">
+    <form ng-submit="ctrl.submitForm()" [formGroup]="form" (ngSubmit)="submit()">
       <button (click)="goToHomePage()" class = "btn-back" type="submit"> Вернуться на главную </button><br><br>
       <label for="surname"> Фамилия* </label><br>
-      <input class="forbox" type="text" id="surname" ng-model="ctrl.surname" required><br><br>
+      <input formControlName="lastName" class="forbox" type="text" id="surname" ng-model="ctrl.surname" required><br><br>
 
       <label for="name">Имя* </label><br>
-      <input class="forbox" type="text" id="name" ng-model="ctrl.name" required><br><br>
+      <input formControlName="firstName" class="forbox" type="text" id="name" ng-model="ctrl.name" required><br><br>
 
       <label for="middlename">Отчество </label><br>
-      <input class="forbox" type="text" id="middlename" ng-model="ctrl.middlename"><br><br>
+      <input formControlName="secondName" class="forbox" type="text" id="middlename" ng-model="ctrl.middlename"><br><br>
 
       <label for="email">Email* </label><br>
-      <input class="forbox" type="email" id="email" ng-model="ctrl.email" required><br><br>
+      <input formControlName="email" class="forbox" type="email" id="email" ng-model="ctrl.email" required><br><br>
 
       <label for="nickname">Ник* </label><br>
-      <input class="forbox" type="text" id="nickname" ng-model="ctrl.nickname" required><br><br>
+      <input formControlName="username"  class="forbox" type="text" id="nickname" ng-model="ctrl.nickname" required><br><br>
 
       <label for="password">Пароль* </label><br>
-      <input class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
+      <input formControlName="password"  class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
+      <label for="strucher">structerere* </label><br>
+      <input formControlName="addrStructure"  class="forbox" type="text" id="strucher" ng-model="ctrl.password" required><br><br>
 
       <label for="index">Индекс* </label> <label class="text1" for="city">Город </label> <br>
       <div class="flex">
-        <input  class="forbox1"  type="index" id="index" ng-model="ctrl.index" required>
-        <input class="forbox1" type="city" id="city" ng-model="ctrl.city" required><br>
+        <input formControlName="addrIndex"  class="forbox1"  type="index" id="index" ng-model="ctrl.index" required>
+        <input formControlName="addrCity"  class="forbox1" type="city" id="city" ng-model="ctrl.city" required><br>
       </div><br>
       <label for="street">Улица* </label> <label class="text2" for="house">Дом* </label> <label class="text3" for="apartment">Квартира </label><br>
-      <div class="flex"> <input class="forbox2" type="street" id="street" ng-model="ctrl.street" required>
-        <input class="forbox2" type="house" id="house" ng-model="ctrl.house" required>
-        <input class="forbox2" type="apartment" id="apartment" ng-model="ctrl.apartment" required><br></div><br>
-
+      <div class="flex">
+        <input formControlName="addrStreet"  class="forbox2" type="street" id="street" ng-model="ctrl.street" required>
+        <input formControlName="addrHouse"  class="forbox2" type="house" id="house" ng-model="ctrl.house" required>
+        <input formControlName="addrApart"  class="forbox2" type="apartment" id="apartment" ng-model="ctrl.apartment" required><br></div><br>
+      <label for="avatar">Аватар</label><br>
+      <input
+        formControlName="avatar"
+        class="forbox" type="file"
+        id="avatar" (change)="onFileChanged($event)"
+      ><br><br>
       <input type="checkbox" id="agreementCheckbox"> <label for="agreementCheckbox" required> Нажимая эту кнопку, вы подтверждаете, что прочитали и согласны с условиями пользовательского соглашения и даёте согласие на обработку ваших персональных данных.</label><br><br>
 
-      <button class = "custom-btn" type="submit">Зарегистрироваться</button><br><br>
+
+
+      <button class = "custom-btn" type="submit" [disabled]="form.invalid || isSubmitted">Зарегистрироваться</button><br><br>
       <label> * - поля, обязательные к заполнению </label>
 
     </form>
