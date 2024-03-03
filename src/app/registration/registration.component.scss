@@ -1,5 +1,6 @@
 body {
-  background: linear-gradient( to bottom, cornflowerblue, #9474E8);
+  background: linear-gradient( to bottom, #FFC76B, #FFE5BA) fixed;
+  overflow-x: hidden;
 }
 .centered-container{
   display: flex;
@@ -9,7 +10,6 @@ body {
 }
 .registration-form{
   width: 500px;
-  padding: 10px;
   border: 1px solid aliceblue;
   border-radius: 20px;
   padding: 20px;
@@ -23,29 +23,36 @@ body {
   border-radius: 20px;
 }
 .forbox1 {
-  width: 49%;
+  width: 50%;
   border: 1px solid white;
   border-radius: 20px;
+  flex: 1; /* Занимает равное пространство в строке */
+  margin-right: 20px; /* Расстояние между ячейками */
+}
+
+.forbox1:last-child {
+  margin-right: 0; /* Убирает отступ после последней ячейки */
 }
 .forbox2 {
-  width: 32%;
-
+  width: 100%;
   border: 1px solid white;
-  border-radius: 20px;
+  border-radius: 0px;
+}
+.text {
+  margin-left: 23%;
 }
 .text1 {
-  margin-left: 40%;
+  margin-left: 26%;
 }
 .text2 {
-  margin-left: 25%;
+  margin-left: 27%;
 }
 .text3 {
-  margin-left: 22%;
+  margin-left: 20%;
 }
 .flex
 {
   display: flex;
-  justify-content: space-between;
 }
 .custom-btn {
   width: 100%;
@@ -56,7 +63,7 @@ body {
 }
 .btn-back {
   width: 100%;
-  background-color: #9474E8;
+  background-color: cornflowerblue;
   color: white;
   border: none;
   padding: 10px;

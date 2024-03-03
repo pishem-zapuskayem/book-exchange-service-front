@@ -1,5 +1,6 @@
 body {
-  background: linear-gradient( to bottom, #7491E7, #9474E8);
+  overflow-x: hidden;
+  background: linear-gradient( to bottom, #FFC76B, #FFE5BA) fixed;
 }
 
 .logo img {
@@ -16,9 +17,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: white;
   color: white;
-  padding: 10px;
+  padding: 20px;
 }
 
 .buttons button{
@@ -43,25 +44,12 @@ body {
   margin-top: 20px;
 }
 
-.centered-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-}
 .logo img {
   width: 100px;
   height: auto;
 }
-.form{
-  width: 1000px;
-  height: 700px;
-  border: 1px solid aliceblue;
-  border-radius: 20px;
-  padding: 20px;
-  margin: 50px;
-  background-color: aliceblue;
-}
+
 
 p {
   font-size: 30px;
@@ -78,4 +66,72 @@ p {
 .btn-wrappers {
   block-size: 10rem;
   border: 1px solid var(--ant-primary-6);
+}
+
+.centered-container{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form{
+  width: 1000px;
+  padding: 20px;
+  border: 1px solid aliceblue;
+  border-radius: 20px;
+  margin: 50px;
+  background-color: aliceblue;
+}
+.form1{
+
+  width: 1200px;
+  display: flex;
+}
+.left-column {
+  padding-bottom: 17px;
+  width: 60%;
+  background-color: white;
+}
+
+.right-column {
+  padding: 20px;width: 40%;
+  background-color: lightgray;
+}
+.up-column {
+  padding-top: 20px;
+  line-height: 25px;
+  height: 30%;
+  background-color:white ;
+}
+
+.down-column {
+  padding: 20px;
+  height: 70%;
+  background-color: cornsilk;
+}
+
+h2{
+  color: #FFC76B;
+  font-weight: 800;
+  font-size: 68px;
+}
+
+h1{
+  color: #FFE5BA;
+  font-weight: 1000;
+  font-size: 30px;
+}
+h3{
+  font-weight: 600;
+  font-size: 24px;
+  font-style: oblique;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
 }

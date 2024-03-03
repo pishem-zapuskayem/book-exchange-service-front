@@ -26,53 +26,51 @@ export class RegistrationComponent {
 
       lastName: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(50)
       ]),
       firstName: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(25)
       ]),
-      username: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(4)
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(4)
-      ]),
-
-
       secondName: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
-      ]),
-      addrIndex: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(25)
       ]),
       email: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(4)
+      ]),
+      username: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
+      addrIndex: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(7)
       ]),
       addrCity: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
-      ]),
-      addrHouse: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(4)
-      ]),
-      addrStructure: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(15)
       ]),
       addrStreet: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(25)
+      ]),
+      addrHouse: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(5)
+      ]),
+      addrStructure: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(2)
       ]),
       addrApart: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+        Validators.maxLength(3)
       ]),
       avatar: new FormControl(null, []),
     });
