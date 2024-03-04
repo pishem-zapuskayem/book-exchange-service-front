@@ -9,6 +9,7 @@ import { StartexchangeComponent } from './startexchange/startexchange.component'
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {ReactiveFormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
+import {AuthDialogComponent} from "./auth-dialog/auth-dialog.component";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {CoreModule} from "./core/core.module";
     RegistrationComponent,
     MainComponent,
     StartexchangeComponent,
+    AuthDialogComponent
   ],
     imports: [
         BrowserModule,

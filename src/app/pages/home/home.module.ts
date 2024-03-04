@@ -12,8 +12,7 @@ const material=[
 
 @NgModule({
   declarations: [
-    HomePageComponent,
-    AuthDialogComponent
+    HomePageComponent
   ],
   imports: [
     RouterModule.forChild([

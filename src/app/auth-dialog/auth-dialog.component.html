@@ -1,10 +1,10 @@
-
 <div  class="auth-form">
-<label for="email">Email </label><br>
-<input class="forbox" type="email" id="email" ng-model="ctrl.email" required><br><br>
-
-<label for="password">Пароль </label><br>
-<input class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
-  <button class = "custom-btn" type="submit">Авторизоваться</button><br><br>
+<form g-submit="ctrl.submitForm()" [formGroup]="form" (ngSubmit)="submit()">
+  <label for="email">Email </label><br>
+  <input formControlName="email" class="forbox" type="email" id="email" ng-model="ctrl.email" required><br><br>
+  <label for="password">Пароль </label><br>
+  <input formControlName="password" class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
+  <button class = "custom-btn" type="submit" [disabled]="form.invalid || isSubmitted">Авторизоваться</button><br><br>
   <a routerLink="/link"> Забыли пароль?</a>
+</form>
 </div>
