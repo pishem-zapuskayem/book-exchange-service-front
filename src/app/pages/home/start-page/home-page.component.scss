@@ -66,12 +66,7 @@ p {
   border: 1px solid var(--ant-primary-6);
 }
 
-.centered-container{
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .form{
   width: 1000px;
   padding: 20px;
@@ -136,23 +131,57 @@ h3{
 }
 .left {
   text-align: left;
+
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+.centered-container{
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: skyblue;
+  width: 80%;
+  margin: 20px;
+}
+.centered-container2{
+  align-self: flex-end;
+  border-radius: 20px;
+  background-color: white;
+  margin: 20px;
+  justify-content: space-between;
 }
 .containerfirst {
-  background-color: rgba(146, 171, 253, 1);
-  width: 100%;
+  background: linear-gradient( to bottom, lightskyblue, skyblue) fixed;
   height: 120px;
   display: flex;
   justify-content: center;
   padding: 0px;
   overflow: hidden;
+
 }
-.container{
+.containerleft{
 
+  display: inline-block;
+  background: linear-gradient( to bottom, lightgray, lightgray) fixed;
   padding: 20px;
-
+  border-radius: 20px;
+  margin: 20px;
+  opacity: 0;
+  animation: fadeInLeft 1s forwards;
+}
+.containerright{
+  align-self: flex-end !important;
+  background: linear-gradient( to bottom, lightblue, lightblue) fixed;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px;
+  opacity: 0;
+  animation: fadeInRight 2s forwards;
 }
 .word1 {
-  color: #FFC76B;
+  color: white;
   margin: 10px;
   font-family: Impact, fantasy;
   text-align: center;
@@ -162,7 +191,7 @@ h3{
   animation: fadeInUp 1s forwards;
 }
 .word2 {
-  color: #FFC76B;
+  color: white;
   margin: 10px;
   font-family: Impact, fantasy;
   text-align: center;
@@ -172,7 +201,7 @@ h3{
   animation: fadeInUp 2s forwards;
 }
 .word3 {
-  color: #FFC76B;
+  color: white;
   margin: 10px;
   font-family: Impact, fantasy;
   text-align: center;
@@ -184,42 +213,16 @@ h3{
 .word4 {
   color: black;
   margin: 10px;
-  font-family: Impact, fantasy;
+
   text-align: left;
   font-size: 30px;
-  display: inline-block;
-  opacity: 0;
-  animation: fadeInRight 3s forwards;
 }
 .word5 {
   color: black;
   margin: 10px;
-  font-family: Impact, fantasy;
+
   text-align: left;
   font-size: 30px;
-  display: inline-block;
-  opacity: 0;
-  animation: fadeInRight 4s forwards;
-}
-.word6 {
-  color: black;
-  margin: 10px;
-  font-family: Impact, fantasy;
-  text-align: left;
-  font-size: 30px;
-  display: inline-block;
-  opacity: 0;
-  animation: fadeInRight 5s forwards;
-}
-.word7 {
-  color: black;
-  margin: 10px;
-  font-family: Impact, fantasy;
-  text-align: left;
-  font-size: 30px;
-  display: inline-block;
-  opacity: 0;
-  animation: fadeInRight 6s forwards;
 }
 @keyframes fadeInUp {
   0% {
@@ -234,20 +237,61 @@ h3{
 @keyframes fadeInLeft {
   0% {
     opacity: 0;
-    transform: translatex(10%);
+    transform: translateX(10%);
   }
   100% {
     opacity: 1;
-    transform: translatex(0);
+    transform: translateX(0);
   }
 }
 @keyframes fadeInRight {
   0% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(-10%);
   }
   100% {
     opacity: 1;
     transform: translateX(0%);
   }
 }
+.book {
+  width: 1200px;
+  height: 800px;
+  margin: 50px auto;
+  position: relative;
+  perspective: 1000px;
+}
+
+.page {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 8px solid darkred;
+  position: absolute;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  box-sizing: border-box;
+}
+
+.left-page {
+  left: 0;
+  transform-origin: 100% 50%;
+
+}
+
+.right-page {
+  right: 0;
+  transform-origin: 0% 50%;
+
+}
+
+.book:hover .left-page {
+  transform: rotateY(5deg);
+}
+
+.book:hover .right-page {
+  transform: rotateY(-5deg);
+}
+
