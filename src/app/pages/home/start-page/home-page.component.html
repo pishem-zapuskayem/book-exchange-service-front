@@ -1,31 +1,56 @@
 <body>
-<div class="header">
-      <img src="logo.png" alt="Logo" class="logo">
-    <div class="buttons">
-      <button (click)="'info1'">Главная</button>
-      <button (click)="'info2'">Начать обмен</button>
-      <button nz-button (click)="createMessage('warning')">Мои обмены</button>
-      <button (click)="'info4'">Задать вопрос</button>
 
-    </div>
-    <div class="auth">
-      <button (click)="showLogin()">Login</button>
-      <a routerLink="/registration"> Registration</a>
-    </div>
-</div>
-<div class="book">
-  <div class="page left-page">
-    <div class="word4">Это даёт шанс бумажным книгам продлить свою жизнь </div>
-    <div class="word5">помогает владельцам книг делиться хорошими<br> историями и получать новые впечатления</div>
-    <div class="word4">Все буккроссеры любят свои книги и любят их читать</div>
-    <div class="word5">Они щедрые, новаторские, дружелюбные, <br>добросердечные, веселые и образованные люди</div>
+  <div class="header">
+        <img src="logo.png" alt="Logo" class="logo">
+      <div class="buttons">
+        <button (click)="'info1'">Главная</button>
+        <button (click)="'info2'">Начать обмен</button>
+        <button nz-button (click)="createMessage('warning')">Мои обмены</button>
+        <button (click)="'info4'">Задать вопрос</button>
+
+      </div>
+      <div class="auth">
+        <button (click)="showLogin()">Login</button>
+        <a routerLink="/registration"> Registration</a>
+      </div>
   </div>
-  <div class="page right-page">
-    <div class="word4">Наш сайт предлагает совершить не просто обмень </div>
-    <div class="word5">а добавить к этому увлекательному процессу элемент сюрприза</div>
-    <div class="word4">Подбор книг для обмена будет выполнен по пожеланиям участников</div>
-    <div class="word5">но только при получении книги станет известно</div>
-    <div class="word4">какая именно книга будет радовать своего владельца</div>
+  <div class="bottom-container">
+
+  </div>
+
+
+
+  <div class="centered-container">
+      <div class="backgroundforbook">
+        <div class="backgroundforbook1">
+          <div class="backgroundforbook2">
+        <div class="book">
+          <div class="page left-page">
+            <div class="containerfirst">
+              <div class="word1">Обмен книгами становится <br> всё более популярен</div>
+
+            </div>
+            <div class="word"> Это даёт шанс бумажным книгам продлить свою жизнь
+              помогает владельцам книг делиться хорошими
+              историями и получать новые впечатления
+              Все буккроссеры любят свои книги и любят их читать
+              Они щедрые, новаторские, дружелюбные,
+              добросердечные, веселые и образованные люди</div>
+          </div>
+          <div class="page right-page">
+            <div class="containerfirst">
+              <div class="word2">Интересно?</div>
+            </div>
+            <div class="word4">Наш сайт предлагает совершить не просто обмен
+            а добавить к этому увлекательному процессу элемент сюрприза
+            Подбор книг для обмена будет выполнен по пожеланиям участников
+            но только при получении книги станет известно
+            какая именно книга будет радовать своего владельца</div>
+          </div>
+        </div>
+      </div>
+
+      </div>
   </div>
 </div>
 
