@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
+import {MyexchangesComponent} from "./pages/myexchanges/myexchanges.component";
 
 
 
@@ -11,7 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   },
 
-  {path: 'registration', component: RegistrationComponent }
+  {path: 'registration', component: RegistrationComponent },
+  {path: 'exchanges', component: MyexchangesComponent }
 ];
 
 @NgModule({

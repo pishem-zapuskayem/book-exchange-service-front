@@ -1,0 +1,69 @@
+<body>
+
+<div class="header">
+  <img src="logo.png" alt="Logo" class="logo">
+  <div class="buttons">
+    <button (click)="'info1'">Главная</button>
+    <button (click)="'info2'">Начать обмен</button>
+    <button (click)="'info3'">Мои обмены</button>
+    <button (click)="'info4'">Задать вопрос</button>
+
+  </div>
+  <div class="auth">
+    <button (click)="showLogin()">Login</button>
+    <a routerLink="/registration"> Registration</a>
+  </div>
+
+</div>
+<div class="centered-container">
+  <div class="backgroundforbook">
+    <div class="backgroundforbook1">
+      <div class="backgroundforbook2">
+        <div class="book">
+          <div class="vertical-menu">
+            <div class="user-info">
+              <a href="edit-profile.html">Username</a>
+              <img src="avatar.jpg" alt="User Avatar">
+              <p>Rating: 4.5</p>
+            </div>
+            <div class="button-container">
+              <button  class="custom-button" (click)="showSection(1)">Предложения для обмена</button>
+              <button  class="custom-button" (click)="showSection(2)">Хочу обменять</button>
+              <button  class="custom-button" (click)="showSection(3)">Хочу получить</button>
+              <button  class="custom-button" (click)="showSection(4)">Активные обмены</button>
+              <button  class="custom-button" (click)="showSection(5)">Отзывы на книги</button>
+              <button  class="custom-button" (click)="showSection(6)">Личные данные</button>
+              <button  class="custom-button" (click)="showSection(7)">Сообщения</button>
+              <button  class="custom-button" (click)="showSection(8)">Архив</button>
+              <button  class="custom-button" (click)="showSection(9)">Выход</button>
+            </div>
+          </div>
+          <div *ngIf="currentSection">
+            <div *ngIf="currentSection === 1">
+              <div class="content">
+                <div class="content1">
+                 <div class="backgroundforname">
+                   <div>
+                     <h2>Предложения для обмена</h2>
+                   </div>
+                 </div>
+                <div class="sub-container" style="order: 1;">Container 1</div>
+                <div class="sub-container" style="order: 2;">Container 2</div>
+                <div class="sub-container" style="order: 3;">Container 3</div>
+                </div>
+                </div>
+            </div>
+            <div *ngIf="currentSection === 2">Хочу обменять</div>
+            <div *ngIf="currentSection === 3">Хочу получить</div>
+            <div *ngIf="currentSection === 4">Активные обмены</div>
+            <div *ngIf="currentSection === 5">Отзывы на книги</div>
+            <div *ngIf="currentSection === 6">Личные данные</div>
+            <div *ngIf="currentSection === 7">Сообщения</div>
+            <div *ngIf="currentSection === 8">Архив</div>
+            <div *ngIf="currentSection === 9">Выход</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

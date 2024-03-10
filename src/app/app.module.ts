@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -10,20 +9,25 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {ReactiveFormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
 import {AuthDialogComponent} from "./auth-dialog/auth-dialog.component";
-
+import { MyexchangesComponent } from './pages/myexchanges/myexchanges.component';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     MainComponent,
     StartexchangeComponent,
-    AuthDialogComponent
+    AuthDialogComponent,
+    MyexchangesComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        CoreModule
+        NzLayoutModule,
+        CoreModule,
+        FormsModule
     ],
   providers: [
     provideAnimationsAsync()
