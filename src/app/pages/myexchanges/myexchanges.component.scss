@@ -33,7 +33,9 @@ body {
   color: white;
   padding: 16px;
 }
-
+button:hover {
+  transform: scale(1.05);
+}
 .buttons button{
   background-color: #555;
   color: white;
@@ -206,6 +208,7 @@ p {
   margin: 0;
   border-radius: 5px;
 }
+//Предложения для обмена
 .backgroundforname{
   display: flex;
   justify-content: center;
@@ -213,6 +216,30 @@ p {
   background-color: #2c220c;
   padding: 2px;
   margin: 0;
+  border-radius: 10px;
+  width: 90%;
+  height: 8%;
+  top: 0;
+}
+.sub-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fbb561;
+  padding: 5px;
+  margin: 4px;
+  border-radius: 10px;
+  width: 90%;
+  height: 8%;
+  top: 0;
+}
+.sub-container2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 2px;
+  margin: 4px;
   border-radius: 10px;
   width: 90%;
   height: 8%;
@@ -232,4 +259,39 @@ p {
   border: 5px solid #a97650;
   box-sizing: border-box;
   border-radius: 2px;
+}
+//Хочу отдать и Хочу получить
+
+.bookcontainer{
+  width: 400px;
+  height: 600px;
+  display: flex;
+  margin: 6px;
+  padding: 6px;
+  position: relative;
+
+  background: #fbb561;
+  border-radius: 5px;
+}
+
+.content2{
+  display: flex;
+}
+.forbook{
+  display: flex;
+  background-color: #ffa94f;
+  margin: 0;
+  width: 8%;
+  height: 100%;
+  font-family: URW Chancery L, cursive;
+}
+.backgroundfornameforbook{
+  display: flex;
+  justify-content: center;
+  background-color: #ffbc48;
+  padding: 2px;
+  margin: 5px;
+  width: 90%;
+  height: 8%;
+  font-family: URW Chancery L, cursive;
 }

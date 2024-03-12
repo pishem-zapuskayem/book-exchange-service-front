@@ -3,9 +3,9 @@
 <div class="header">
   <img src="logo.png" alt="Logo" class="logo">
   <div class="buttons">
-    <button (click)="'info1'">Главная</button>
+    <button (click)="navigateToHome()">Главная</button>
     <button (click)="'info2'">Начать обмен</button>
-    <button (click)="'info3'">Мои обмены</button>
+    <button (click)="navigateToMyExchanges()">Мои обмены</button>
     <button (click)="'info4'">Задать вопрос</button>
 
   </div>
@@ -38,22 +38,55 @@
               <button  class="custom-button" (click)="showSection(9)">Выход</button>
             </div>
           </div>
+
           <div *ngIf="currentSection">
             <div *ngIf="currentSection === 1">
               <div class="content">
                 <div class="content1">
                  <div class="backgroundforname">
-                   <div>
                      <h2>Предложения для обмена</h2>
-                   </div>
                  </div>
-                <div class="sub-container" style="order: 1;">Container 1</div>
-                <div class="sub-container" style="order: 2;">Container 2</div>
-                <div class="sub-container" style="order: 3;">Container 3</div>
+
+                <div class="sub-container">
+                  Полное совпадение
+                </div>
+                  <div class="sub-container2">
+                    Здесь пока ничего нет
+                  </div>
+                <div class="sub-container" >Частичное совпадение</div>
+                  <div class="sub-container2">
+                    Эх, сейчас бы в циву
+                  </div>
+                <div class="sub-container" >Другие интересные предложения</div>
+                  <div class="sub-container2">
+                    Не интересные предложения
+                  </div>
                 </div>
                 </div>
             </div>
-            <div *ngIf="currentSection === 2">Хочу обменять</div>
+            <div *ngIf="currentSection === 2">
+              <div class="content">
+                <div class="content1">
+                    <div class="backgroundforname">
+                        <h2>Хочу обменять</h2>
+                    </div>
+                      <div class="content2">
+                        <div class="bookcontainer left-bookcontainer">
+                          <div class="forbook"></div>
+                          <div class="backgroundfornameforbook">
+                          <h2>Мне</h2>
+                          </div>
+                        </div>
+                        <div class="bookcontainer right-bookcontainer">
+                          <div class="forbook"></div>
+                          <div class="backgroundfornameforbook">
+                            <h2>Я</h2>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+                    </div>
+                </div>
             <div *ngIf="currentSection === 3">Хочу получить</div>
             <div *ngIf="currentSection === 4">Активные обмены</div>
             <div *ngIf="currentSection === 5">Отзывы на книги</div>
