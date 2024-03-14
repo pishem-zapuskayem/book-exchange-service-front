@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class MyexchangesComponent {
   currentSection: number = 2;
-
+  Number: string = '';
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
   }
@@ -26,5 +26,6 @@ export class MyexchangesComponent {
   navigateToMyExchanges() {
     this.router.navigate(['/exchanges']);
   }
+
 }
 

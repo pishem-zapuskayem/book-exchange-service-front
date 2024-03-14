@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
         ReactiveFormsModule,
         NzLayoutModule,
         CoreModule,
-        FormsModule
+        FormsModule,
     ],
   providers: [
     provideAnimationsAsync()
