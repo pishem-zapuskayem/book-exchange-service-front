@@ -20,6 +20,10 @@ export class HomePageComponent {
   createMessage(type: string): void {
     this.message.create(type, `Данный раздел доступен только авторизованному пользователю`);
   }
-
-
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
+  navigateToMyExchanges() {
+    this.router.navigate(['/exchanges']);
+  }
 }

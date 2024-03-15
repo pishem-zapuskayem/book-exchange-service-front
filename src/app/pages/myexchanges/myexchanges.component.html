@@ -1,0 +1,186 @@
+<body>
+
+<div class="header">
+  <img src="assets\logo.png" alt="Logo" class="logo">
+  <div class="buttons">
+    <button (click)="navigateToHome()">Главная</button>
+    <button (click)="'info2'">Начать обмен</button>
+    <button (click)="navigateToMyExchanges()">Мои обмены</button>
+    <button (click)="'info4'">Задать вопрос</button>
+
+  </div>
+  <div class="auth">
+    <button (click)="showLogin()">Login</button>
+    <a routerLink="/registration"> Registration</a>
+  </div>
+
+</div>
+<div class="centered-container">
+  <div class="backgroundforbook">
+    <div class="backgroundforbook1">
+      <div class="backgroundforbook2">
+        <div class="book">
+          <div class="vertical-menu">
+            <div class="user-info">
+              <a href="edit-profile.html">Username</a>
+              <img src="avatar.jpg" alt="User Avatar">
+              <p>Rating: 4.5</p>
+            </div>
+            <div class="button-container">
+              <button  class="custom-button" (click)="showSection(1)">Предложения для обмена</button>
+              <button  class="custom-button" (click)="showSection(2)">Хочу обменять</button>
+              <button  class="custom-button" (click)="showSection(3)">Хочу получить</button>
+              <button  class="custom-button" (click)="showSection(4)">Активные обмены</button>
+              <button  class="custom-button" (click)="showSection(5)">Отзывы на книги</button>
+              <button  class="custom-button" (click)="showSection(6)">Личные данные</button>
+              <button  class="custom-button" (click)="showSection(7)">Сообщения</button>
+              <button  class="custom-button" (click)="showSection(8)">Архив</button>
+              <button  class="custom-button" (click)="showSection(9)">Выход</button>
+            </div>
+          </div>
+
+          <div *ngIf="currentSection">
+            <div *ngIf="currentSection === 1">
+              <div class="content">
+                <div class="content1">
+                 <div class="backgroundforname">
+                     <h2>Предложения для обмена</h2>
+                 </div>
+
+                <div class="sub-container">
+                  Полное совпадение
+                </div>
+                  <div class="sub-container2">
+                    Здесь пока ничего нет
+                  </div>
+                <div class="sub-container" >Частичное совпадение</div>
+                  <div class="sub-container2">
+                    Эх, сейчас бы в циву
+                  </div>
+                <div class="sub-container" >Другие интересные предложения</div>
+                  <div class="sub-container2">
+                    Не интересные предложения
+                  </div>
+                </div>
+                </div>
+            </div>
+            <div *ngIf="currentSection === 2">
+              <div class="content">
+                <div class="content1">
+                    <div class="backgroundforname">
+                        <h2>Хочу обменять</h2>
+                    </div>
+                      <div class="content2">
+                        <div class="bookcontainer left-bookcontainer">
+                          <div class="forbook"></div>
+                            <div class="right-container">
+                          <div class="backgroundfornameforbook">
+                            <h2>Мне</h2>
+                          </div>
+                              <div class="backgroundforbookformain left" >
+                                Тип: неизвестно
+                                <br>
+                                <!-- Обмен подтвержден -->
+                                Обмен пока не подтвержден
+                                <br>
+                                Номер отправления
+                                <br>
+                                1234567890
+                                <br>
+                                Книга получена
+                              </div>
+                            </div>
+                        </div>
+                        <div class="bookcontainer right-bookcontainer">
+                          <div class="right-container">
+                            <div class="backgroundfornameforbook">
+                              <h2>Я</h2>
+                            </div>
+                            <div class="backgroundforbookformain right" >
+                              Название
+                              <br>
+                              <!-- Обмен подтвержден -->
+                              Обмен пока не подтвержден
+                              <br>
+                              Номер отправления
+                              <br>
+                              <!--  <form style="display: flex; align-items: center;">
+                             <input formControlName="Number" type="text" [(ngModel)]="Number" name="Number" ng-model="ctrl.Number" />
+                               </form>-->
+                               <br>
+                               Книга получена
+                             </div>
+                           </div>
+                               <div class="forbook"></div>
+
+                         </div>
+                       </div>
+                      </div>
+                     </div>
+                 </div>
+             <div *ngIf="currentSection === 3">
+               <div class="content">
+                 <div class="content1">
+                   <div class="backgroundforname">
+                     <h2>Хочу Получить</h2>
+                   </div>
+                   <div class="content2">
+                     <div class="bookcontainer left-bookcontainer">
+                       <div class="forbook"></div>
+                       <div class="right-container">
+                         <div class="backgroundfornameforbook">
+                           <h2>Мне</h2>
+                         </div>
+                         <div class="backgroundforbookformain left" >
+                           Тип: неизвестно
+                           <br>
+                           <!-- Обмен подтвержден -->
+                           Обмен пока не подтвержден
+                           <br>
+                           Номер отправления
+                           <br>
+                           1234567890
+                           <br>
+                           Книга получена
+                         </div>
+                       </div>
+                     </div>
+                     <div class="bookcontainer right-bookcontainer">
+                       <div class="right-container">
+                         <div class="backgroundfornameforbook">
+                           <h2>Я</h2>
+                         </div>
+                         <div class="backgroundforbookformain right" >
+                           Название
+                           <br>
+                           <!-- Обмен подтвержден -->
+                           Обмен пока не подтвержден
+                           <br>
+                           Номер отправления
+                           <br>
+                           <!--  <form style="display: flex; align-items: center;">
+                          <input formControlName="Number" type="text" [(ngModel)]="Number" name="Number" ng-model="ctrl.Number" />
+                            </form>-->
+                           <br>
+                           Книга получена
+                         </div>
+                       </div>
+                       <div class="forbook"></div>
+
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div *ngIf="currentSection === 4">Активные обмены</div>
+             <div *ngIf="currentSection === 5">Отзывы на книги</div>
+             <div *ngIf="currentSection === 6">Личные данные</div>
+             <div *ngIf="currentSection === 7">Сообщения</div>
+             <div *ngIf="currentSection === 8">Архив</div>
+             <div *ngIf="currentSection === 9">Выход</div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

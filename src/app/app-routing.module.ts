@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import {StartChangeComponent} from "./pages/home/start-change/start-change.component";
+import {MyexchangesComponent} from "./pages/myexchanges/myexchanges.component";
 
 
 
@@ -14,6 +15,8 @@ const routes: Routes = [
 
   {path: 'registration', component: RegistrationComponent },
   {path: 'exchange', component: StartChangeComponent }
+  {path: 'registration', component: RegistrationComponent },
+  {path: 'exchanges', component: MyexchangesComponent }
 ];
 
 
