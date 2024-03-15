@@ -14,14 +14,17 @@ const routes: Routes = [
   },
 
   {path: 'registration', component: RegistrationComponent },
-  {path: 'exchange', component: StartChangeComponent }
+  {path: 'exchange', component: StartChangeComponent },
   {path: 'registration', component: RegistrationComponent },
   {path: 'exchanges', component: MyexchangesComponent }
 ];
 
 
 @NgModule({
+
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}

@@ -6,7 +6,7 @@ import {
 } from "@angular/material/dialog";
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {AppRoutingModule} from "../../../app-routing.module";
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -20,10 +20,5 @@ export class HomePageComponent {
   createMessage(type: string): void {
     this.message.create(type, `Данный раздел доступен только авторизованному пользователю`);
   }
-  navigateToHome() {
-    this.router.navigate(['/home']);
-  }
-  navigateToMyExchanges() {
-    this.router.navigate(['/exchanges']);
-  }
+
 }

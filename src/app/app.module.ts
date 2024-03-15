@@ -12,13 +12,12 @@ import {StartChangeComponent} from "./pages/home/start-change/start-change.compo
 
 import { MyexchangesComponent } from './pages/myexchanges/myexchanges.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     MainComponent,
-    StartexchangeComponent,
     AuthDialogComponent,
     MyexchangesComponent,
     StartChangeComponent,
