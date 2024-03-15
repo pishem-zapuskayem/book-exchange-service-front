@@ -5,25 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MainComponent } from './pages/home/main/main.component';
-import { StartexchangeComponent } from './startexchange/startexchange.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
 import {AuthDialogComponent} from "./auth-dialog/auth-dialog.component";
+import {StartChangeComponent} from "./pages/home/start-change/start-change.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     MainComponent,
-    StartexchangeComponent,
+    StartChangeComponent,
     AuthDialogComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        CoreModule
+        CoreModule,
+        FormsModule,
     ],
   providers: [
     provideAnimationsAsync()
