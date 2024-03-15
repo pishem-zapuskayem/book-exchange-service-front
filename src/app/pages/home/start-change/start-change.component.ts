@@ -9,59 +9,65 @@ import {NzMessageService} from "ng-zorro-antd/message";
   styleUrls: ['./start-change.component.scss']
 })
 export class StartChangeComponent implements OnInit {
-  personalDetails!: FormGroup;
-  addressDetails!: FormGroup;
-  educationalDetails!: FormGroup;
-  personal_step = false;
-  address_step = false;
-  education_step = false;
+  needExchange!: FormGroup;
+  Wanted!: FormGroup;
+  InfoDetail!: FormGroup;
+  exchange_step = false;
+  wanted_step = false;
+  info_step = false;
   step = 1;
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog, private message: NzMessageService) { }
   ngOnInit() {
-    this.personalDetails = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['',Validators.required]
+    this.needExchange = this.formBuilder.group({
+      SecondName: ['', Validators.required],
+      FirstName: ['', Validators.required],
+      BookName: ['', Validators.required],
+      Year: ['',Validators.required]
+      //  ISBN: ['',Validators.required]
     });
-    this.addressDetails = this.formBuilder.group({
-      city: ['', Validators.required],
-      address: ['', Validators.required],
-      pincode: ['',Validators.required]
-    });
-    this.educationalDetails = this.formBuilder.group({
-      highest_qualification: ['', Validators.required],
-      university: ['', Validators.required],
-      total_marks: ['',Validators.required]
+   this.Wanted = this.formBuilder.group({
+    WannaTake: ['', Validators.required],
+   });
+    this.InfoDetail = this.formBuilder.group({
+      City: ['', Validators.required],
+      Street: ['', Validators.required],
+      Build: ['', Validators.required],
+      House: ['', Validators.required],
+      //apartment: ['', Validators.required],
+      Index: ['', Validators.required],
+      SecondName: ['', Validators.required],
+      FirstName: ['', Validators.required],
+      MiddleName: ['', Validators.required]
     });
   }
-  get personal() { return this.personalDetails.controls; }
-  get education() { return this.educationalDetails.controls; }
-  get address() { return this.addressDetails.controls; }
+  get trade() { return this.needExchange.controls; }
+  get want() { return this.InfoDetail.controls; }
+  get info() { return this.Wanted.controls; }
   next(){
     if(this.step==1){
-      this.personal_step = true;
-      if (this.personalDetails.invalid) { return  }
+      this.exchange_step = true;
+      if (this.needExchange.invalid) { return  }
       this.step++
     }
     if(this.step==2){
-      this.address_step = true;
-      if (this.addressDetails.invalid) { return }
+      this.wanted_step = true;
+      if (this.Wanted.invalid) { return }
       this.step++;
     }
   }
   previous(){
     this.step--
     if(this.step==1){
-      this.personal_step = false;
+      this.exchange_step = false;
     }
     if(this.step==2){
-      this.education_step = false;
+      this.info_step = false;
     }
   }
   submit(){
     if(this.step==3){
-      this.education_step = true;
-      if (this.educationalDetails.invalid) { return }
+      this.info_step = true;
+      if (this.InfoDetail.invalid) { return }
     }
   }
   showLogin() {

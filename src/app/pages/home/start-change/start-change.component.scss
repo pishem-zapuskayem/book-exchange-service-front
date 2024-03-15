@@ -1,4 +1,169 @@
+#progressbar {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+  left:24%;
+  z-index: 1;
+}
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 15px;
+  width: 33.33%;
+  float: left;
+  position: center;
+  letter-spacing: 1px;
+}
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 120px;
+  height: 24px;
+  line-height: 26px;
+  display: block;
+  font-size: 12px;
+  color: #333;
+  background: white;
+  border-radius: 25px;
+  margin: 0 auto 10px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 60%;
+  height: 12px;
+  background: #DEB887FF;
+  position: absolute;
+  left: 24%;
+  top: 6px;
+  z-index:-1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none ;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before, #progressbar li.active:after {
+  background:#7EBD91;
+  color: white;
+}
+#progressbar li.inactive:before{
+  background: burlywood;
+  color: #000;
+}
 
+.validator {
+  position: center;
+  color: black;
+  margin-left: 30px;
+
+}
+.validator1 {
+  position: center;
+  color: black;
+
+  margin-left: 30px;
+
+}
+.label1 {
+  position: center;
+  color: black;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-family: Trebuchet MS, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+}
+.label2 {
+  position: center;
+  color: black;
+  margin-top: 30px;
+  margin-left: 30%;
+  margin-bottom: 10px;
+  font-family: Trebuchet MS, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.label3 {
+  position: center;
+  color: black;
+  margin-top: 30px;
+  margin-left: 12%;
+  margin-bottom: 10px;
+  font-family: Trebuchet MS, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+}
+.label4 {
+  position: center;
+  color: black;
+  margin-top: 30px;
+  margin-left: 20%;
+  margin-bottom: 10px;
+  font-family: Trebuchet MS, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.forbox {
+
+  font-size: 15px;
+  width: 45%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-left: 30px;
+}
+
+.forbox1 {
+  font-size: 15px;
+  width: 30%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-left: 30px;
+}
+.forbox2 {
+  font-size: 15px;
+  width: 80%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-left: 30px;
+}
+.forbox3 {
+  font-size: 15px;
+  width: 55%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-left: 30px;
+}
+.forbox4 {
+  font-size: 15px;
+  width: 20%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-left: 30px;
+}
+.forbox5 {
+  font-size: 15px;
+  width: 23%;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin-left: 30px;
+}
 body {
   overflow-x: hidden;
   background: linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
@@ -80,14 +245,7 @@ p {
 }
 
 
-.form{
-  width: 1000px;
-  padding: 20px;
-  border: 1px solid aliceblue;
-  border-radius: 20px;
-  margin: 50px;
-  background-color: aliceblue;
-}
+
 .form1{
 
   width: 1200px;
@@ -313,7 +471,32 @@ h3{
 .book:hover .left-page {
   transform: rotateY(5deg);
 }
+.action-button{
+  opacity:100%;
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  border: 20px solid #FCF8ECFF;
+  background: #FCF8ECFF;
+  border-right: 20px solid #DEB887FF;
+  border-bottom: 20px solid #DEB887FF;
+}
+.action-button-previous{
+  opacity:100%;
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  background: #FCF8ECFF;
+  border: 20px solid #FCF8ECFF;
+  border-left: 20px solid #DEB887FF;
+  border-bottom: 20px solid #DEB887FF;
 
+}
+.ButtonChange:hover  {
+ .page .right-page{
+   transform: rotateY(-50deg);
+ }
+}
 .book:hover .right-page {
   transform: rotateY(-5deg);
 }
