@@ -464,9 +464,6 @@ h3{
   border-left: 3px solid #94826a;
 }
 
-.book:hover .left-page {
-  transform: rotateY(5deg);
-}
 .action-button{
   opacity:100%;
   position:absolute;
@@ -477,7 +474,10 @@ h3{
   border-right: 20px solid #DEB887FF;
   border-bottom: 20px solid #DEB887FF;
 }
-.action-button-previous{
+#action-button:hover .page.right-page{
+  transform: rotateY(-5deg);
+}
+#action-button-previous{
   opacity:100%;
   position:absolute;
   bottom: 0;
@@ -488,18 +488,15 @@ h3{
   border-bottom: 20px solid #DEB887FF;
 
 }
-.ButtonChange:hover  {
- .page .right-page{
-   transform: rotateY(-50deg);
- }
-}
-.book:hover .right-page {
+
+#action-button:hover .right-page{
   transform: rotateY(-5deg);
 }
-
-
 
 .logo {
   width: 100px;
   height: auto;
+}
+.backgroundforbook:hover {
+animation-play-state: paused;
 }

@@ -26,11 +26,12 @@
   <div class="backgroundforbook">
     <div class="backgroundforbook1">
       <div class="backgroundforbook2">
-<div class="book">
+
 <form [formGroup]="needExchange">
     <!-- progressbar -->
   <!--Страница 1 левая  -->
-    <fieldset  *ngIf="step == 1" >
+    <fieldset  class="book"  *ngIf="step == 1" >
+
       <div class="page left-page">
         <div>
         <h2 class="word1">Хочу обменять:</h2>
@@ -61,18 +62,18 @@
           <div *ngIf="trade.Year.errors?.required">Заполните год издания</div>
         </div>
       </div>
-      <!--Страница 1 правая  -->
       <div class="page right-page">
         <div>
           ИЕРАРХИЧЕСКИЙ СПИСОК
         </div>
-      <input (click)="next()" type="button" name="next" class="next action-button" />
+        <input (click)="next()" type="button" name="next" class="action-button" />
       </div>
+
     </fieldset>
   </form>
   <!--Страница 2 левая  -->
-  <form [formGroup]="Wanted">
-    <fieldset *ngIf="step == 2" >
+  <form  [formGroup]="Wanted">
+    <fieldset  class="book" *ngIf="step == 2" >
       <div class="page left-page">
       <h2 class="word1">Хочу получить:</h2>
         <label class="label1" > Пример* </label>
@@ -87,13 +88,11 @@
       <div class="label1">Иерархический список</div>
         <input  (click)="next()" type="button" name="next" class="next action-button"/>
         </div>
-
-
     </fieldset>
 
   </form>
   <form [formGroup]="InfoDetail">
-    <fieldset *ngIf="step == 3">
+    <fieldset  class="book" *ngIf="step == 3">
       <!--Страница 3 левая  -->
       <div class="page left-page">
       <h2 class="word1">Адрес доставки:</h2><br>
@@ -146,8 +145,8 @@
       <input (click)="submit()"type="submit" name="submit" class="submit action-button" />
       </div>
     </fieldset>
+
   </form>
-</div>
       </div>
     </div>
   </div>

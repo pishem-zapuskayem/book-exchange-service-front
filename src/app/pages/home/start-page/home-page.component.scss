@@ -321,3 +321,6 @@ h3{
 .book:hover .right-page {
   transform: rotateY(-5deg);
 }
+.backgroundforbook:hover {
+  animation-play-state: paused;
+}

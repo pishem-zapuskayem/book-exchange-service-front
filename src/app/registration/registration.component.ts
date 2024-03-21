@@ -38,7 +38,7 @@ export class RegistrationComponent {
       ]),
       email: new FormControl(null, [
         Validators.required,
-        Validators.maxLength(4)
+        Validators.maxLength(50)
       ]),
       username: new FormControl(null, [
         Validators.required,
