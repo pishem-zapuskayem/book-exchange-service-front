@@ -128,7 +128,3 @@ export class RegistrationComponent {
     this.selectedFile = input.files[0] as File;
   }
 }
-
-
-
-

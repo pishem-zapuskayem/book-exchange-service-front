@@ -4,6 +4,8 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {AuthDialogComponent} from "../../auth-dialog/auth-dialog.component";
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../core/services/auth.service";
 @Component({
   selector: 'app-myexchanges',
   templateUrl: './myexchanges.component.html',
@@ -11,8 +13,10 @@ import {Router} from "@angular/router";
 
 })
 export class MyexchangesComponent {
+
   currentSection: number = 2;
   Number: string = '';
+//  form: FormGroup;
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
   }
@@ -26,6 +30,15 @@ export class MyexchangesComponent {
   navigateToMyExchanges() {
     this.router.navigate(['/exchanges']);
   }
+
+ // {
+ //   this.form = new FormGroup({
+ //     SendNumber: new FormControl(null, [
+ //       Validators.required,
+ //       Validators.maxLength(50)
+ //     ]),
+ //   });
+ // }
 
 }
 
