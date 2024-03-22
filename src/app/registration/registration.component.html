@@ -5,16 +5,18 @@
     <form ng-submit="ctrl.submitForm()" [formGroup]="form" (ngSubmit)="submit()">
       <button (click)="goToHomePage()" class = "btn-back" type="submit"> Вернуться на главную </button><br><br>
       <label for="surname"> Фамилия* </label><br>
-      <input formControlName="lastName" class="forbox" type="text" id="surname" ng-model="ctrl.surname" required><br><br>
-
+      <input formControlName="lastName" name="lname" class="forbox" type="text" id="surname" ng-model="ctrl.surname" required [ngClass]="{ 'is-invalid': isSubmitted && f['lastName'].errors }"><br><br>
+      <div *ngIf="isSubmitted && f['lastName'].errors" class="invalid-feedback">
+        <div *ngIf="f['lastName'].errors['required']">Fullname is required</div>
+      </div>
       <label for="name">Имя* </label><br>
-      <input formControlName="firstName" class="forbox" type="text" id="name" ng-model="ctrl.name" required><br><br>
+      <input formControlName="firstName" class="forbox" type="text" id="name" ng-model="firstName" required><br><br>
 
       <label for="middlename">Отчество </label><br>
       <input formControlName="secondName" class="forbox" type="text" id="middlename" ng-model="ctrl.middlename"><br><br>
 
       <label for="email">Email* </label><br>
-      <input formControlName="email" class="forbox" type="email" id="email" ng-model="ctrl.email" required><br><br>
+      <input formControlName="email"  name="uEmail" class="forbox" type="email" id="email" ng-model="email" required><br><br>
 
       <label for="nickname">Ник* </label><br>
       <input formControlName="username"  class="forbox" type="text" id="nickname" ng-model="ctrl.nickname" required><br><br>
