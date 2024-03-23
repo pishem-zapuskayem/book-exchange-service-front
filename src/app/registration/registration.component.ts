@@ -29,12 +29,8 @@ export class RegistrationComponent {
   isSubmitted = false;
   error = false;
   selectedFile: File | null = null;
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private service: AuthService,
-  ) {}
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: AuthService,) {}
+  ngOnInit() {
     this.form = this.formBuilder.group(
       {
       lastName: ["" ,[ Validators.required, Validators.maxLength(50), Validators.pattern(/[А-Я]/)]],
@@ -45,43 +41,48 @@ export class RegistrationComponent {
         Validators.maxLength(50),
         Validators.email
       ]],
-      username: [null, [
+      username: [null,
         Validators.required,
         Validators.minLength(2),
         Validators.pattern(/([$@$!%*?&])/)
-      ]],
-      password: [null, [
+      ],
+      password: [null,
         Validators.required,
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/)
-      ]],
-      addrIndex: [null, [
+      ],
+      addrIndex: [null,
         Validators.required,
         Validators.maxLength(7)
-      ]],
-      addrCity: [null, [
+      ],
+      addrCity: [null,
         Validators.required,
         Validators.maxLength(15)
-      ]],
-      addrStreet: [null, [
+      ],
+      addrStreet: [null,
         Validators.required,
         Validators.maxLength(25)
-      ]],
-      addrHouse: [null, [
+      ],
+      addrHouse: [null,
         Validators.required,
         Validators.maxLength(5)
-      ]],
-      addrStructure: [null, [
+      ],
+      addrStructure: [null,
         Validators.required,
         Validators.maxLength(2)
-      ]],
-      addrApart: [null, [
+      ],
+      addrApart: [null,
         Validators.required,
         Validators.maxLength(3)
-      ]],
+      ],
       avatar: new FormControl(null, []),
     });
   }
+
+
+  get rex() { return this.form.controls; }
+
+
   goToHomePage() {
     this.router.navigate(['/']);
   }

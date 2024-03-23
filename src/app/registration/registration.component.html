@@ -4,26 +4,47 @@
   <div class="registration-form">
     <form ng-submit="ctrl.submitForm()" [formGroup]="form" (ngSubmit)="submit()">
       <button (click)="goToHomePage()" class = "btn-back" type="submit"> Вернуться на главную </button><br><br>
+      <div *ngIf="this.isSubmitted || rex.lastName.touched && form.controls.lastName.errors">
+        <label class = "warningval"  *ngIf="rex.lastName.errors?.required">Заполните фамилию</label>
+      </div>
       <label for="surname"> Фамилия* </label><br>
-      <input formControlName="lastName" name="lname" class="forbox" type="text" id="surname" ng-model="ctrl.surname" required [ngClass]="{ 'is-invalid': isSubmitted && f['lastName'].errors }"><br><br>
-      <div *ngIf="isSubmitted && f['lastName'].errors" class="invalid-feedback">
-        <div *ngIf="f['lastName'].errors['required']">Fullname is required</div>
+      <input formControlName="lastName" name="lname" class="forbox" type="text" id="surname" ng-model="ctrl.surname" required><br><br>
+      <div *ngIf="this.isSubmitted || rex.firstName.touched && form.controls.firstName.errors">
+        <label  class = "warningval" *ngIf="rex.firstName.errors?.required">Заполните имя</label>
       </div>
       <label for="name">Имя* </label><br>
       <input formControlName="firstName" class="forbox" type="text" id="name" ng-model="firstName" required><br><br>
-
+      <div *ngIf="this.isSubmitted || rex.secondName.touched && form.controls.secondName.errors">
+        <label class = "warningval" *ngIf="rex.secondName.errors?.required">Заполните отчество</label>
+      </div>
       <label for="middlename">Отчество </label><br>
       <input formControlName="secondName" class="forbox" type="text" id="middlename" ng-model="ctrl.middlename"><br><br>
-
+      <div *ngIf="this.isSubmitted || rex.email.touched && form.controls.email.errors">
+        <label class = "warningval" *ngIf="rex.email.errors?.required">Заполните Email</label>
+      </div>
       <label for="email">Email* </label><br>
       <input formControlName="email"  name="uEmail" class="forbox" type="email" id="email" ng-model="email" required><br><br>
-
+      <div *ngIf="this.isSubmitted || rex.username.touched && form.controls.username.errors">
+        <label class = "warningval" *ngIf="rex.username.errors?.required">Заполните Ник</label>
+      </div>
       <label for="nickname">Ник* </label><br>
       <input formControlName="username"  class="forbox" type="text" id="nickname" ng-model="ctrl.nickname" required><br><br>
-
+      <div *ngIf="this.isSubmitted || rex.password.touched && form.controls.password.errors">
+        <label class = "warningval" *ngIf="rex.password.errors?.required">Заполните пароль</label>
+      </div>
       <label for="password">Пароль* </label><br>
       <input formControlName="password"  class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
-
+      <div>
+        <label class = "warningval1" *ngIf="this.isSubmitted || rex.addrIndex.touched && form.controls.addrIndex.errors">
+          <label *ngIf="rex.addrIndex.errors?.required">Заполните индекс</label>
+        </label>
+        <label class = "warningval1" *ngIf="this.isSubmitted || rex.addrCity.touched && form.controls.addrCity.errors" >
+          <label *ngIf="rex.addrCity.errors?.required">Заполните город</label>
+        </label>
+        <label class = "warningval1" *ngIf="this.isSubmitted || rex.addrStreet.touched && form.controls.addrStreet.errors" style="margin-left:10px;">
+          <label *ngIf="rex.addrStreet.errors?.required">  Заполните улицу </label>
+        </label>
+      </div>
       <div class="flex">
       <label for="index">Индекс* </label> <label class="text" for="city">Город* </label><label class="text1" for="street">Улица* </label><br>
       </div>
@@ -32,12 +53,26 @@
         <input formControlName="addrCity"  class="forbox1" type="city" id="city" ng-model="ctrl.city" required>
         <input formControlName="addrStreet"  class="forbox1" type="street" id="street" ng-model="ctrl.street" required>
       </div><br>
+      <div>
+      <label style="text-align: left;" class = "warningval1" *ngIf="this.isSubmitted || rex.addrHouse.touched && form.controls.addrHouse.errors" style="margin-left:10px;">
+        <label *ngIf="rex.addrHouse.errors?.required"> Заполните дом </label>
+      </label>
+      <label style="  text-align: center;"  class = "warningval1"  *ngIf="this.isSubmitted || rex.addrStructure.touched && form.controls.addrStructure.errors" style="margin-left:10px;">
+        <label *ngIf="rex.addrStreet.errors?.required"> Заполните структуру </label>
+      </label>
+      <label  class = "warningval1"  *ngIf="this.isSubmitted || rex.addrApart.touched && form.controls.addrApart.errors" style=" color:red; margin-left:10px;">
+        <label  *ngIf="rex.addrApart.errors?.required"> Заполните квартиру </label>
+      </label>
+      </div>
       <label  for="house">Дом* </label> <label class="text2" for="strucher">Структура </label> <label class="text3" for="apartment">Квартира </label><br>
       <div class="flex">
         <input formControlName="addrHouse"  class="forbox1" type="house" id="house" ng-model="ctrl.house" required>
         <input formControlName="addrStructure"  class="forbox1" type="text" id="strucher" ng-model="ctrl.password">
         <input formControlName="addrApart"  class="forbox1" type="apartment" id="apartment" ng-model="ctrl.apartment" >
       </div><br>
+      <div>
+
+      </div>
       <label for="avatar">Аватар</label><br>
       <input
         formControlName="avatar"
