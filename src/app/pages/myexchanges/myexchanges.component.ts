@@ -6,6 +6,7 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
+
 @Component({
   selector: 'app-myexchanges',
   templateUrl: './myexchanges.component.html',
@@ -30,15 +31,32 @@ export class MyexchangesComponent {
   navigateToMyExchanges() {
     this.router.navigate(['/exchanges']);
   }
+  buttonClicked: boolean = false;
+  buttonClicked1: boolean = false;
+  showText() {
+    this.buttonClicked = true;
+  }
+  showText1() {
+    this.buttonClicked1 = true;
+  }
+  inputValue: string = '';
+  showInfo: boolean = false;
 
- // {
- //   this.form = new FormGroup({
- //     SendNumber: new FormControl(null, [
- //       Validators.required,
- //       Validators.maxLength(50)
- //     ]),
- //   });
- // }
+  showInfoOnClick() {
+    this.showInfo = true;
+  }
+/*
+  data: any[];
+
+  constructor(private dataService: myexchanges) {}
+
+  ngOnInit(): void {
+    this.dataService.getData().subscribe((result) => {
+      this.data = result;
+    });
+  }*/
 
 }
+
+
 

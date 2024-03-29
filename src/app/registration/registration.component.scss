@@ -54,12 +54,17 @@ body {
 {
   display: flex;
 }
+
 .custom-btn {
   width: 100%;
   background-color: cornflowerblue;
   color: white;
   border: none;
   padding: 10px;
+}
+button:hover {
+  background-color: #ffd59f;
+  color: black;
 }
 .btn-back {
   width: 100%;

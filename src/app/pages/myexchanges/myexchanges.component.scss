@@ -1,10 +1,13 @@
 body {
   overflow-x: hidden;
-  background: linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
+  background:
+    linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
+    linear-gradient(120deg, transparent 20%, #FBD161 20%) left fixed,
   linear-gradient(225deg, transparent 30%, #fbb561 20%) right fixed,
   #7EBD91;
+
   background-size: 50% 100%;
-  background-repeat: no-repeat;;
+  background-repeat: no-repeat;
 
 }
 .bottom-container {
@@ -97,7 +100,7 @@ p {
   padding: 10px;
   height: 100%;
   width: 70%;
-  background-color: #f2f2f2;
+  background: #fff4cc;
   position: absolute;
   top: 0;
 }
@@ -106,8 +109,7 @@ p {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  width: 80%;
-
+  width: 100%;
   position: absolute;
   top: 0;
   flex-direction: column;
@@ -168,14 +170,27 @@ p {
   background-color: #e0e0e0;
   cursor: pointer;
 }
+input{
+  padding-left: 10px;
+}
 .centered-container{
   display: flex;
   justify-content: center;
   border-radius: 20px;
   margin: 20px;
   padding: 10px;
+  animation: fadeInUp 1s forwards;
 }
-
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .centered-container2{
   align-self: flex-end;
   border-radius: 20px;
@@ -211,7 +226,7 @@ p {
   margin: 0;
   border-radius: 5px;
 }
-.book1 {
+.book1 { //Главная книга
   width: 800px;
   height: 600px;
   margin: 2px;
@@ -229,7 +244,7 @@ p {
   top: 0;
   background-color: #fcf8ec;
   border: 3px solid #bbac8d;
-  padding: 5px;
+  padding: 10px;
   transform-style: preserve-3d;
   transition: transform 1s;
   box-sizing: border-box;
@@ -245,7 +260,7 @@ p {
 
   left: 0;
   transform-origin: 100% 50%;
-  border-right: 3px solid #94826a;
+
 }
 
 .right-page {
@@ -267,6 +282,19 @@ p {
   height: 8%;
   top: 0;
 }
+.backgroundfornamepage
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  margin: 20px;
+  border-radius: 10px;
+  width: 90%;
+  height: 8%;
+  top: 0;
+  margin: 20px;
+}
 .sub-container{
   display: flex;
   justify-content: center;
@@ -274,11 +302,12 @@ p {
   background-color: #835136;
   color: white;
   padding: 5px;
-  margin: 4px;
+  margin: 10px;
   border-radius: 10px;
   width: 90%;
   height: 8%;
   top: 0;
+  animation: fadeInUp 1s forwards;
 }
 .sub-container2{
   display: flex;
@@ -291,8 +320,10 @@ p {
   width: 90%;
   height: 8%;
   top: 0;
+  animation: fadeInUp 1s forwards;
 }
 .backgroundforname h2 {
+  margin: 4px;
   color: whitesmoke;
   font-family: URW Chancery L, cursive;
 }
@@ -362,9 +393,6 @@ p {
 .backgroundforbookformain right
 {
   justify-content: right;
-}
-.input{
-
 }
 .forbox {
   width: 90%;
