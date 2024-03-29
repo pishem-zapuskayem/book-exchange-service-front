@@ -39,18 +39,21 @@
         <label class="label1"> Автор* </label><br>
         <div>
         <input formControlName="SecondName" class="forbox" type="text" ng-model="ctrl.surname" required placeholder="Фамилия">
-        <div *ngIf="exchange_step && needExchange.controls.SecondName.errors">
-          <div *ngIf="trade.SecondName.errors?.required"  class="validator">Заполните фамилию</div>
-        </div>
+
         <input formControlName="FirstName" class="forbox1" type="text" ng-model="ctrl.surname" required placeholder="Имя"><br>
-        <div *ngIf="exchange_step && needExchange.controls.FirstName.errors">
-          <div *ngIf="trade.FirstName.errors?.required" class="validator1">Заполните имя</div>
-        </div>
+          <div >
+          <label  *ngIf="exchange_step || trade.SecondName.touched  && needExchange.controls.SecondName.errors">
+            <label class="warningval" *ngIf="trade.SecondName.errors?.required">Заполните фамилию</label>
+          </label>
+        <label *ngIf="exchange_step || trade.FirstName.touched && needExchange.controls.FirstName.errors">
+          <label *ngIf="trade.FirstName.errors?.required" class="warningval" >Заполните имя</label>
+        </label>
+          </div>
         </div>
         <label class="label1"> Название книги* </label><br>
         <input formControlName="BookName" class="forbox2" type="text"  ng-model="ctrl.surname" required placeholder="Название книги"><br>
-        <div *ngIf="exchange_step && needExchange.controls.BookName.errors">
-          <div *ngIf="trade.BookName.errors?.required">Заполните название книги</div>
+        <div *ngIf="exchange_step || trade.BookName.touched && needExchange.controls.BookName.errors">
+          <div *ngIf="trade.BookName.errors?.required" class="warningval" >Заполните название книги</div>
         </div>
         <label class="label1" > ISBN </label>
         <label class="label2"> Год издания* </label><br>
@@ -58,8 +61,8 @@
         <input formControlName="ISBN" class="forbox3" type="text" ng-model="ctrl.surname" placeholder="ISBN">
 
         <input formControlName="Year" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Год издания"><br>
-        <div *ngIf="exchange_step && needExchange.controls.Year.errors">
-          <div *ngIf="trade.Year.errors?.required">Заполните год издания</div>
+        <div *ngIf="exchange_step || trade.Year.touched  && needExchange.controls.Year.errors">
+          <div *ngIf="trade.Year.errors?.required" class="warningval" >Заполните год издания</div>
         </div>
       </div>
       <div class="page right-page">
@@ -79,7 +82,7 @@
         <label class="label1" > Пример* </label>
         <input formControlName="WannaTake" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Пример"><br>
         <div *ngIf="wanted_step && Wanted.controls.Year.errors">
-          <div *ngIf="want.WannaTake.errors?.required">Заполните год издания</div>
+          <div *ngIf="want.WannaTake.errors?.required" class="warningval"  >Заполните год издания</div>
         </div>
         <input (click)="previous()" type="button" name="previous" class="previous action-button-previous"/>
       </div>
@@ -100,13 +103,13 @@
         <div>
           <input formControlName="City" class="forbox2" type="text" ng-model="ctrl.City" required placeholder="Город">
           <div *ngIf="info_step && InfoDetail.controls.City.errors">
-            <div *ngIf="info.City.errors?.required"  class="validator">Заполните фамилию</div>
+            <div *ngIf="info.City.errors?.required"  class="validator">Заполните город</div>
           </div>
         </div>
         <label class="label1"> Улица* </label><br>
         <input formControlName="Street" class="forbox2" type="text"  ng-model="ctrl.street" required placeholder="Название улицы"><br>
         <div *ngIf="info_step && InfoDetail.controls.Street.errors">
-          <div *ngIf="info.Street.errors?.required">Заполните название книги</div>
+          <div *ngIf="info.Street.errors?.required" class="warningval" >Заполните улицу</div>
         </div>
         <label class="label1" > Строение* </label>
         <label class="label3"> Дом* </label>
@@ -142,7 +145,7 @@
           <div *ngIf="info.MiddleName.errors?.required">Заполните отчество</div>
         </div>
 
-      <input (click)="submit()"type="submit" name="submit" class="submit action-button" />
+      <input (click)="submit()"  name="i"  type="button"  class="action-button"/>
       </div>
     </fieldset>
 

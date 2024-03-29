@@ -89,7 +89,7 @@
   position: center;
   color: black;
   margin-top: 30px;
-  margin-left: 30%;
+  margin-left: 52%;
   margin-bottom: 10px;
   font-family: Trebuchet MS, sans-serif;
   text-align: center;
@@ -191,13 +191,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #fcf8ec;
   color: white;
   padding: 15px;
   border: 5px solid black;
-  border-width: 8px 0px 8px 8px ; /* Верхняя и нижняя обводка */
+  border-width: 0px ; /* Верхняя и нижняя обводка */
   border-color: #835136 #4d2816;
-  background-image: linear-gradient(lightgray 1px, transparent 1px);
+  background-image: linear-gradient(white 0px, transparent 0px);
   background-size: 100% 19px;
 }
 
@@ -485,7 +485,7 @@ h3{
 #action-button:hover .page.right-page{
   transform: rotateY(-5deg);
 }
-#action-button-previous{
+.action-button-previous{
   opacity:100%;
   position:absolute;
   bottom: 0;
@@ -497,11 +497,16 @@ h3{
 
 }
 
-#action-button:hover .right-page{
+.action-button:hover .right-page{
   transform: rotateY(-5deg);
 }
 
 
 .backgroundforbook:hover {
 animation-play-state: paused;
+}
+.warningval {
+  color:red;
+  margin-left:30px;
+
 }

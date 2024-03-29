@@ -30,13 +30,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #fcf8ec;
   color: white;
   padding: 15px;
   border: 5px solid black;
-  border-width: 8px 0px 8px 8px ; /* Верхняя и нижняя обводка */
+  border-width: 0px ; /* Верхняя и нижняя обводка */
   border-color: #835136 #4d2816;
-  background-image: linear-gradient(lightgray 1px, transparent 1px);
+  background-image: linear-gradient(white 0px, transparent 0px);
   background-size: 100% 19px;
 }
 
@@ -244,7 +244,7 @@ h3{
 .word1 {
   color: #41280a;
   margin: 4px;
-  font-family: 'Arial Black', Gadget, sans-serif;
+  font-family: 'Arial Black';
   text-align: center;
   font-size: 30px;
   display: inline-block;
