@@ -8,6 +8,7 @@ import {AuthRequestDTO} from "../interfaces/auth-request.dto";
 import {jwtDecode} from "jwt-decode";
 import {JwtPayload} from "../interfaces/jwt-payload";
 import {RegisterDTO} from "../interfaces/register.dto";
+import {AccountDTO} from "../interfaces/account.dto";
 
 @Injectable()
 export class AuthService {
@@ -42,6 +43,12 @@ export class AuthService {
 
   public isAuthenticated():boolean {
     return this.storage.getToken() != null && !this.storage.isTokenExpired();
+  }
+
+  public getAuthenticated():Observable<AccountDTO> {
+    return this.http.get<AccountDTO>(environment.ME_URL, {
+      headers: this.storage.getAuthHeader()
+    })
   }
 
   public getRole(): string {
