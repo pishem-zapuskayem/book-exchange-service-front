@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {AuthDialogComponent} from "../../auth-dialog/auth-dialog.component";
@@ -6,6 +6,8 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
+import {Observer} from "rxjs";
+import {AccountDTO} from "../../core/interfaces/account.dto";
 
 @Component({
   selector: 'app-myexchanges',
@@ -13,15 +15,19 @@ import {AuthService} from "../../core/services/auth.service";
   styleUrl: './myexchanges.component.scss',
 
 })
-export class MyexchangesComponent {
-
+export class MyexchangesComponent implements OnInit {
+  user !: AccountDTO;
+  isLoading: boolean=false;
   currentSection: number = 2;
   Number: string = '';
 //  form: FormGroup;
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
   }
-  constructor(public dialog: MatDialog, private message: NzMessageService,private router: Router) {}
+  constructor(public dialog: MatDialog,
+              private message: NzMessageService,
+              private router: Router,
+              public authService:  AuthService) {}
   showLogin() {
     this.dialog.open(AuthDialogComponent);
   }
@@ -45,17 +51,34 @@ export class MyexchangesComponent {
   showInfoOnClick() {
     this.showInfo = true;
   }
-/*
-  data: any[];
-
-  constructor(private dataService: myexchanges) {}
-
   ngOnInit(): void {
-    this.dataService.getData().subscribe((result) => {
-      this.data = result;
-    });
-  }*/
 
+    if (this.authService.isAuthenticated()){
+      this.isLoading=true;
+      const observer: Observer <AccountDTO> = {
+        complete: () =>  {
+        },
+
+        error: (err: any) => {
+        },
+
+        next: (value: AccountDTO) => {
+          this.isLoading=false;
+          console.log(value)
+          this.user=value;
+        }
+      }
+      this.authService.getAuthenticated().subscribe(observer);
+    }
+  }
+
+  getAvatarOrDefault(user: AccountDTO): string {
+    return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
+  }
+
+  signOut() {
+    this.authService.signOut()
+  }
 }
 
 

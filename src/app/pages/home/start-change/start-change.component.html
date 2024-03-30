@@ -11,8 +11,17 @@
 
   </div>
   <div class="auth">
-    <button (click)="showLogin()">Login</button>
-    <a routerLink="/registration"> Registration</a>
+    <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
+      <ng-container *ngIf="!isLoading">
+        <label class="username"> {{user.username}} </label>
+        <img class="icon"[src]="getAvatarOrDefault(user)">
+
+      </ng-container>
+    </ng-container>
+    <ng-template #notAuth>
+      <button (click)="showLogin()">Логин</button>
+      <a routerLink="/registration"> Регистрация</a>
+    </ng-template>
   </div>
 </div>
 <div class="bottom-container">

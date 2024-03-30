@@ -12,6 +12,7 @@
       <div *ngIf="this.isSubmitted || rex.firstName.touched && form.controls.firstName.errors">
         <label  class = "warningval" *ngIf="rex.firstName.errors?.required">Заполните имя</label>
       </div>
+
       <label for="name">Имя* </label><br>
       <input formControlName="firstName" class="forbox" type="text" id="name" ng-model="firstName" required><br><br>
       <div *ngIf="this.isSubmitted || rex.secondName.touched && form.controls.secondName.errors">

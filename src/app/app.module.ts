@@ -12,6 +12,7 @@ import {StartChangeComponent} from "./pages/home/start-change/start-change.compo
 
 import { MyexchangesComponent } from './pages/myexchanges/myexchanges.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import {MatDialogClose} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -21,18 +22,21 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
     AuthDialogComponent,
     MyexchangesComponent,
     StartChangeComponent,
-    AuthDialogComponent
+    AuthDialogComponent,
+
+
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        NzLayoutModule,
-        CoreModule,
-        FormsModule,
-        CoreModule,
-        FormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NzLayoutModule,
+    CoreModule,
+    FormsModule,
+    CoreModule,
+    FormsModule,
+    MatDialogClose,
+  ],
   providers: [
     provideAnimationsAsync()
   ],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../core/services/auth.service";
 import {FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
@@ -15,6 +15,7 @@ import {TokenStorageService} from "../core/services/token-storage.service";
   styleUrl: './auth-dialog.component.scss'
 })
 export class AuthDialogComponent {
+  @Output() onLogin  = new EventEmitter();
   form: FormGroup;
   isSubmitted = false;
   error = false;
@@ -38,6 +39,7 @@ export class AuthDialogComponent {
   }
   submit() {
     if (this.isSubmitted || this.form.invalid) {
+
       return;
     }
 
@@ -59,9 +61,11 @@ export class AuthDialogComponent {
       next: (value: AuthResponseDTO | null) => {
         if (value) {
           this.tokenStorage.setToken(value);
+
           this.router.navigate(['/home']);
           this.isSubmitted = false;
           this.error = false;
+          this.onLogin.next("");
         }
       }
     }

@@ -3,6 +3,9 @@ import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
 import {AuthDialogComponent} from "../../../auth-dialog/auth-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {Observer} from "rxjs";
+import {AccountDTO} from "../../../core/interfaces/account.dto";
+import {AuthService} from "../../../core/services/auth.service";
 @Component({
   selector: 'app-multistep',
   templateUrl: './start-change.component.html',
@@ -16,18 +19,27 @@ export class StartChangeComponent implements OnInit {
   wanted_step = false;
   info_step = false;
   step = 1;
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog, private message: NzMessageService) { }
+  user !: AccountDTO;
+  isLoading: boolean = false;
+
+  constructor(private formBuilder: FormBuilder,
+              public dialog: MatDialog,
+              private message: NzMessageService,
+  public authService:  AuthService
+  ) {
+  }
+
   ngOnInit() {
     this.needExchange = this.formBuilder.group({
       SecondName: ['', Validators.required],
       FirstName: ['', Validators.required],
       BookName: ['', Validators.required],
-      Year: ['',Validators.required]
+      Year: ['', Validators.required]
       //  ISBN: ['',Validators.required]
     });
-   this.Wanted = this.formBuilder.group({
-    WannaTake: ['', Validators.required],
-   });
+    this.Wanted = this.formBuilder.group({
+      WannaTake: ['', Validators.required],
+    });
     this.InfoDetail = this.formBuilder.group({
       City: ['', Validators.required],
       Street: ['', Validators.required],
@@ -39,41 +51,82 @@ export class StartChangeComponent implements OnInit {
       FirstName: ['', Validators.required],
       MiddleName: ['', Validators.required]
     });
+    if (this.authService.isAuthenticated()) {
+      this.isLoading = true;
+      const observer: Observer<AccountDTO> = {
+        complete: () => {
+        },
+
+        error: (err: any) => {
+        },
+
+        next: (value: AccountDTO) => {
+          this.isLoading = false;
+          console.log(value)
+          this.user = value;
+        }
+      }
+      this.authService.getAuthenticated().subscribe(observer);
+    }
   }
-  get trade() { return this.needExchange.controls; }
-  get want() { return this.InfoDetail.controls; }
-  get info() { return this.Wanted.controls; }
-  next(){
-    if(this.step==1){
+
+  get trade() {
+    return this.needExchange.controls;
+  }
+
+  get want() {
+    return this.InfoDetail.controls;
+  }
+
+  get info() {
+    return this.Wanted.controls;
+  }
+
+  next() {
+    if (this.step == 1) {
       this.exchange_step = true;
-      if (this.needExchange.invalid) { return  }
+      if (this.needExchange.invalid) {
+        return
+      }
       this.step++
     }
-    if(this.step==2){
+    if (this.step == 2) {
       this.wanted_step = true;
-      if (this.Wanted.invalid) { return }
+      if (this.Wanted.invalid) {
+        return
+      }
       this.step++;
     }
   }
-  previous(){
+
+  previous() {
     this.step--
-    if(this.step==1){
+    if (this.step == 1) {
       this.exchange_step = false;
     }
-    if(this.step==2){
+    if (this.step == 2) {
       this.info_step = false;
     }
   }
-  submit(){
-    if(this.step==3){
+
+  submit() {
+    if (this.step == 3) {
       this.info_step = true;
-      if (this.InfoDetail.invalid) { return }
+      if (this.InfoDetail.invalid) {
+        return
+      }
     }
   }
+
   showLogin() {
     this.dialog.open(AuthDialogComponent);
   }
+
   createMessage(type: string): void {
     this.message.create(type, `Данный раздел доступен только авторизованному пользователю`);
+  }
+
+  getAvatarOrDefault(user: AccountDTO): string {
+    return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
   }
 }

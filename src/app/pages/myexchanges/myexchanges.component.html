@@ -10,8 +10,17 @@
 
   </div>
   <div class="auth">
-    <button (click)="showLogin()">Login</button>
-    <a routerLink="/registration"> Registration</a>
+    <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
+      <ng-container *ngIf="!isLoading">
+        <label class="username"> {{user.username}} </label>
+        <img class="icon"[src]="getAvatarOrDefault(user)">
+
+      </ng-container>
+    </ng-container>
+    <ng-template #notAuth>
+      <button (click)="showLogin()">Логин</button>
+      <a routerLink="/registration"> Регистрация</a>
+    </ng-template>
   </div>
 </div>
 
@@ -24,9 +33,9 @@
         <div class="book">
           <div class="vertical-menu">
             <div class="user-info">
-              <a href="edit-profile.html">Username</a>
-              <img src="avatar.jpg" alt="User Avatar">
-              <p>Rating: 4.5</p>
+              <a href="edit-profile.html">{{user.username}}</a>
+              <img class="icon1"[src]="getAvatarOrDefault(user)">
+              <p>Рейтинг: 4.5</p>
             </div>
             <div class="button-container">
               <button  class="custom-button" (click)="showSection(1)">Предложения для обмена</button>
@@ -37,7 +46,7 @@
               <button  class="custom-button" (click)="showSection(6)">Личные данные</button>
               <button  class="custom-button" (click)="showSection(7)">Сообщения</button>
               <button  class="custom-button" (click)="showSection(8)">Архив</button>
-              <button  class="custom-button" >Выход</button>
+              <button  class="custom-button"  routerLink="/home" (click)="signOut()">Выход</button>
             </div>
           </div>
 

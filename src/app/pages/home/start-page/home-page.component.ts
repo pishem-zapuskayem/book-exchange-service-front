@@ -46,6 +46,7 @@ export class HomePageComponent implements OnInit {
 
         next: (value: AccountDTO) => {
           this.isLoading=false;
+          console.log(value)
           this.user=value;
         }
       }
@@ -53,4 +54,7 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  getAvatarOrDefault(user: AccountDTO): string {
+    return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
+  }
 }
