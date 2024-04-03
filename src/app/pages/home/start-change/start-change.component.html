@@ -1,29 +1,6 @@
 <body>
+<app-header></app-header>
 
-<div class="header">
-  <img src="assets\logo.png" alt="Logo" class="logo">
-  <div class="buttons">
-    <button
-      routerLink="/home">Главная</button>
-    <button routerLink="/exchange">Начать обмен</button>
-    <button nz-button (click)="createMessage('warning')">Мои обмены</button>
-    <button (click)="'info4'">Задать вопрос</button>
-
-  </div>
-  <div class="auth">
-    <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
-      <ng-container *ngIf="!isLoading">
-        <label class="username"> {{user.username}} </label>
-        <img class="icon"[src]="getAvatarOrDefault(user)">
-
-      </ng-container>
-    </ng-container>
-    <ng-template #notAuth>
-      <button (click)="showLogin()">Логин</button>
-      <a routerLink="/registration"> Регистрация</a>
-    </ng-template>
-  </div>
-</div>
 <div class="bottom-container">
 </div>
 <ul id="progressbar">

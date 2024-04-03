@@ -14,9 +14,16 @@ import {AccountDTO} from "../interfaces/account.dto";
 export class AuthService {
 
   constructor(
+
     private storage: TokenStorageService,
     private http: HttpClient
   ) {}
+  confirmRegistration(
+    data: string
+  ): Observable<any> {
+    return this.http
+      .post(`${environment.BASE_URL}/sign-up/confirm?token=` + data, {});
+  }
 
   public signIn(auth:AuthRequestDTO):Observable<AuthResponseDTO | null> {
     return this.http.post<AuthResponseDTO>(environment.SIGN_IN_URL, auth)
@@ -59,4 +66,5 @@ export class AuthService {
   public isAuthenticatedAs(role: string): boolean {
     return this.isAuthenticated() && this.getRole() === role;
   }
+
 }

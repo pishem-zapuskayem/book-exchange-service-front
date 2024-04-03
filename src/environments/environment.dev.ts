@@ -8,5 +8,5 @@ export const environment = {
   ROLE_ADMIN: 'ROLE_ADMIN',
   ROLE_ANONYMOUS: 'ROLE_ANONYMOUS',
   ME_URL: "http://localhost:4200/api/v1/auth/me",
-
+  BASE_URL:"http://localhost:4200/api/v1",
 }

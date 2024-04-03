@@ -8,6 +8,7 @@ import {HttpResponse} from "@angular/common/http";
 import {AuthRequestDTO} from "../core/interfaces/auth-request.dto";
 import {AuthResponseDTO} from "../core/interfaces/auth-response.dto";
 import {TokenStorageService} from "../core/services/token-storage.service";
+import {AuthredirectService} from "../core/services/authredirect.service";
 
 @Component({
   selector: 'app-auth-dialog',
@@ -15,14 +16,15 @@ import {TokenStorageService} from "../core/services/token-storage.service";
   styleUrl: './auth-dialog.component.scss'
 })
 export class AuthDialogComponent {
-  @Output() onLogin  = new EventEmitter();
   form: FormGroup;
   isSubmitted = false;
   error = false;
+  errormessage: string | undefined;
   constructor(
   private service: AuthService,
   private tokenStorage: TokenStorageService,
-  private router: Router
+  private router: Router,
+  private AuthRedirectService: AuthredirectService,
   ) {
 
     this.form = new FormGroup({
@@ -51,21 +53,25 @@ export class AuthDialogComponent {
     console.dir(formData);
     const observer: Observer<AuthResponseDTO| null> = {
       complete: () =>  {
+        console.log('1');
       },
 
       error: (err: any) => {
+        this.errormessage='Неправильный логин или пароль';
         this.error = true;
         this.isSubmitted = false;
+        console.log('2');
       },
 
       next: (value: AuthResponseDTO | null) => {
         if (value) {
           this.tokenStorage.setToken(value);
-
+          this.errormessage=undefined;
           this.router.navigate(['/home']);
           this.isSubmitted = false;
           this.error = false;
-          this.onLogin.next("");
+          this.AuthRedirectService.invokeOnLogin();
+          console.log('3');
         }
       }
     }

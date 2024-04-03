@@ -13,29 +13,25 @@ import {StartChangeComponent} from "./pages/home/start-change/start-change.compo
 import { MyexchangesComponent } from './pages/myexchanges/myexchanges.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import {MatDialogClose} from "@angular/material/dialog";
+import {ConfirmComponent} from "./pages/home/confirm/confirm.component";
+import {HeaderComponent} from "./pages/home/header/header.component";
+import {SharedModule} from "./shared/shared.module";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     MainComponent,
-    AuthDialogComponent,
     MyexchangesComponent,
     StartChangeComponent,
-    AuthDialogComponent,
-
+    ConfirmComponent,
 
   ],
   imports: [
-    BrowserModule,
+    SharedModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    NzLayoutModule,
-    CoreModule,
-    FormsModule,
-    CoreModule,
-    FormsModule,
-    MatDialogClose,
+    BrowserModule
   ],
   providers: [
     provideAnimationsAsync()

@@ -1,7 +1,7 @@
 
 .auth-form{
   width: 500px;
-  height: 300px;
+  min-height: 300px;
   border: 5px solid #fcf8ec;
   padding:40px;
 
@@ -28,6 +28,12 @@
   background: #4d2816;
   box-shadow: inset 6.5em 0 0 0 var(--hover);
 
+}
+.custom-btn:disabled{
+  background: #7EBD91;
+}
+.error{
+  color: red;
 }
 
 

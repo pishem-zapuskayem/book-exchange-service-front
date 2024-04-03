@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthDialogComponent} from "../../../auth-dialog/auth-dialog.component";
 import {
   MatDialog,

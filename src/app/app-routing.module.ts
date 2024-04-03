@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import {StartChangeComponent} from "./pages/home/start-change/start-change.component";
 import {MyexchangesComponent} from "./pages/myexchanges/myexchanges.component";
 import {MainComponent} from "./pages/home/main/main.component";
+import {ConfirmComponent} from "./pages/home/confirm/confirm.component";
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'exchange', component: StartChangeComponent },
   {path: 'registration', component: RegistrationComponent },
   {path: 'exchanges', component: MyexchangesComponent },
-  {path: 'load', component: MainComponent }
+  {path: 'confirm', component: ConfirmComponent }
+
 ];
 
 
