@@ -6,6 +6,9 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {Observer} from "rxjs";
 import {AccountDTO} from "../../../core/interfaces/account.dto";
 import {AuthService} from "../../../core/services/auth.service";
+import {ExchangegoDTO} from "../../../core/interfaces/exchangego.dto";
+import {HttpResponse} from "@angular/common/http";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-multistep',
   templateUrl: './start-change.component.html',
@@ -21,35 +24,34 @@ export class StartChangeComponent implements OnInit {
   step = 1;
   user !: AccountDTO;
   isLoading: boolean = false;
-
+  isSubmitted = false;
+  error = false;
   constructor(private formBuilder: FormBuilder,
               public dialog: MatDialog,
               private message: NzMessageService,
-  public authService:  AuthService
+  public authService:  AuthService,
+              private router: Router
   ) {
   }
 
   ngOnInit() {
     this.needExchange = this.formBuilder.group({
-      SecondName: ['', Validators.required],
-      FirstName: ['', Validators.required],
-      BookName: ['', Validators.required],
-      Year: ['', Validators.required]
-      //  ISBN: ['',Validators.required]
+      lastname: ['', Validators.required],
+      firstname: ['', Validators.required],
+      bookName: ['', Validators.required],
+      publishYear: ['', Validators.required],
+      isbn: ['']
     });
     this.Wanted = this.formBuilder.group({
       WannaTake: ['', Validators.required],
     });
     this.InfoDetail = this.formBuilder.group({
-      City: ['', Validators.required],
-      Street: ['', Validators.required],
-      Build: ['', Validators.required],
-      House: ['', Validators.required],
-      //apartment: ['', Validators.required],
-      Index: ['', Validators.required],
-      SecondName: ['', Validators.required],
-      FirstName: ['', Validators.required],
-      MiddleName: ['', Validators.required]
+      addrCity: ['', Validators.required],
+      addrStreet: ['', Validators.required],
+      addrStructure: ['', Validators.required],
+      addrHouse: ['', Validators.required],
+      addrApart: [''],
+      addrIndex: ['', Validators.required],
     });
     if (this.authService.isAuthenticated()) {
       this.isLoading = true;
@@ -109,6 +111,7 @@ export class StartChangeComponent implements OnInit {
     }
   }
 
+
   submit() {
     if (this.step == 3) {
       this.info_step = true;
@@ -116,6 +119,31 @@ export class StartChangeComponent implements OnInit {
         return
       }
     }
+    this.isSubmitted = true;
+
+    const formData: ExchangegoDTO = {...this.needExchange.value, ...this.InfoDetail.value}
+    // @ts-ignore
+    formData.address = {...formData}
+    console.dir(formData);
+    console.log("1");
+    const observer: Observer<HttpResponse<any>> = {
+      complete: () =>  {
+      },
+
+      error: (err: any) => {
+        console.log("2");
+        this.error = true;
+        this.isSubmitted = false;
+      },
+
+      next: (value: HttpResponse<any>) => {
+        this.isSubmitted = false;
+        this.error = false;
+        console.log("3");
+      }
+    }
+
+    this.authService.Exchanging(formData).subscribe(observer);
   }
 
   showLogin() {

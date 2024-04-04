@@ -9,7 +9,7 @@ import {jwtDecode} from "jwt-decode";
 import {JwtPayload} from "../interfaces/jwt-payload";
 import {RegisterDTO} from "../interfaces/register.dto";
 import {AccountDTO} from "../interfaces/account.dto";
-
+import {ExchangegoDTO} from "../interfaces/exchangego.dto";
 @Injectable()
 export class AuthService {
 
@@ -35,6 +35,7 @@ export class AuthService {
       type: 'application/json'
     }));
 
+
     if (avatar) {
       formData.append('avatar', avatar);
     }
@@ -46,6 +47,13 @@ export class AuthService {
 
   public signOut() {
     this.storage.setToken(null);
+  }
+
+  public Exchanging(exc:ExchangegoDTO | null):Observable<HttpResponse<any>>{
+
+    return this.http.post<ExchangegoDTO>(environment.EXC_URL, exc, {
+      observe: 'response'
+    })
   }
 
   public isAuthenticated():boolean {

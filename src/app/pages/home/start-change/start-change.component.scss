@@ -482,7 +482,41 @@ h3{
   background: #FCF8ECFF;
   border-right: 20px solid #DEB887FF;
   border-bottom: 20px solid #DEB887FF;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Arial Black', Gadget, sans-serif;
+ color: #41280a;
 }
+.action-button:hover {
+  color: #DEB887FF;
+  border-right: 20px solid #41280a;
+  border-bottom: 20px solid #41280a;
+}
+.input-action-button{
+  opacity:100%;
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  border: 20px solid #FCF8ECFF;
+  background: #FCF8ECFF;
+  border-right: 20px solid #DEB887FF;
+  border-bottom: 20px solid #DEB887FF;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  color: #41280a;
+}
+.input-action-button:hover{
+  color: #DEB887FF;
+  border-right: 20px solid #41280a;
+  border-bottom: 20px solid #41280a;
+}
+.input-action-button:disabled{
+  color: black;
+  border-right: 20px solid black  ;
+  border-bottom: 20px solid black;
+}
+
 #action-button:hover .page.right-page{
   transform: rotateY(-5deg);
 }
@@ -495,7 +529,16 @@ h3{
   border: 20px solid #FCF8ECFF;
   border-left: 20px solid #DEB887FF;
   border-bottom: 20px solid #DEB887FF;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  color: #41280a;
 
+}
+.action-button-previous:hover{
+  color: #DEB887FF;
+  border-left: 20px solid #41280a;
+  border-bottom: 20px solid #41280a;
 }
 
 .action-button:hover .right-page{

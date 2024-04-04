@@ -4,7 +4,15 @@
     <button
       routerLink="/home">Главная</button>
     <button routerLink="/exchange">Начать обмен</button>
-    <button nz-button (click)="createMessage('warning')">Мои обмены</button>
+      <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
+        <ng-container *ngIf="!isLoading">
+          <button routerLink="/exchanges">Мои обмены</button>
+        </ng-container>
+      </ng-container>
+      <ng-template #notAuthz>
+        <button nz-button (click)="createMessage('warning')">Мои обмены</button>
+      </ng-template>
+
     <button (click)="'info4'">Задать вопрос</button>
 
   </div>

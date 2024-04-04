@@ -9,4 +9,5 @@ export const environment = {
   ROLE_ANONYMOUS: 'ROLE_ANONYMOUS',
   ME_URL: "http://localhost:4200/api/v1/auth/me",
   BASE_URL:"http://localhost:4200/api/v1",
+  EXC_URL:"http://localhost:4200/api/v1/exchanges",
 }
