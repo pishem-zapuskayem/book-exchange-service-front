@@ -13,143 +13,165 @@
     <div class="backgroundforbook1">
       <div class="backgroundforbook2">
 
-<form [formGroup]="needExchange">
-    <!-- progressbar -->
-  <!--Страница 1 левая  -->
-    <fieldset  class="book"  *ngIf="step == 1" >
+        <form [formGroup]="offerListForm" [style.display]="step == 1 ? 'block' : 'none'">
+          <!-- progressbar -->
+          <!--Страница 1 левая  -->
+          <fieldset class="book">
 
-      <div class="page left-page">
-        <div>
-        <h3 class="word1" style="  padding-left: 10px ;">Хочу обменять:</h3>
-        </div>
-        <label class="label1"> Автор* </label><br>
-        <div>
-        <input formControlName="lastname" class="forbox" type="text" ng-model="ctrl.surname" required placeholder="Фамилия">
+            <div class="page left-page">
+              <div>
+                <h3 class="word1" style="  padding-left: 10px ;">Хочу обменять:</h3>
+              </div>
+              <label class="label1"> Автор* </label><br>
+              <div>
+                <input formControlName="lastname" class="forbox" type="text" ng-model="ctrl.surname" required
+                       placeholder="Фамилия">
 
-        <input formControlName="firstname" class="forbox1" type="text" ng-model="ctrl.surname" required placeholder="Имя"><br>
-          <div >
-          <label  *ngIf="exchange_step || trade.lastname.touched  && needExchange.controls.lastname.errors">
-            <label class="warningval" *ngIf="trade.lastname.errors?.required">Заполните фамилию</label>
-          </label>
-        <label *ngIf="exchange_step || trade.firstname.touched && needExchange.controls.firstname.errors">
-          <label *ngIf="trade.firstname.errors?.required" class="warningval" >Заполните имя</label>
-        </label>
-          </div>
-        </div>
-        <label class="label1"> Название книги* </label><br>
-        <input formControlName="bookName" class="forbox2" type="text"  ng-model="ctrl.surname" required placeholder="Название книги"><br>
-        <div *ngIf="exchange_step || trade.bookName.touched && needExchange.controls.bookName.errors">
-          <div *ngIf="trade.bookName.errors?.required" class="warningval" >Заполните название книги</div>
-        </div>
-        <label class="label1" > ISBN </label>
-        <label class="label2"> Год издания* </label><br>
+                <input formControlName="firstname" class="forbox1" type="text" ng-model="ctrl.surname" required
+                       placeholder="Имя"><br>
+                <div>
 
-        <input formControlName="isbn" class="forbox3" type="text" ng-model="ctrl.surname" placeholder="ISBN">
+                  <div *ngIf="trade.lastname">
+                    <label *ngIf="exchange_step || trade.lastname.touched  && offerListForm.controls.lastname.errors">
+                      <!--            <label class="warningval" *ngIf="trade.lastname.errors?.required">Заполните фамилию</label>-->
+                      <label *ngIf="trade.lastname?.errors?.required" class="warningval">Заполните фамилию</label>
+                    </label>
+                  </div>
 
-        <input formControlName="publishYear" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Год издания"><br>
-        <div *ngIf="exchange_step || trade.publishYear.touched  && needExchange.controls.publishYear.errors">
-          <div *ngIf="trade.publishYear.errors?.required" class="warningval" >Заполните год издания</div>
-        </div>
-      </div>
-      <!--Страница 1 правая  -->
-      <div class="page right-page">
-        <div class="category">
-          <h3 class="word1" style="  padding-left: 10px ;">Категории:</h3>
-          <ul>
-            <nz-tree [nzShowExpand]="treeVisible" class="categories" style="  padding-top: 30px ;"
-              #nzTreeComponent
-              [nzData]="nodes"
-              nzCheckable
-              [nzCheckedKeys]="defaultCheckedKeys"
-              [nzExpandedKeys]="defaultExpandedKeys"
-              [nzSelectedKeys]="defaultSelectedKeys"
-              (nzClick)="nzClick($event)"
-              (nzContextMenu)="nzClick($event)"
-              (nzCheckBoxChange)="nzCheck($event)"
-              (nzExpandChange)="nzCheck($event)"
-            ></nz-tree>
+                  <div *ngIf="trade.firstname">
+                    <label *ngIf="exchange_step || trade.firstname.touched && offerListForm.controls.firstname.errors">
+                      <label *ngIf="trade.firstname.errors?.required" class="warningval">Заполните имя</label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <label class="label1"> Название книги* </label><br>
+              <input formControlName="bookName" class="forbox2" type="text" ng-model="ctrl.surname" required
+                     placeholder="Название книги"><br>
+              <div *ngIf="exchange_step || trade.bookName.touched && offerListForm.controls.bookName.errors">
+                <div *ngIf="trade.bookName.errors?.required" class="warningval">Заполните название книги</div>
+              </div>
+              <label class="label1"> ISBN </label>
+              <label class="label2"> Год издания* </label><br>
 
-          </ul>
-        </div>
-        <input (click)="next()" type="button" value="Далее" name="next" class="action-button" />
-      </div>
+              <input formControlName="isbn" class="forbox3" type="text" ng-model="ctrl.surname" placeholder="ISBN">
 
-    </fieldset>
-  </form>
-  <!--Страница 2 левая  -->
-  <form  [formGroup]="Wanted">
-    <fieldset  class="book" *ngIf="step == 2" >
-      <div class="page left-page">
-      <h2 class="word1">Хочу получить:</h2>
-        <ul>
-          <nz-tree [nzShowExpand]="treeVisible" class="categories" style="  padding-top: 30px ;"
-          ></nz-tree>
-        </ul>
-        <input formControlName="WannaTake" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Пример"><br>
+              <input formControlName="publishYear" class="forbox4" type="text" ng-model="ctrl.surname" required
+                     placeholder="Год издания"><br>
+              <div *ngIf="exchange_step || trade.publishYear.touched  && offerListForm.controls.publishYear.errors">
+                <div *ngIf="trade.publishYear.errors?.required" class="warningval">Заполните год издания</div>
+              </div>
+            </div>
 
-        <input (click)="previous()" type="button" value="Назад" name="previous" class="previous action-button-previous"/>
-      </div>
-      <!--Страница 2 правая  -->
-      <div class="page right-page">
-      <div class="label1">Иерархический список</div>
-        <input  (click)="next()" type="button" name="next"  value="Далее" class="next action-button"/>
-        </div>
-    </fieldset>
+            <!--Страница 1 правая  -->
+            <div class="page right-page">
+              <div class="category">
+                <h3 class="word1" style="  padding-left: 10px ;">Категории:</h3>
+                <ul>
+                  <nz-tree class="categories" style="  padding-top: 30px ;"
+                           [nzData]="offerListNodes"
+                           nzCheckable
+                           [nzExpandedKeys]="offerDefaultExpandedKeys"
+                           (nzCheckBoxChange)="onOfferListCheckBoxClick($event)"
+                  ></nz-tree>
+                </ul>
+              </div>
+              <input (click)="next()" type="button" value="Далее" name="next" class="action-button"/>
+            </div>
 
-  </form>
-  <form [formGroup]="InfoDetail">
-    <fieldset  class="book" *ngIf="step == 3">
-      <!--Страница 3 левая  -->
-      <div class="page left-page">
-      <h2 class="word1">Адрес доставки:</h2><br>
-        <label class="label1"> Город* </label><br>
-        <div>
-          <input formControlName="addrCity" class="forbox2" type="text" ng-model="ctrl.City" required placeholder="Город">
-          <div *ngIf="info_step && InfoDetail.controls.addrCity.errors">
-            <div *ngIf="info.addrCity.errors?.required"  class="validator">Заполните город</div>
-          </div>
-        </div>
-        <label class="label1"> Улица* </label>
-        <label class="label3"> Индекс </label><br>
-        <input formControlName="addrStreet" class="forbox5" type="text"  ng-model="ctrl.street" required placeholder="Название улицы">
-        <div *ngIf="info_step && InfoDetail.controls.addrStreet.errors">
-          <div *ngIf="info.addrStreet.errors?.required" class="warningval" >Заполните улицу</div>
-        </div>
-        <input formControlName="addrIndex" class="forbox5" type="text"  ng-model="ctrl.street" placeholder="Заполните индекс"><br>
+          </fieldset>
+        </form>
+        <!--Страница 2 левая  -->
+        <form [formGroup]="wishListForm" [style.display]="step == 2 ? 'block' : 'none'">
+          <fieldset class="book">
+            <div class="page left-page">
+              <h2 class="word1">Хочу получить:</h2>
+              <ul class="second-tree">
+                <nz-tree class="categories" style="  padding-top: 30px ;"
+                         [nzData]="wishListNodes"
+                         nzCheckable
+                         [nzExpandedKeys]="wishDefaultExpandedKeys"
+                         (nzCheckBoxChange)="onWishListCheckBoxClick($event)"
+                ></nz-tree>
+              </ul>
+              <input formControlName="WannaTake" class="forbox4" type="text" ng-model="ctrl.surname" required
+                     placeholder="Пример"><br>
 
-        <label class="label1" > Строение* </label>
-        <label class="label3"> Дом* </label>
-        <label class="label4"> Квартира </label><br>
-        <input formControlName="addrStructure" class="forbox5" type="text" ng-model="ctrl.surname" placeholder="Строение">
-        <div *ngIf="info_step && InfoDetail.controls.addrStructure.errors">
-          <div *ngIf="info.addrStructure.errors?.required">Заполните строение</div>
-        </div>
-        <input formControlName="addrHouse" class="forbox5" type="text" ng-model="ctrl.surname" required placeholder="Дом">
-        <div *ngIf="info_step && InfoDetail.controls.addrHouse.errors">
-          <div *ngIf="info.addrHouse.errors?.required">Заполните дом</div>
-        </div>
-        <input formControlName="addrApart" class="forbox5" type="text" ng-model="ctrl.surname" required placeholder="Квартира"><br>
+              <input (click)="previous()" type="button" value="Назад" name="previous"
+                     class="previous action-button-previous"/>
+            </div>
+            <!--Страница 2 правая  -->
+            <div class="page right-page">
+              <div class="label1">Иерархический список</div>
+              <input (click)="next()" type="button" name="next" value="Далее" class="next action-button"/>
+            </div>
+          </fieldset>
 
-        <input (click)="previous()" type="button" name="previous" value="Назад" class="previous action-button-previous" />
-      </div>
-      <!--Страница 3 правая  -->
-      <div class="page right-page">
+        </form>
 
-        <label class="label1"> Фамилия </label><br>
-        <input formControlName="SecondName" class="forbox2" type="text"  ng-model="ctrl.surname"  placeholder="Фамилия"><br>
+        <form [formGroup]="addressDetailsForm" [style.display]="step == 3 ? 'block' : 'none'">
+          <fieldset class="book">
+            <!--Страница 3 левая  -->
+            <div class="page left-page">
+              <h2 class="word1">Адрес доставки:</h2><br>
+              <label class="label1"> Город* </label><br>
+              <div>
+                <input formControlName="addrCity" class="forbox2" type="text" ng-model="ctrl.City" required
+                       placeholder="Город">
+                <div *ngIf="info_step && addressDetailsForm.controls.addrCity.errors">
+                  <div *ngIf="info.addrCity.errors?.required" class="validator">Заполните город</div>
+                </div>
+              </div>
+              <label class="label1"> Улица* </label>
+              <label class="label3"> Индекс </label><br>
+              <input formControlName="addrStreet" class="forbox5" type="text" ng-model="ctrl.street" required
+                     placeholder="Название улицы">
+              <div *ngIf="info_step && addressDetailsForm.controls.addrStreet.errors">
+                <div *ngIf="info.addrStreet.errors?.required" class="warningval">Заполните улицу</div>
+              </div>
+              <input formControlName="addrIndex" class="forbox5" type="text" ng-model="ctrl.street"
+                     placeholder="Заполните индекс"><br>
 
-        <label class="label1"> Имя </label><br>
-        <input formControlName="FirstName" class="forbox2" type="text"  ng-model="ctrl.surname"  placeholder="Имя"><br>
+              <label class="label1"> Строение* </label>
+              <label class="label3"> Дом* </label>
+              <label class="label4"> Квартира </label><br>
+              <input formControlName="addrStructure" class="forbox5" type="text" ng-model="ctrl.surname"
+                     placeholder="Строение">
+              <div *ngIf="info_step && addressDetailsForm.controls.addrStructure.errors">
+                <div *ngIf="info.addrStructure.errors?.required">Заполните строение</div>
+              </div>
+              <input formControlName="addrHouse" class="forbox5" type="text" ng-model="ctrl.surname" required
+                     placeholder="Дом">
+              <div *ngIf="info_step && addressDetailsForm.controls.addrHouse.errors">
+                <div *ngIf="info.addrHouse.errors?.required">Заполните дом</div>
+              </div>
+              <input formControlName="addrApart" class="forbox5" type="text" ng-model="ctrl.surname" required
+                     placeholder="Квартира"><br>
 
-        <label class="label1"> Отчество </label><br>
-        <input formControlName="MiddleName" class="forbox2" type="text"  ng-model="ctrl.surname" placeholder="Отчество"><br>
+              <input (click)="previous()" type="button" name="previous" value="Назад"
+                     class="previous action-button-previous"/>
+            </div>
+            <!--Страница 3 правая  -->
+            <div class="page right-page">
+
+              <label class="label1"> Фамилия </label><br>
+              <input formControlName="lastname" class="forbox2" type="text" ng-model="ctrl.surname"
+                     placeholder="Фамилия"><br>
+
+              <label class="label1"> Имя </label><br>
+              <input formControlName="firstname" class="forbox2" type="text" ng-model="ctrl.surname"
+                     placeholder="Имя"><br>
+
+              <label class="label1"> Отчество </label><br>
+              <input formControlName="middleName" class="forbox2" type="text" ng-model="ctrl.surname"
+                     placeholder="Отчество"><br>
 
 
-      <input (click)="submit()"  name="i"  type="button"  class="input-action-button" value="Отправить заявку" />
-      </div>
-    </fieldset>
+              <input (click)="submit()" name="i" type="button" class="input-action-button" value="Отправить заявку"/>
+            </div>
+          </fieldset>
+        </form>
 
-  </form>
       </div>
     </div>
   </div>

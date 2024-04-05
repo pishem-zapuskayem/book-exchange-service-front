@@ -11,9 +11,7 @@ export interface ExchangegoDTO {
         firstname: string
       }
     },
-    offerCategoriesIds: [
-      string
-    ]
+    offerCategoriesIds: string[]
   },
   wish: {
     wishCategoriesIds: [

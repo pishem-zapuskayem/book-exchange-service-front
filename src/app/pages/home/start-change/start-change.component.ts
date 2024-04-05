@@ -1,58 +1,50 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import { FormGroup,Validators,FormBuilder } from '@angular/forms';
 import {AuthDialogComponent} from "../../../auth-dialog/auth-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {Observer} from "rxjs";
 import {AccountDTO} from "../../../core/interfaces/account.dto";
 import {AuthService} from "../../../core/services/auth.service";
-import {ExchangegoDTO} from "../../../core/interfaces/exchangego.dto";
 import {HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {CategoryDTO} from "../../../core/interfaces/category.dto";
 import {CategoriesService} from "../../../core/services/categories.service";
-import { NzFormatEmitEvent, NzTreeComponent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
-import { map } from 'rxjs/operators';
+import { NzFormatEmitEvent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
+
 @Component({
   selector: 'app-multistep',
   templateUrl: './start-change.component.html',
   styleUrls: ['./start-change.component.scss']
 })
 export class StartChangeComponent implements OnInit {
-  @ViewChild('nzTreeComponent', { static: false }) nzTreeComponent!: NzTreeComponent;
-  defaultCheckedKeys = ['10020'];
-  defaultSelectedKeys = ['10010'];
-  defaultExpandedKeys = ['100', '1001'];
+  offerDefaultExpandedKeys = ['100', '1001'];
+  wishDefaultExpandedKeys = ['100', '1001'];
+  wishListKeys: any[] | undefined = [];
+  offerListKeys: any[] | undefined = [];
 
-  nodes: NzTreeNodeOptions[] = [];
+  offerListNodes: NzTreeNodeOptions[] = [];
+  wishListNodes: NzTreeNodeOptions[] = [];
+  parentNodeIds: Set<string> = new Set<string>();
+  categoriesMap: Map<string, CategoryDTO> = new Map<string, CategoryDTO>();
 
-  nzClick(event: NzFormatEmitEvent): void {
-    console.log(event);
-  }
-
-  nzCheck(event: NzFormatEmitEvent): void {
-    console.log(event);
-  }
-
-  // nzSelectedKeys change
-  nzSelect(keys: string[]): void {
-    console.log(keys, this.nzTreeComponent.getSelectedNodeList());
-  }
-
-  ngAfterViewInit(): void {
-    // get node by key: '10011'
-    console.log(this.nzTreeComponent.getTreeNodeByKey('10011'));
-    // use tree methods
-    console.log(
-      this.nzTreeComponent.getTreeNodes(),
-      this.nzTreeComponent.getCheckedNodeList(),
-      this.nzTreeComponent.getSelectedNodeList(),
-      this.nzTreeComponent.getExpandedNodeList()
+  onWishListCheckBoxClick(event: NzFormatEmitEvent): void {
+    // let newKey = event.node!.key;
+    this.wishListKeys = event.keys?.filter(
+      key => !this.parentNodeIds.has(key)
     );
   }
-  needExchange!: FormGroup;
-  Wanted!: FormGroup;
-  InfoDetail!: FormGroup;
+
+  onOfferListCheckBoxClick(event: NzFormatEmitEvent): void {
+    // let newKey = event.node!.key;
+    this.offerListKeys = event.keys?.filter(
+      key => !this.parentNodeIds.has(key)
+    );
+  }
+
+  offerListForm!: FormGroup;
+  wishListForm!: FormGroup;
+  addressDetailsForm!: FormGroup;
   exchange_step = false;
   wanted_step = false;
   info_step = false;
@@ -63,7 +55,7 @@ export class StartChangeComponent implements OnInit {
   error = false;
   showTree: boolean = true;
   categories: CategoryDTO[] = [];
-  treeVisible: boolean = true;
+
   constructor(private formBuilder: FormBuilder,
               public dialog: MatDialog,
               private message: NzMessageService,
@@ -71,37 +63,41 @@ export class StartChangeComponent implements OnInit {
               private router: Router,
               private categoriesService: CategoriesService
   ) {
-  }
-
-  ngOnInit() {
-
-    this.showTree = true; // Показываем дерево
-    this.needExchange = this.formBuilder.group({
-      lastname: ['', Validators.required],
-      firstname: ['', Validators.required],
+    this.offerListForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       publishYear: ['', Validators.required],
       isbn: [''],
       key:[''],
+      lastname: ['', Validators.required],
+      firstname: ['', Validators.required],
     });
-    this.Wanted = this.formBuilder.group({
+    this.wishListForm = this.formBuilder.group({
       WannaTake: ['', Validators.required],
     });
-    this.InfoDetail = this.formBuilder.group({
+    this.addressDetailsForm = this.formBuilder.group({
       addrCity: ['', Validators.required],
       addrStreet: ['', Validators.required],
       addrStructure: ['', Validators.required],
       addrHouse: ['', Validators.required],
       addrApart: [''],
       addrIndex: ['', Validators.required],
+      lastname: ['', Validators.required],
+      firstname: ['', Validators.required],
+      middleName: ['', Validators.required],
     });
+  }
+
+  ngOnInit() {
+    this.showTree = true; // Показываем дерево
     this.categoriesService.getCategories().subscribe(categories => {
-      this.nodes = this.convertToTreeNodes(categories);
-    });
-    this.categoriesService.getCategories().pipe(
-      map((categories: CategoryDTO[]) => this.convertToTreeNodes(categories))
-    ).subscribe(nodes => {
-      this.nodes = nodes;
+      this.categories = categories;
+      this.parentNodeIds = new Set<string>(
+        categories.filter(cat => cat.children && cat.children.length != 0)
+          .map(cat => cat.id)
+      );
+      this.categoriesMap = new Map(categories.map(i => [i.id, i]));
+      this.offerListNodes = this.convertToTreeNodes(categories);
+      this.wishListNodes = this.convertToTreeNodes(categories);
     });
 
     if (this.authService.isAuthenticated()) {
@@ -115,7 +111,6 @@ export class StartChangeComponent implements OnInit {
 
         next: (value: AccountDTO) => {
           this.isLoading = false;
-          console.log(value)
           this.user = value;
         }
       }
@@ -126,9 +121,9 @@ export class StartChangeComponent implements OnInit {
   toggleCheckbox(category: any): void {
     category.isChecked = !category.isChecked;
   }
-  convertToTreeNodes(categories: CategoryDTO[]): NzTreeNodeOptions[] {
 
-    return categories.map(category => {const selectable = category.multiselect ? category.multiselect : undefined;
+  convertToTreeNodes(categories: CategoryDTO[]): NzTreeNodeOptions[] {
+    return categories.map(category => {
       return {
         key: category.id,
         title: category.name,
@@ -136,27 +131,28 @@ export class StartChangeComponent implements OnInit {
         multiselect: category.multiselect,
         isLeaf: !(category.children && category.children.length > 0),
         children: category.children ? this.convertToTreeNodes(category.children) : [],
-        selectable: selectable,
+        disableCheckbox: (category.children && category.children.length > 0)
       };
     });
   }
+
   get trade() {
-    return this.needExchange.controls;
+    return this.offerListForm.controls;
   }
 
   get want() {
-    return this.InfoDetail.controls;
+    return this.addressDetailsForm.controls;
   }
 
   get info() {
-    return this.Wanted.controls;
+    return this.wishListForm.controls;
   }
 
   next() {
     if (this.step == 1) {
       this.showTree = true;
       this.exchange_step = true;
-      if (this.needExchange.invalid) {
+      if (this.offerListForm.invalid) {
         return
       }
       this.step++
@@ -164,7 +160,7 @@ export class StartChangeComponent implements OnInit {
     if (this.step == 2) {
       this.showTree = true;
       this.wanted_step = true;
-      if (this.Wanted.invalid) {
+      if (this.wishListForm.invalid) {
         return
       }
       this.step++;
@@ -181,22 +177,56 @@ export class StartChangeComponent implements OnInit {
       this.showTree = true;
       this.info_step = false;
     }
+    let array = []
+    // @ts-ignore
+    for (let wlKey of this.wishListKeys) {
+      array.push(this.categoriesMap.get(wlKey));
+    }
+    // @ts-ignore
+    this.offerListNodes = this.convertToTreeNodes(array);
+    console.log(this.wishListKeys)
   }
 
   submit() {
     if (this.step == 3) {
       this.info_step = true;
-      if (this.InfoDetail.invalid) {
+      if (this.addressDetailsForm.invalid) {
         return
       }
     }
     this.isSubmitted = true;
+    console.log('on submiiiiiiiiiiiiiiiiiiiiiiiiiiiiit')
 
-    const formData: ExchangegoDTO = {...this.needExchange.value, ...this.InfoDetail.value}
-    // @ts-ignore
-    formData.address = {...formData}
-    console.dir(formData);
-    console.log("1");
+    const offerData = this.offerListForm.value;
+    const addressData = this.addressDetailsForm.value;
+
+    const formData: any = {
+      offer: {
+        book: {
+          bookName: offerData.bookName,
+          note: '', // Здесь вы должны указать, откуда брать значение note
+          isbn: offerData.isbn,
+          publishYear: offerData.publishYear,
+          author: {
+            lastname: offerData.lastname,
+            firstname: offerData.firstname
+          }
+        },
+        offerCategoriesIds: this.offerListKeys
+      },
+      wish: {
+        wishCategoriesIds: this.wishListKeys
+      },
+      address: {
+        addrIndex: addressData.addrIndex,
+        addrCity: addressData.addrCity,
+        addrStreet: addressData.addrStreet,
+        addrHouse: addressData.addrHouse,
+        addrStructure: addressData.addrStructure,
+        addrApart: addressData.addrApart
+      }
+    };
+
     const observer: Observer<HttpResponse<any>> = {
       complete: () =>  {
       },
@@ -210,7 +240,6 @@ export class StartChangeComponent implements OnInit {
       next: (value: HttpResponse<any>) => {
         this.isSubmitted = false;
         this.error = false;
-        console.log("3");
       }
     }
 

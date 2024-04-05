@@ -49,8 +49,8 @@ export class AuthService {
   }
 
   public Exchanging(exc:ExchangegoDTO | null):Observable<HttpResponse<any>>{
-
     return this.http.post<ExchangegoDTO>(environment.EXC_URL, exc, {
+      headers: this.storage.getAuthHeader(),
       observe: 'response'
     })
   }
