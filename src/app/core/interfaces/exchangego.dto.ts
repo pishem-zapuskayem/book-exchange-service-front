@@ -12,7 +12,7 @@ export interface ExchangegoDTO {
       }
     },
     offerCategoriesIds: [
-      0
+      string
     ]
   },
   wish: {

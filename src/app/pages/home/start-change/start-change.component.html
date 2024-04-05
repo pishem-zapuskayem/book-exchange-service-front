@@ -68,6 +68,7 @@
               (nzCheckBoxChange)="nzCheck($event)"
               (nzExpandChange)="nzCheck($event)"
             ></nz-tree>
+
           </ul>
         </div>
         <input (click)="next()" type="button" value="Далее" name="next" class="action-button" />
@@ -81,23 +82,11 @@
       <div class="page left-page">
       <h2 class="word1">Хочу получить:</h2>
         <ul>
-          <nz-tree [nzShowExpand]="treeVisible" class="categories" style="  possition: center ; "
-                   #nzTreeComponent
-                   [nzData]="nodes"
-                   nzCheckable
-                   [nzCheckedKeys]="defaultCheckedKeys"
-                   [nzExpandedKeys]="defaultExpandedKeys"
-                   [nzSelectedKeys]="defaultSelectedKeys"
-                   (nzClick)="nzClick($event)"
-                   (nzContextMenu)="nzClick($event)"
-                   (nzCheckBoxChange)="nzCheck($event)"
-                   (nzExpandChange)="nzCheck($event)"
+          <nz-tree [nzShowExpand]="treeVisible" class="categories" style="  padding-top: 30px ;"
           ></nz-tree>
         </ul>
         <input formControlName="WannaTake" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Пример"><br>
-        <div *ngIf="wanted_step && Wanted.controls.Year.errors">
-          <div *ngIf="want.WannaTake.errors?.required" class="warningval"  >Заполните год издания</div>
-        </div>
+
         <input (click)="previous()" type="button" value="Назад" name="previous" class="previous action-button-previous"/>
       </div>
       <!--Страница 2 правая  -->
