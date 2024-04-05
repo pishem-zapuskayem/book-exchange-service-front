@@ -10,6 +10,7 @@ import {JwtPayload} from "../interfaces/jwt-payload";
 import {RegisterDTO} from "../interfaces/register.dto";
 import {AccountDTO} from "../interfaces/account.dto";
 
+
 @Injectable()
 export class AuthService {
 
@@ -49,6 +50,10 @@ export class AuthService {
     return this.http.get<AccountDTO>(environment.ME_URL, {
       headers: this.storage.getAuthHeader()
     })
+  }
+  private categoryUrl = 'api/v1/category';
+  public getCategories(): Observable<any[]> {
+    return this.http.get<any[]>(this.categoryUrl);
   }
 
   public getRole(): string {

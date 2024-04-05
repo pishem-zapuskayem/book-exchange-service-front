@@ -43,7 +43,7 @@
 
       <div class="page left-page">
         <div>
-        <h2 class="word1">Хочу обменять:</h2>
+        <h3 class="word1" style="  padding-left: 10px ;">Хочу обменять:</h3>
         </div>
         <label class="label1"> Автор* </label><br>
         <div>
@@ -55,7 +55,7 @@
             <label class="warningval" *ngIf="trade.SecondName.errors?.required">Заполните фамилию</label>
           </label>
         <label *ngIf="exchange_step || trade.FirstName.touched && needExchange.controls.FirstName.errors">
-          <label *ngIf="trade.FirstName.errors?.required" class="warningval" >Заполните имя</label>
+          <label *ngIf="trade.FirstName.errors?.required" class="warningval " style="position: absolute;  right: 160px ;" >Заполните имя</label>
         </label>
           </div>
         </div>
@@ -71,12 +71,26 @@
 
         <input formControlName="Year" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Год издания"><br>
         <div *ngIf="exchange_step || trade.Year.touched  && needExchange.controls.Year.errors">
-          <div *ngIf="trade.Year.errors?.required" class="warningval" >Заполните год издания</div>
+          <div *ngIf="trade.Year.errors?.required" class="warningval" style="position: absolute;  right: 50px ;">Заполните год издания</div>
         </div>
       </div>
       <div class="page right-page">
-        <div>
-          ИЕРАРХИЧЕСКИЙ СПИСОК
+        <div class="category">
+          <h3 class="word1" style="  padding-left: 10px ;">Категории:</h3>
+          <ul>
+            <nz-tree [nzShowExpand]="treeVisible" class="categories" style="  padding-top: 30px ;"
+              #nzTreeComponent
+              [nzData]="nodes"
+              nzCheckable
+              [nzCheckedKeys]="defaultCheckedKeys"
+              [nzExpandedKeys]="defaultExpandedKeys"
+              [nzSelectedKeys]="defaultSelectedKeys"
+              (nzClick)="nzClick($event)"
+              (nzContextMenu)="nzClick($event)"
+              (nzCheckBoxChange)="nzCheck($event)"
+              (nzExpandChange)="nzCheck($event)"
+            ></nz-tree>
+          </ul>
         </div>
         <input (click)="next()" type="button" name="next" class="action-button" />
       </div>
@@ -86,9 +100,23 @@
   <!--Страница 2 левая  -->
   <form  [formGroup]="Wanted">
     <fieldset  class="book" *ngIf="step == 2" >
+
       <div class="page left-page">
       <h2 class="word1">Хочу получить:</h2>
-        <label class="label1" > Пример* </label>
+        <ul>
+          <nz-tree [nzShowExpand]="treeVisible" class="categories" style="  possition: center ; "
+                   #nzTreeComponent
+                   [nzData]="nodes"
+                   nzCheckable
+                   [nzCheckedKeys]="defaultCheckedKeys"
+                   [nzExpandedKeys]="defaultExpandedKeys"
+                   [nzSelectedKeys]="defaultSelectedKeys"
+                   (nzClick)="nzClick($event)"
+                   (nzContextMenu)="nzClick($event)"
+                   (nzCheckBoxChange)="nzCheck($event)"
+                   (nzExpandChange)="nzCheck($event)"
+          ></nz-tree>
+        </ul>
         <input formControlName="WannaTake" class="forbox4" type="text" ng-model="ctrl.surname" required placeholder="Пример"><br>
         <div *ngIf="wanted_step && Wanted.controls.Year.errors">
           <div *ngIf="want.WannaTake.errors?.required" class="warningval"  >Заполните год издания</div>
@@ -104,7 +132,7 @@
 
   </form>
   <form [formGroup]="InfoDetail">
-    <fieldset  class="book" *ngIf="step == 3">
+    <fieldset  class="book" *ngIf="step == 3 ">
       <!--Страница 3 левая  -->
       <div class="page left-page">
       <h2 class="word1">Адрес доставки:</h2><br>
