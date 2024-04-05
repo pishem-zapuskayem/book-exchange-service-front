@@ -188,13 +188,16 @@ body {
   justify-content: center;
   padding: 15% 0;
 }
+
+
+
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #fcf8ec;
-  color: white;
-  padding: 15px;
+
+  padding: 5px;
   border: 5px solid black;
   border-width: 0px ; /* Верхняя и нижняя обводка */
   border-color: #835136 #4d2816;
@@ -215,8 +218,50 @@ button:hover {
   font-size: 16px;
 
 }
-a { font-size: 20px}
+.top-header {
+  height: 20px;
+  padding-left: 980px;
+}
 
+.bottom-header {
+  height: 80px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.a {
+  color: #86561c;
+
+  padding: 8px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  text-align: center;
+  font-size: 18px;
+  display: inline-block;
+  border: 0px; /* Добавляем обводку толщиной 2px и цвета #555 */
+  border-radius: 0px; /* Задаем радиус скругления углов */
+  //background-color: #fbb561;
+}
+.a:hover{
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+
+.b:hover {
+  transform: scale(1.05);
+  text-decoration: underline;
+  color: #7EBD91;
+}
+
+.b  {
+  color: #41280a;
+  margin: 20px;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  text-align: center;
+  font-size: 22px;
+  display: inline-block;
+}
 .auth button {
   background-color: #a97650;
   color: white;
@@ -229,6 +274,7 @@ a { font-size: 20px}
 .logo  {
   width: 230px;
   height: auto;
+  margin-right: 16px;
 }
 
 
@@ -519,7 +565,7 @@ animation-play-state: paused;
 }
 
 .icon{
-  margin-right: 50px;
+  margin-right: 10px;
   width: 80px;
   border-radius: 100px;
   height: 80px;

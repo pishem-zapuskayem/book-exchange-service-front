@@ -1,33 +1,33 @@
 <div class="header">
-  <img src="assets\logo.png" alt="Logo" class="logo">
-  <div class="buttons">
-    <button
-      routerLink="/home">Главная</button>
-    <button routerLink="/exchange">Начать обмен</button>
-      <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
+
+  <header>
+    <div class="top-header">
+      <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
         <ng-container *ngIf="!isLoading">
-          <button routerLink="/exchanges">Мои обмены</button>
+          <label class="username"> {{user.username}} </label>
+          <img class="icon"[src]="getAvatarOrDefault(user)">
         </ng-container>
       </ng-container>
-      <ng-template #notAuthz>
-        <button nz-button (click)="createMessage('warning')">Мои обмены</button>
+      <ng-template #notAuth>
+        <a class="a"(click)="showLogin()">Логин </a>
+        <a class="a" routerLink="/registration"> Регистрация</a>
       </ng-template>
+    </div>
+    <div class="bottom-header">
+      <img src="assets\logo.png" alt="Logo" class="logo">
+      <a class="b" routerLink="/home">Главная</a>
+      <a class="b" routerLink="/exchange">Начать обмен</a>
+        <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
+          <ng-container *ngIf="!isLoading">
+            <a routerLink="/exchanges">Мои обмены</a>
+          </ng-container>
+        </ng-container>
+        <ng-template #notAuthz>
+          <a class="b" nz-button (click)="createMessage('warning')">Мои обмены</a>
+        </ng-template>
 
-    <button (click)="'info4'">Задать вопрос</button>
-
+    <a class="b" (click)="'info4'">Задать вопрос</a>
   </div>
-  <div class="auth">
-    <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
-      <ng-container *ngIf="!isLoading">
-        <label class="username"> {{user.username}} </label>
-        <img class="icon"[src]="getAvatarOrDefault(user)">
-
-      </ng-container>
-    </ng-container>
-    <ng-template #notAuth>
-      <button (click)="showLogin()">Логин</button>
-      <a routerLink="/registration"> Регистрация</a>
-    </ng-template>
-  </div>
+  </header>
 </div>
 
