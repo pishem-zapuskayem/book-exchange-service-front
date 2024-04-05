@@ -81,7 +81,8 @@ export class StartChangeComponent implements OnInit {
       firstname: ['', Validators.required],
       bookName: ['', Validators.required],
       publishYear: ['', Validators.required],
-      isbn: ['']
+      isbn: [''],
+      Keys:[ ],
     });
     this.Wanted = this.formBuilder.group({
       WannaTake: ['', Validators.required],
@@ -93,6 +94,7 @@ export class StartChangeComponent implements OnInit {
       addrHouse: ['', Validators.required],
       addrApart: [''],
       addrIndex: ['', Validators.required],
+      key:[],
     });
     this.categoriesService.getCategories().subscribe(categories => {
       this.nodes = this.convertToTreeNodes(categories);
@@ -216,15 +218,4 @@ export class StartChangeComponent implements OnInit {
     this.authService.Exchanging(formData).subscribe(observer);
   }
 
-  showLogin() {
-    this.dialog.open(AuthDialogComponent);
-  }
-
-  createMessage(type: string): void {
-    this.message.create(type, `Данный раздел доступен только авторизованному пользователю`);
-  }
-
-  getAvatarOrDefault(user: AccountDTO): string {
-    return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
-  }
 }

@@ -116,29 +116,29 @@
         <label class="label1"> Город* </label><br>
         <div>
           <input formControlName="addrCity" class="forbox2" type="text" ng-model="ctrl.City" required placeholder="Город">
-          <div *ngIf="info_step && InfoDetail.controls.addrCity.errors">
-            <div *ngIf="info.addrCity.errors?.required"  class="validator">Заполните город</div>
-          </div>
+     <!--   <div *ngIf="info_step && InfoDetail.controls.addrCity.errors"> -->
+     <!--     <div *ngIf="info.addrCity.errors?.required"  class="validator">Заполните город</div> -->
+     <!--   </div> -->
         </div>
         <label class="label1"> Улица* </label>
         <label class="label3"> Индекс </label><br>
         <input formControlName="addrStreet" class="forbox5" type="text"  ng-model="ctrl.street" required placeholder="Название улицы">
-        <div *ngIf="info_step && InfoDetail.controls.addrStreet.errors">
-          <div *ngIf="info.addrStreet.errors?.required" class="warningval" >Заполните улицу</div>
-        </div>
+     <!-- <div *ngIf="info_step && InfoDetail.controls.addrStreet.errors"> -->
+     <!--   <div *ngIf="info.addrStreet.errors?.required" class="warningval" >Заполните улицу</div> -->
+     <!-- </div> -->
         <input formControlName="addrIndex" class="forbox5" type="text"  ng-model="ctrl.street" placeholder="Заполните индекс"><br>
 
         <label class="label1" > Строение* </label>
         <label class="label3"> Дом* </label>
         <label class="label4"> Квартира </label><br>
         <input formControlName="addrStructure" class="forbox5" type="text" ng-model="ctrl.surname" placeholder="Строение">
-        <div *ngIf="info_step && InfoDetail.controls.addrStructure.errors">
-          <div *ngIf="info.addrStructure.errors?.required">Заполните строение</div>
-        </div>
+   <!--   <div *ngIf="info_step && InfoDetail.controls.addrStructure.errors">  -->
+   <!--     <div *ngIf="info.addrStructure.errors?.required">Заполните строение</div>  -->
+   <!--   </div>  -->
         <input formControlName="addrHouse" class="forbox5" type="text" ng-model="ctrl.surname" required placeholder="Дом">
-        <div *ngIf="info_step && InfoDetail.controls.addrHouse.errors">
-          <div *ngIf="info.addrHouse.errors?.required">Заполните дом</div>
-        </div>
+  <!--    <div *ngIf="this.info_step && InfoDetail.controls.addrHouse.errors">  -->
+  <!--      <div *ngIf="info.addrHouse.errors?.required">Заполните дом</div>  -->
+  <!--    </div>  -->
         <input formControlName="addrApart" class="forbox5" type="text" ng-model="ctrl.surname" required placeholder="Квартира"><br>
 
         <input (click)="previous()" type="button" name="previous" value="Назад" class="previous action-button-previous" />
