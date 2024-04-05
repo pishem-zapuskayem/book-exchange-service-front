@@ -9,6 +9,7 @@ import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {CoreModule} from "../core/core.module";
 import {AuthDialogComponent} from "../auth-dialog/auth-dialog.component";
 import {RouterModule} from "@angular/router";
+import {NzTreeComponent, NzTreeModule} from "ng-zorro-antd/tree";
 
 
 
@@ -16,23 +17,25 @@ import {RouterModule} from "@angular/router";
   declarations: [
     HeaderComponent,
     AuthDialogComponent,
+
   ],
   imports: [
     CommonModule,
-
     ReactiveFormsModule,
     NzLayoutModule,
     FormsModule,
     CoreModule,
     MatDialogModule,
     RouterModule,
+    NzTreeComponent,
   ],
   exports: [
     HeaderComponent,
     CommonModule,
-
     ReactiveFormsModule,
     NzLayoutModule,
+    NzTreeModule,
+    NzTreeComponent,
     FormsModule,
     CoreModule,
     MatDialogModule,

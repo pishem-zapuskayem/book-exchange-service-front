@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
 import {AuthDialogComponent} from "../../../auth-dialog/auth-dialog.component";
 import {MatDialog} from "@angular/material/dialog";

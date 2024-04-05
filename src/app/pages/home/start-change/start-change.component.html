@@ -146,21 +146,15 @@
       <!--Страница 3 правая  -->
       <div class="page right-page">
 
-        <label class="label1"> Фамилия* </label><br>
-        <input formControlName="SecondName" class="forbox2" type="text"  ng-model="ctrl.surname" required placeholder="Фамилия"><br>
-        <div *ngIf="info_step && InfoDetail.controls.SecondName.errors">
-          <div *ngIf="info.SecondName.errors?.required">Заполните фамилию</div>
-        </div>
-        <label class="label1"> Имя* </label><br>
-        <input formControlName="FirstName" class="forbox2" type="text"  ng-model="ctrl.surname" required placeholder="Имя"><br>
-        <div *ngIf="info_step && InfoDetail.controls.FirstName.errors">
-          <div *ngIf="info.FirstName.errors?.required">Заполните имя</div>
-        </div>
-        <label class="label1"> Отчество* </label><br>
-        <input formControlName="MiddleName" class="forbox2" type="text"  ng-model="ctrl.surname" required placeholder="Отчество"><br>
-        <div *ngIf="info_step && InfoDetail.controls.MiddleName.errors">
-          <div *ngIf="info.MiddleName.errors?.required">Заполните отчество</div>
-        </div>
+        <label class="label1"> Фамилия </label><br>
+        <input formControlName="SecondName" class="forbox2" type="text"  ng-model="ctrl.surname"  placeholder="Фамилия"><br>
+
+        <label class="label1"> Имя </label><br>
+        <input formControlName="FirstName" class="forbox2" type="text"  ng-model="ctrl.surname"  placeholder="Имя"><br>
+
+        <label class="label1"> Отчество </label><br>
+        <input formControlName="MiddleName" class="forbox2" type="text"  ng-model="ctrl.surname" placeholder="Отчество"><br>
+
 
       <input (click)="submit()"  name="i"  type="button"  class="input-action-button" value="Отправить заявку" />
       </div>

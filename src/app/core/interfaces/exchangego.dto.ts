@@ -12,12 +12,12 @@ export interface ExchangegoDTO {
       }
     },
     offerCategoriesIds: [
-      number
+      0
     ]
   },
   wish: {
     wishCategoriesIds: [
-      number
+      0
     ]
   },
   address: {

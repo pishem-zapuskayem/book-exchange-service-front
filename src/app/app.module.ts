@@ -33,16 +33,7 @@ import {SharedModule} from "./shared/shared.module";
   imports: [
     SharedModule,
     AppRoutingModule,
-    BrowserModule
-    ReactiveFormsModule,
-    NzLayoutModule,
-    CoreModule,
-    FormsModule,
-    CoreModule,
-    FormsModule,
-    MatDialogClose,
-    NzTreeModule,
-    NzTreeComponent,
+    BrowserModule,
     HttpClientModule,
   ],
   providers: [
