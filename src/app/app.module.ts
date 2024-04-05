@@ -9,10 +9,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CoreModule} from "./core/core.module";
 import {AuthDialogComponent} from "./auth-dialog/auth-dialog.component";
 import {StartChangeComponent} from "./pages/home/start-change/start-change.component";
-
+import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { MyexchangesComponent } from './pages/myexchanges/myexchanges.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import {MatDialogClose} from "@angular/material/dialog";
+import { NzFormatEmitEvent, NzTreeComponent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
+import { HttpClientModule } from '@angular/common/http';
 import {ConfirmComponent} from "./pages/home/confirm/confirm.component";
 import {HeaderComponent} from "./pages/home/header/header.component";
 import {SharedModule} from "./shared/shared.module";
@@ -32,6 +34,16 @@ import {SharedModule} from "./shared/shared.module";
     SharedModule,
     AppRoutingModule,
     BrowserModule
+    ReactiveFormsModule,
+    NzLayoutModule,
+    CoreModule,
+    FormsModule,
+    CoreModule,
+    FormsModule,
+    MatDialogClose,
+    NzTreeModule,
+    NzTreeComponent,
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync()

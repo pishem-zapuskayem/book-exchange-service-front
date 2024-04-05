@@ -60,7 +60,9 @@
   background: burlywood;
   color: #000;
 }
-
+.categories{
+  background: #fcf8ec;
+}
 .validator {
   position: center;
   color: black;
@@ -163,6 +165,9 @@
   border: 1px solid white;
   border-radius: 20px;
   margin-left: 30px;
+}
+input{
+  padding-left: 8px;
 }
 body {
   overflow-x: hidden;
@@ -379,6 +384,11 @@ h3{
   box-sizing: border-box;
 }
 
+.category{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
 .containerfirst {
   display: flex;
   justify-content: center;
@@ -467,7 +477,7 @@ h3{
 }
 
 .right-page {
-
+  overflow: auto;
   right: 0;
   transform-origin: 0% 50%;
   border-left: 3px solid #94826a;
@@ -475,7 +485,7 @@ h3{
 
 .action-button{
   opacity:100%;
-  position:absolute;
+  position: absolute;
   bottom: 0;
   right: 0;
   border: 20px solid #FCF8ECFF;
@@ -511,12 +521,6 @@ h3{
   border-right: 20px solid #41280a;
   border-bottom: 20px solid #41280a;
 }
-.input-action-button:disabled{
-  color: black;
-  border-right: 20px solid black  ;
-  border-bottom: 20px solid black;
-}
-
 #action-button:hover .page.right-page{
   transform: rotateY(-5deg);
 }

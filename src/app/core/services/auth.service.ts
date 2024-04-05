@@ -35,7 +35,6 @@ export class AuthService {
       type: 'application/json'
     }));
 
-
     if (avatar) {
       formData.append('avatar', avatar);
     }
@@ -65,6 +64,10 @@ export class AuthService {
       headers: this.storage.getAuthHeader()
     })
   }
+  private categoryUrl = 'api/v1/category';
+  public getCategories(): Observable<any[]> {
+    return this.http.get<any[]>(this.categoryUrl);
+  }
 
   public getRole(): string {
     const token = this.storage.getToken();
@@ -74,5 +77,4 @@ export class AuthService {
   public isAuthenticatedAs(role: string): boolean {
     return this.isAuthenticated() && this.getRole() === role;
   }
-
 }
