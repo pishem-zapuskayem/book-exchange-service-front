@@ -31,11 +31,11 @@ export class AuthDialogComponent {
 
       email: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+
       ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(4)
+
       ])
     })
   }

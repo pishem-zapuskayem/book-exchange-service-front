@@ -66,6 +66,21 @@ body {
   border: none;
   padding: 10px;
 }
+.custom-btn-reg {
+  width: 100%;
+  background-color: cornflowerblue;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+.custom-btn-reg:disabled {
+  width: 100%;
+  background-color: #d6ddea;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+
 button:hover {
   background-color: #ffd59f;
   color: black;
