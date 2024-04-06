@@ -82,7 +82,7 @@ export class StartChangeComponent implements OnInit {
       bookName: ['', Validators.required],
       publishYear: ['', Validators.required],
       isbn: [''],
-      Keys:[ ],
+      key:[''],
     });
     this.Wanted = this.formBuilder.group({
       WannaTake: ['', Validators.required],
