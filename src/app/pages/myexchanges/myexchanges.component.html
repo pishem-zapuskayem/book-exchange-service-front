@@ -13,7 +13,7 @@
             <div class="user-info">
               <a href="edit-profile.html">{{user.username}}</a>
               <img class="icon1"[src]="getAvatarOrDefault(user)">
-              <p>Рейтинг: 4.5</p>
+
             </div>
             <div class="button-container">
               <button  class="custom-button" (click)="showSection(1)">Предложения для обмена</button>
@@ -38,13 +38,33 @@
 
                 <div class="sub-container">
                   Полное совпадение
+                  <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                    <div *ngFor="let exchange of exchanges">
+                      <div *ngIf="exchange.isFullMatch">
+                        <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
+                        <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
+<!--                        todo и прочие поля -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
                   <div class="sub-container2">
                     Здесь пока ничего нет
                   </div>
-                <div class="sub-container" >Частичное совпадение</div>
+                <div class="sub-container" >
+                  Частичное совпадение
+                  <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                    <div *ngFor="let exchange of exchanges">
+                      <div *ngIf="!exchange.isFullMatch">
+                        <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
+                        <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
+                        <!--                        todo и прочие поля -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
                   <div class="sub-container2">
-                    Эх, сейчас бы в циву
+                    Эх
                   </div>
                 <div class="sub-container" >Другие интересные предложения</div>
                   <div class="sub-container2">
@@ -85,15 +105,19 @@
                               <div class="backgroundfornamepage">
                                 <h2>Хочу Отдать</h2>
                               </div>
-                              <div class="backgroundforbookformain right" >
-                                Название
-                                <br>
-                                Обмен пока не подтвержден
-                                <br>
-                                Номер отправления
-                                <br>
-                                Книга получена
+<!--                              todo здесь список карточек-->
+                              <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                                <div class="backgroundforbookformain right" *ngFor="let offer of offers">
+                                  {{offer.bookDTO.author }}
+                                  {{offer.bookDTO.bookName }}
+                                  {{offer.bookDTO.publishYear }}
+
+                                  <div *ngFor="let cat of offer.categoryDTOList">
+                                    <p>{{cat.name}}</p>
+                                  </div>
+                                </div>
                               </div>
+
                               <button class = "btn-back" type="submit" *ngIf="!buttonClicked" (click)="showText()"> Подтвердить </button>
                               <h2 *ngIf="buttonClicked">Обмен подтвержден</h2>
                               <label for="SendNumber" *ngIf="buttonClicked">Номер отправления </label>
@@ -129,31 +153,26 @@
                                <div class="backgroundfornamepage">
                                  <h2>Хочу Получить</h2>
                                </div>
-                               <div class="backgroundforbookformain left" >
-                                 Тип: неизвестно
-                                 <br>
-                                 <!-- Обмен подтвержден -->
-                                 Обмен пока не подтвержден
-                                 <br>
-                                 Номер отправления
-                                 <br>
-                                 1234567890
-                                 <br>
-                                 Книга получена
-                               </div>
+
                              </div>
                              <div class="page right-page">
                                <div class="backgroundfornamepage">
                                  <h2>Хочу Отдать</h2>
                                </div>
                                <div class="backgroundforbookformain right" >
-                                 Название
-                                 <br>
-                                 Обмен пока не подтвержден
-                                 <br>
-                                 Номер отправления
-                                 <br>
-                                 Книга получена
+                                 <div class="backgroundforbookformain left" >
+                                   <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                                     <div class="backgroundforbookformain right" >
+
+
+                                       <div *ngFor="let wish of wishes" >
+                                         <div *ngFor="let cat of wish.categoryList">
+                                           <p>{{cat.name}}</p>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
                                </div>
                                <button class = "btn-back" type="submit" *ngIf="!buttonClicked" (click)="showText()"> Подтвердить </button>
                                <h2 *ngIf="buttonClicked">Обмен подтвержден</h2>

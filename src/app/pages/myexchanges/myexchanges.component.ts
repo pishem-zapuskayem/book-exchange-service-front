@@ -8,8 +8,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
 import {Observer} from "rxjs";
 import {AccountDTO} from "../../core/interfaces/account.dto";
-import {ExchangelistDto} from "../../core/interfaces/exchangelist.dto";
+
 import {CategorylistService} from "../../core/services/categorylist.service";
+import {OfferDTO} from "../../core/interfaces/offer.dto";
+import {ExchangesDTO} from "../../core/interfaces/exchanges.dto";
+import {WishDTO} from "../../core/interfaces/wish.dto";
 
 @Component({
   selector: 'app-myexchanges',
@@ -20,10 +23,17 @@ import {CategorylistService} from "../../core/services/categorylist.service";
 export class MyexchangesComponent implements OnInit {
   user !: AccountDTO;
   isLoading: boolean=false;
+  isLoadingOffers: boolean=false;
+  isLoadingWishes: boolean=false;
+  isLoadingExchanges: boolean=false;
   currentSection: number = 2;
   Number: string = '';
   data:any ;
 //  form: FormGroup;
+  offers!: OfferDTO[];
+  exchanges!: ExchangesDTO[];
+  wishes!: WishDTO[];
+
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
   }
@@ -56,6 +66,7 @@ export class MyexchangesComponent implements OnInit {
     this.showInfo = true;
   }
   ngOnInit(): void {
+
     this.loadData();
     if (this.authService.isAuthenticated()){
       this.isLoading=true;
@@ -73,10 +84,28 @@ export class MyexchangesComponent implements OnInit {
         }
       }
       this.authService.getAuthenticated().subscribe(observer);
+
+      this.isLoadingOffers = true;
+      this.Categorylist.getOffer().subscribe(r => {
+        this.isLoadingOffers = false;
+        this.offers = r;
+      });
+
+    this.isLoadingWishes = true;
+    this.Categorylist.getWish().subscribe(x => {
+      this.isLoadingWishes = false;
+      this.wishes = x;
+    });
+
+    this.isLoadingExchanges = true;
+    this.Categorylist.getExchanges().subscribe(h => {
+      this.isLoadingExchanges = false;
+      this.exchanges = h;
+    });
     }
   }
   loadData(){
-    this.Categorylist.getCategories().subscribe((response)=>{});
+    this.Categorylist.getOffer().subscribe((response)=>{});
   }
   getAvatarOrDefault(user: AccountDTO): string {
     return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
@@ -85,6 +114,7 @@ export class MyexchangesComponent implements OnInit {
   signOut() {
     this.authService.signOut()
   }
+
 }
 
 

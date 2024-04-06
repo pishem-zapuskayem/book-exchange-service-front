@@ -1,19 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ExchangelistDto } from "../interfaces/exchangelist.dto";
+import { OfferDTO } from "../interfaces/offer.dto";
 import {environment} from "../../../environments/environment.dev";
+import {TokenStorageService} from "./token-storage.service";
+import {WishDTO} from "../interfaces/wish.dto";
+import {ExchangesDTO} from "../interfaces/exchanges.dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorylistService {
-  private apiUrl = environment.BASE_URL;
+  private OfferUrl = environment.BASE_URL+'/offer-list';
+  private WIshUrl = environment.BASE_URL+'/wish-list';
 
-  constructor(private http: HttpClient) {
+  private ExchangesUrl = environment.BASE_URL+'/exchanges';
+
+  constructor(private http: HttpClient,
+  private TokenStorage: TokenStorageService) {
   }
 
-  getCategories(): Observable<ExchangelistDto[]> {
-    return this.http.get<ExchangelistDto[]>(this.apiUrl);
+  getOffer(): Observable<OfferDTO[]> {
+    return this.http.get<OfferDTO[]>(this.OfferUrl, {headers: this.TokenStorage.getAuthHeader()});
+  }
+  getWish(): Observable<WishDTO[]> {
+    return this.http.get<WishDTO[]>(this.WIshUrl, {headers: this.TokenStorage.getAuthHeader()});
+  }
+  getExchanges(): Observable<ExchangesDTO[]> {
+    return this.http.get<ExchangesDTO[]>(this.ExchangesUrl, {headers: this.TokenStorage.getAuthHeader()});
   }
 }
+
