@@ -19,7 +19,7 @@
       <a class="b" routerLink="/exchange">Начать обмен</a>
         <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
           <ng-container *ngIf="!isLoading">
-            <a routerLink="/exchanges">Мои обмены</a>
+            <a  class="b" routerLink="/exchanges">Мои обмены</a>
           </ng-container>
         </ng-container>
         <ng-template #notAuthz>

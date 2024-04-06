@@ -149,13 +149,13 @@ export class StartChangeComponent implements OnInit {
   }
 
   next() {
+    this.step++;
     if (this.step == 1) {
       this.showTree = true;
       this.exchange_step = true;
       if (this.offerListForm.invalid) {
         return
       }
-      this.step++
     }
     if (this.step == 2) {
       this.showTree = true;
@@ -163,7 +163,6 @@ export class StartChangeComponent implements OnInit {
       if (this.wishListForm.invalid) {
         return
       }
-      this.step++;
     }
   }
 

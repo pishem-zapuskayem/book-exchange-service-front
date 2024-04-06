@@ -8,6 +8,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
 import {Observer} from "rxjs";
 import {AccountDTO} from "../../core/interfaces/account.dto";
+import {ExchangelistDto} from "../../core/interfaces/exchangelist.dto";
+import {CategorylistService} from "../../core/services/categorylist.service";
 
 @Component({
   selector: 'app-myexchanges',
@@ -20,6 +22,7 @@ export class MyexchangesComponent implements OnInit {
   isLoading: boolean=false;
   currentSection: number = 2;
   Number: string = '';
+  data:any ;
 //  form: FormGroup;
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
@@ -27,6 +30,7 @@ export class MyexchangesComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private message: NzMessageService,
               private router: Router,
+              private Categorylist: CategorylistService,
               public authService:  AuthService) {}
   showLogin() {
     this.dialog.open(AuthDialogComponent);
@@ -52,7 +56,7 @@ export class MyexchangesComponent implements OnInit {
     this.showInfo = true;
   }
   ngOnInit(): void {
-
+    this.loadData();
     if (this.authService.isAuthenticated()){
       this.isLoading=true;
       const observer: Observer <AccountDTO> = {
@@ -71,7 +75,9 @@ export class MyexchangesComponent implements OnInit {
       this.authService.getAuthenticated().subscribe(observer);
     }
   }
-
+  loadData(){
+    this.Categorylist.getCategories().subscribe((response)=>{});
+  }
   getAvatarOrDefault(user: AccountDTO): string {
     return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
   }

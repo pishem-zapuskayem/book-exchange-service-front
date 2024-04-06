@@ -40,7 +40,7 @@
   content: '';
   width: 60%;
   height: 12px;
-  background: #DEB887FF;
+  background: #FBD161;
   position: absolute;
   left: 24%;
   top: 6px;
@@ -57,7 +57,7 @@
   color: white;
 }
 #progressbar li.inactive:before{
-  background: burlywood;
+  background: #FBD161;
   color: #000;
 }
 .categories{
@@ -172,7 +172,7 @@ input{
 body {
   overflow-x: hidden;
   background: linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
-  linear-gradient(120deg, transparent 20%, #FBD161 20%) left fixed,
+  linear-gradient(120deg, transparent 20%, #FBD161 ) left fixed,
   linear-gradient(225deg, transparent 30%, #fbb561 20%) right fixed,
   #7EBD91;
   background-size: 50% 100%;

@@ -219,12 +219,12 @@ button:hover {
 
 }
 .top-header {
-  height: 20px;
-  padding-left: 980px;
+  height: 30px;
+  padding-left: 1080px;
 }
 
 .bottom-header {
-  height: 80px;
+  height: 90px;
 }
 
 .content {
@@ -274,7 +274,7 @@ button:hover {
 .logo  {
   width: 230px;
   height: auto;
-  margin-right: 16px;
+  margin-right: 60px;
 }
 
 
@@ -560,13 +560,14 @@ animation-play-state: paused;
 .username{
   font-size:20px;
   color:black;
-  margin-right: 40px;
+  padding: 20px;
 
 }
 
 .icon{
-  margin-right: 10px;
-  width: 80px;
+
+  width: 40px;
+  object-fit: cover;
   border-radius: 100px;
-  height: 80px;
+  height: 40px;
 }
