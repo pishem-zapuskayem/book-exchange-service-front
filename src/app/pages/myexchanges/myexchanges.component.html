@@ -41,26 +41,21 @@
 
                 </div>
                   <div class="sub-container2">
+                    <div></div>
                     <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
-                      <div >АААААААААААААА</div>
                       <div *ngFor="let exchange of exchanges">
                         <div *ngIf="exchange.isFullMatch">
-                          <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
-                          <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
-                          <!--                        todo и прочие поля -->
+                        <app-exchange-card [exchange]="exchange"></app-exchange-card>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>а
                 <div class="sub-container" >
                   Частичное совпадение
                   <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
                     <div *ngFor="let exchange of exchanges">
                       <div *ngIf="!exchange.isFullMatch">
-                        <p>{{exchange.offerSecond.bookDTO.bookName}}</p>
-                        <p>{{exchange.offerSecond.bookDTO.publishYear}}</p>
-
-                        <!--                        todo и прочие поля -->
+                        <app-exchange-card [exchange]="exchange"></app-exchange-card>
                       </div>
                     </div>
                   </div>

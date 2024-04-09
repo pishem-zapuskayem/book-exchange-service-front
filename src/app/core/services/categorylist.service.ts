@@ -5,7 +5,7 @@ import { OfferDTO } from "../interfaces/offer.dto";
 import {environment} from "../../../environments/environment.dev";
 import {TokenStorageService} from "./token-storage.service";
 import {WishDTO} from "../interfaces/wish.dto";
-import {ExchangesDTO} from "../interfaces/exchanges.dto";
+import {ExchangeDTO} from "../interfaces/exchangeDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class CategorylistService {
   getWish(): Observable<WishDTO[]> {
     return this.http.get<WishDTO[]>(this.WIshUrl, {headers: this.TokenStorage.getAuthHeader()});
   }
-  getExchanges(): Observable<ExchangesDTO[]> {
-    return this.http.get<ExchangesDTO[]>(this.ExchangesUrl, {headers: this.TokenStorage.getAuthHeader()});
+  getExchanges(): Observable<ExchangeDTO[]> {
+    return this.http.get<ExchangeDTO[]>(this.ExchangesUrl, {headers: this.TokenStorage.getAuthHeader()});
   }
 }
 

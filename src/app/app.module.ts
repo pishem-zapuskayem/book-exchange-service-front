@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ConfirmComponent} from "./pages/home/confirm/confirm.component";
 import {HeaderComponent} from "./pages/home/header/header.component";
 import {SharedModule} from "./shared/shared.module";
+import { ExchangeCardComponent } from './pages/myexchanges/exchange-card/exchange-card.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {SharedModule} from "./shared/shared.module";
     MyexchangesComponent,
     StartChangeComponent,
     ConfirmComponent,
+    ExchangeCardComponent,
 
   ],
   imports: [

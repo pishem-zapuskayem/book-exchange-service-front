@@ -11,7 +11,7 @@ import {AccountDTO} from "../../core/interfaces/account.dto";
 
 import {CategorylistService} from "../../core/services/categorylist.service";
 import {OfferDTO} from "../../core/interfaces/offer.dto";
-import {ExchangesDTO} from "../../core/interfaces/exchanges.dto";
+import {ExchangeDTO} from "../../core/interfaces/exchangeDTO";
 import {WishDTO} from "../../core/interfaces/wish.dto";
 
 @Component({
@@ -31,7 +31,7 @@ export class MyexchangesComponent implements OnInit {
   data:any ;
 //  form: FormGroup;
   offers!: OfferDTO[];
-  exchanges!: ExchangesDTO[];
+  exchanges!: ExchangeDTO[];
   wishes!: WishDTO[];
 
   showSection(sectionNumber: number) {
@@ -101,6 +101,7 @@ export class MyexchangesComponent implements OnInit {
     this.Categorylist.getExchanges().subscribe(h => {
       this.isLoadingExchanges = false;
       this.exchanges = h;
+      console.dir(this.exchanges);
     });
     }
   }
