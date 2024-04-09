@@ -36,44 +36,38 @@ export class RegistrationComponent {
       lastName: ["" ,[ Validators.required, Validators.maxLength(50), Validators.pattern(/[А-Я]/)]],
       firstName:["", [Validators.required, Validators.maxLength(25), Validators.pattern(/[А-Я]/) ]],
       secondName:["", [Validators.required, Validators.maxLength(25), Validators.pattern(/[А-Я]/) ]],
-      email: [null, [
+      email: ["", [
         Validators.required,
-        Validators.maxLength(50),
+
         Validators.email
       ]],
-      username: [null,
+      username: ["",
         Validators.required,
-        Validators.minLength(2),
         Validators.pattern(/([$@$!%*?&])/)
       ],
-      password: [null,
+      password: ["",
         Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/)
       ],
-      addrIndex: [null,
+      addrIndex: ["",
         Validators.required,
-        Validators.maxLength(7)
+
       ],
-      addrCity: [null,
+      addrCity: ["",
         Validators.required,
-        Validators.maxLength(15)
+
       ],
-      addrStreet: [null,
+      addrStreet: ["",
         Validators.required,
-        Validators.maxLength(25)
+
       ],
-      addrHouse: [null,
+      addrHouse: ["",
         Validators.required,
-        Validators.maxLength(5)
+
       ],
-      addrStructure: [null,
-        Validators.required,
-        Validators.maxLength(2)
+      addrStructure: ["",
+
       ],
-      addrApart: [null,
-        Validators.required,
-        Validators.maxLength(3)
+      addrApart: ["",
       ],
       avatar: new FormControl(null, []),
     });

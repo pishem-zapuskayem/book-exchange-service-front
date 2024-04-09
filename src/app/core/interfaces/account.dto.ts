@@ -7,5 +7,5 @@ export interface AccountDTO {
   email: string,
   username: string,
   urlAvatar: string,
-  address:AddressDTO,
+  addresses:AddressDTO[],
 }

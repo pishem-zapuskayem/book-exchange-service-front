@@ -148,12 +148,14 @@
                      </div>
                      <div class="content_box">
                        <h1 class="labelAccount">Адрес:</h1>
-                       <label class="labelAccount"><b>Город:</b> {{user.address.addrCity}} </label><br>
-                       <label class="labelAccount"><b>Улица:</b> {{user.address.addrStreet}} </label>
-                       <label class="labelAccount"><b>Индекс:</b> {{user.address.addrIndex}} </label><br>
-                       <label class="labelAccount"><b>Дом:</b> {{user.address.addrHouse}} </label>
-                       <label class="labelAccount"><b>Квартира:</b> {{user.address.addrApart}} </label>
-                       <label class="labelAccount"><b>Структура:</b> {{user.address.addrStructure}} </label>
+                       <div *ngFor="let address of user.addresses">
+                       <label class="labelAccount"><b>Город:</b> {{address.addrCity}} </label><br>
+                       <label class="labelAccount"><b>Улица:</b> {{address.addrStreet}} </label>
+                       <label class="labelAccount"><b>Индекс:</b> {{address.addrIndex}} </label><br>
+                       <label class="labelAccount"><b>Дом:</b> {{address.addrHouse}} </label>
+                       <label class="labelAccount"><b>Квартира:</b> {{address.addrApart}} </label>
+                       <label class="labelAccount"><b>Структура:</b> {{address.addrStructure}} </label>
+                         </div>
                      </div>
 
                  </div>
