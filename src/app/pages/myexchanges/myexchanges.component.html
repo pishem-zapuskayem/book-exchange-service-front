@@ -42,6 +42,7 @@
                 </div>
                   <div class="sub-container2">
                     <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                      <div >АААААААААААААА</div>
                       <div *ngFor="let exchange of exchanges">
                         <div *ngIf="exchange.isFullMatch">
                           <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
@@ -56,8 +57,8 @@
                   <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
                     <div *ngFor="let exchange of exchanges">
                       <div *ngIf="!exchange.isFullMatch">
-                        <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
-                        <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
+                        <p>{{exchange.offerSecond.bookDTO.bookName}}</p>
+                        <p>{{exchange.offerSecond.bookDTO.publishYear}}</p>
 
                         <!--                        todo и прочие поля -->
                       </div>
@@ -139,9 +140,27 @@
              <div *ngIf="currentSection === 6">
                <div class="content">
                  <div class="content1">
-                   <div class="backgroundforname">
+                   <div class="backgroundforname" >
                      <h2>Личные данные</h2>
                    </div>
+                   <div class="content_box">
+
+                   <h1 class="labelAccount">Аккаунт:</h1>
+                   <label class="labelAccount"><b>Имя:</b> {{user.firstName}} </label>
+                       <label class="labelAccount"><b>Фамилия:</b> {{user.lastName}} </label><br>
+                       <label class="labelAccount" style="margin-top:20px;"><b>Отчество:</b> {{user.secondName}} </label><br>
+                       <label class="labelAccount" style="margin-top:20px;"><b>Почта:</b> {{user.email}} </label>
+                     </div>
+                     <div class="content_box">
+                       <h1 class="labelAccount">Адрес:</h1>
+                       <label class="labelAccount"><b>Город:</b> {{user.address.addrCity}} </label><br>
+                       <label class="labelAccount"><b>Улица:</b> {{user.address.addrStreet}} </label>
+                       <label class="labelAccount"><b>Индекс:</b> {{user.address.addrIndex}} </label><br>
+                       <label class="labelAccount"><b>Дом:</b> {{user.address.addrHouse}} </label>
+                       <label class="labelAccount"><b>Квартира:</b> {{user.address.addrApart}} </label>
+                       <label class="labelAccount"><b>Структура:</b> {{user.address.addrStructure}} </label>
+                     </div>
+
                  </div>
                </div>
              </div>

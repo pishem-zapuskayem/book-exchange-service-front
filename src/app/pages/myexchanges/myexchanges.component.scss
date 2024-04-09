@@ -440,3 +440,35 @@ input{
   border-radius: 100px;
   height: 150px;
 }
+.able{
+  margin-right: 20px;
+}
+.content_box{
+  width: 700px;
+  height: 200px;
+  margin: 10px;
+  background: white ;
+  border-radius: 20px;
+}
+.left-content_box{
+  width: 50%;
+  height: 180px;
+
+  background: white ;
+  border-radius: 20px;
+  position: absolute;
+}
+.right-content_box{
+  width: 40%;
+  height: 180px;
+  background: white ;
+  border-radius: 20px;
+  position: absolute;
+  margin-left: 40%;
+
+}
+.labelAccount{
+  margin-left: 10px;
+  font-size: 20px;
+
+}

@@ -107,6 +107,7 @@ export class MyexchangesComponent implements OnInit {
   loadData(){
     this.Categorylist.getOffer().subscribe((response)=>{});
   }
+
   getAvatarOrDefault(user: AccountDTO): string {
     return user.urlAvatar != undefined ? user.urlAvatar : "assets/1.png";
   }
