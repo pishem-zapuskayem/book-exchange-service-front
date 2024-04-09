@@ -11,11 +11,11 @@
         <div class="book">
           <div class="vertical-menu">
             <div class="user-info">
-              <a href="edit-profile.html">{{user.username}}</a>
+              <a (click)="showSection(6)">{{user.username}}</a>
               <img class="icon1"[src]="getAvatarOrDefault(user)">
 
             </div>
-            <div class="button-container">
+            <div  class="button-container">
               <button  class="custom-button" (click)="showSection(1)">Предложения для обмена</button>
               <button  class="custom-button" (click)="showSection(2)">Хочу обменять</button>
               <button  class="custom-button" (click)="showSection(3)">Хочу получить</button>
@@ -38,18 +38,18 @@
 
                 <div class="sub-container">
                   Полное совпадение
-                  <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
-                    <div *ngFor="let exchange of exchanges">
-                      <div *ngIf="exchange.isFullMatch">
-                        <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
-                        <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
-<!--                        todo и прочие поля -->
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
                   <div class="sub-container2">
-                    Здесь пока ничего нет
+                    <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                      <div *ngFor="let exchange of exchanges">
+                        <div *ngIf="exchange.isFullMatch">
+                          <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
+                          <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
+                          <!--                        todo и прочие поля -->
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 <div class="sub-container" >
                   Частичное совпадение
@@ -58,6 +58,7 @@
                       <div *ngIf="!exchange.isFullMatch">
                         <p>{{exchange.offerFirst.bookDTO.bookName}}</p>
                         <p>{{exchange.offerFirst.bookDTO.publishYear}}</p>
+
                         <!--                        todo и прочие поля -->
                       </div>
                     </div>
@@ -80,66 +81,95 @@
                         <h2>Хочу обменять</h2>
                     </div>
                   <div class="centered-container">
-                    <div class="backgroundforbook">
-                      <div class="backgroundforbook1">
-                        <div class="backgroundforbook2">
-                          <div class="book1">
-                            <div class="page left-page">
-                              <div class="backgroundfornamepage">
-                                <h2>Хочу Получить</h2>
-                              </div>
-                              <div class="backgroundforbookformain left" >
-                                Тип: неизвестно
-                                <br>
-                                <!-- Обмен подтвержден -->
-                                Обмен пока не подтвержден
-                                <br>
-                                Номер отправления
-                                <br>
-                                1234567890
-                                <br>
-                                Книга получена
-                              </div>
-                            </div>
-                            <div class="page right-page">
-                              <div class="backgroundfornamepage">
-                                <h2>Хочу Отдать</h2>
-                              </div>
-<!--                              todo здесь список карточек-->
-                              <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
-                                <div class="backgroundforbookformain right" *ngFor="let offer of offers">
-                                  {{offer.bookDTO.author }}
-                                  {{offer.bookDTO.bookName }}
-                                  {{offer.bookDTO.publishYear }}
-
-                                  <div *ngFor="let cat of offer.categoryDTOList">
-                                    <p>{{cat.name}}</p>
+                    <div class="sub-container2" style="background: #fff4cc">
+                      <!--                              todo здесь список карточек-->
+                      <div style=" overflow: auto" *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                        <div class="backgroundforbookformain" style=" width: 728px; margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
+                          {{offer.bookDTO.author.firstname }}
+                          {{offer.bookDTO.author.lastname }}<br>
+                          {{offer.bookDTO.bookName }}
+                          {{offer.bookDTO.publishYear }}
                                   </div>
                                 </div>
                               </div>
-
-                              <button class = "btn-back" type="submit" *ngIf="!buttonClicked" (click)="showText()"> Подтвердить </button>
-                              <h2 *ngIf="buttonClicked">Обмен подтвержден</h2>
-                              <label for="SendNumber" *ngIf="buttonClicked">Номер отправления </label>
-                              <p *ngIf="showInfo">{{ inputValue }}</p>
-
-                              <input formControlName="SendNumber" class="forbox" type="text" id="SendNumber" [(ngModel)]="inputValue" *ngIf="buttonClicked && !showInfo" ng-model="ctrl.SendNumber" ><br><br>
-                              <button class = "btn-back" type="submit" *ngIf="!buttonClicked1 && buttonClicked" (click)="showInfoOnClick()" (click)="showText1()"> Отправить </button>
-
-                              <br><br>
-                              <button class = "btn-back" type="submit" *ngIf="buttonClicked1" (click)="showText1()" > Получил </button><br><br>
-                            </div>
-                          </div>
+                           </div>
                         </div>
-
-                      </div>
-                    </div>
-                  </div>
-                      </div>
                      </div>
                  </div>
              <div *ngIf="currentSection === 3">
                <div class="content">
+                 <div class="content1">
+                   <div class="backgroundforname">
+                     <h2>Хочу Получить</h2>
+                   </div>
+                   <div class="centered-container3 " style="overflow: auto; width: 728px; ">
+                     <div class="sub-container2" style="background: #fff4cc;">
+                       <!--                              todo здесь список карточек-->
+                       <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                         <div class="backgroundforbookformain" style=" margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
+                             <div *ngFor="let cat of offer.categoryDTOList">
+                               <div style="margin: 10px; ">{{cat.name}}<br></div>
+                             </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div *ngIf="currentSection === 4">
+               <div class="content">
+                 <div class="content1">
+                   <div class="backgroundforname">
+                     <h2>Активные обмены</h2>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div *ngIf="currentSection === 5">
+               <div class="content">
+                 <div class="content1">
+                   <div class="backgroundforname">
+                     <h2>Отзывы на книги</h2>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div *ngIf="currentSection === 6">
+               <div class="content">
+                 <div class="content1">
+                   <div class="backgroundforname">
+                     <h2>Личные данные</h2>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div *ngIf="currentSection === 7">
+               <div class="content">
+               <div class="content1">
+                 <div class="backgroundforname">
+                   <h2>Сообщения</h2>
+                 </div>
+               </div>
+             </div>
+             </div>
+             <div *ngIf="currentSection === 8">
+               <div class="content">
+                 <div class="content1">
+                   <div class="backgroundforname">
+                     <h2>Архив</h2>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+<!--    <div class="content">
                  <div class="content1">
                    <div class="backgroundforname">
                      <h2>Хочу Получить</h2>
@@ -192,56 +222,4 @@
                      </div>
                    </div>
                  </div>
-               </div>
-             </div>
-             <div *ngIf="currentSection === 4">
-               <div class="content">
-                 <div class="content1">
-                   <div class="backgroundforname">
-                     <h2>Активные обмены</h2>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div *ngIf="currentSection === 5">
-               <div class="content">
-                 <div class="content1">
-                   <div class="backgroundforname">
-                     <h2>Отзывы на книги</h2>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div *ngIf="currentSection === 6">
-               <div class="content">
-                 <div class="content1">
-                   <div class="backgroundforname">
-                     <h2>Личные данные</h2>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div *ngIf="currentSection === 7">
-               <div class="content">
-               <div class="content1">
-                 <div class="backgroundforname">
-                   <h2>Сообщения</h2>
-                 </div>
-               </div>
-             </div>
-             </div>
-             <div *ngIf="currentSection === 8">
-               <div class="content">
-                 <div class="content1">
-                   <div class="backgroundforname">
-                     <h2>Архив</h2>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
+               </div>  -->
