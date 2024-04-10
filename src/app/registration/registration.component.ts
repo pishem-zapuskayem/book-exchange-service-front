@@ -26,6 +26,7 @@ export class RegistrationComponent {
     addrStructure: new FormControl(''),
     addrApart: new FormControl(''),
   });
+  errormessage: string | undefined;
   isSubmitted = false;
   error = false;
   selectedFile: File | null = null;
@@ -101,6 +102,7 @@ export class RegistrationComponent {
       error: (err: any) => {
         this.error = true;
         this.isSubmitted = false;
+        this.errormessage='Никнейм уже занят, или индекс уже занят';
       },
 
       next: (value: HttpResponse<any>) => {

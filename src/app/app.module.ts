@@ -19,6 +19,7 @@ import {ConfirmComponent} from "./pages/home/confirm/confirm.component";
 import {HeaderComponent} from "./pages/home/header/header.component";
 import {SharedModule} from "./shared/shared.module";
 import { ExchangeCardComponent } from './pages/myexchanges/exchange-card/exchange-card.component';
+import {ActiveExchangeCardComponent} from "./pages/myexchanges/active-exchange-card/active-exchange-card.component";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ExchangeCardComponent } from './pages/myexchanges/exchange-card/exchang
     StartChangeComponent,
     ConfirmComponent,
     ExchangeCardComponent,
+    ActiveExchangeCardComponent,
 
   ],
   imports: [

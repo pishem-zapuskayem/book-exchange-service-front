@@ -38,12 +38,15 @@
                   <div class="sub-container" style="width: 90%; margin-bottom: 0">
                     Полное совпадение
                   </div>
-                  <div class="centered-container3" style="  flex-direction: column; width: 92%; overflow-y: scroll; overflow-x: hidden;" >
+                  <div class="centered-container3" style="  flex-direction: column;  width: 92%; overflow-y: scroll; overflow-x: hidden;" >
                       <div class="sub-container-no-center" style="background: #fff4cc">
                         <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+
                           <div   *ngFor="let exchange of exchanges">
+
                             <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="exchange.isFullMatch">
                             <app-exchange-card [exchange]="exchange"></app-exchange-card>
+                              <button (click)="showDetails(exchange)">Показать детали</button>
                             </div>
                           </div>
                         </div>
@@ -53,11 +56,12 @@
                     Частичное совпадение
                   </div>
                   <div class="centered-container3" style="  flex-direction: column; width: 92%; overflow-y: scroll; overflow-x: hidden;" >
-                      <div class="sub-container-no-center" style="background: #fff4cc">
+                      <div class="sub-container-no-center" style=" height: 8000px; background: #fff4cc">
                         <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
-                          <div  *ngFor="let exchange of exchanges">
+                          <div  *ngFor="let exchange of exchanges ">
                             <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="!exchange.isFullMatch">
-                              <app-exchange-card [exchange]="exchange"></app-exchange-card>
+                              <app-exchange-card [exchange]="exchange">  </app-exchange-card>
+                              <button (click)="showDetails(exchange)">Показать детали</button>
                             </div>
                           </div>
                         </div>
@@ -115,6 +119,12 @@
                  <div class="content1">
                    <div class="backgroundforname">
                      <h2>Активные обмены</h2>
+                     <app-active-exchange-card></app-active-exchange-card>
+                     <div *ngFor="let cat of selectedCardData">
+                     <div>{{cat.offerFirst.bookName}}</div>
+                     <div>{{cat.offerFirst.publishYear}}</div>
+                     <div>{{cat.id}}</div>
+                     </div>
                    </div>
                  </div>
                </div>

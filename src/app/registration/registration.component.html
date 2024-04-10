@@ -79,7 +79,7 @@
       <input type="checkbox" id="agreementCheckbox"> <label for="agreementCheckbox" required> Нажимая эту кнопку, вы подтверждаете, что прочитали и согласны с условиями пользовательского соглашения и даёте согласие на обработку ваших персональных данных.</label><br><br>
       <button class = "custom-btn-reg" type="submit" [disabled]="form.invalid || isSubmitted">Зарегистрироваться</button><br><br>
       <label> * - поля, обязательные к заполнению </label>
-
+      <div class = "warningval1" *ngIf="errormessage">{{errormessage}}</div>
     </form>
   </div>
 </div>

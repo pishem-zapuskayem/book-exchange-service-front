@@ -4,7 +4,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {AuthDialogComponent} from "../../auth-dialog/auth-dialog.component";
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
 import {Observer} from "rxjs";
 import {AccountDTO} from "../../core/interfaces/account.dto";
@@ -13,6 +13,12 @@ import {CategorylistService} from "../../core/services/categorylist.service";
 import {OfferDTO} from "../../core/interfaces/offer.dto";
 import {ExchangeDTO} from "../../core/interfaces/exchangeDTO";
 import {WishDTO} from "../../core/interfaces/wish.dto";
+import {BookResponseService} from "../../core/services/book-response.service";
+import {RegisterDTO} from "../../core/interfaces/register.dto";
+import {BookNoteResponseDTO} from "../../core/interfaces/book-note-response.dto";
+import {id_ID} from "ng-zorro-antd/i18n";
+import {ExchangeCardService} from "../../core/services/exchange-card.service";
+import {ExchangeInfoDTO} from "../../core/interfaces/exchange-info.dto";
 
 @Component({
   selector: 'app-myexchanges',
@@ -21,18 +27,25 @@ import {WishDTO} from "../../core/interfaces/wish.dto";
 
 })
 export class MyexchangesComponent implements OnInit {
+  form: FormGroup = new FormGroup({
+    lastName: new FormControl(''),
+    firstName: new FormControl(''),
+    secondName: new FormControl(''),
+    email: new FormControl(''),
+  });
   user !: AccountDTO;
   isLoading: boolean=false;
   isLoadingOffers: boolean=false;
   isLoadingWishes: boolean=false;
+  isLoadingNotes: boolean=false;
   isLoadingExchanges: boolean=false;
   currentSection: number = 2;
   Number: string = '';
   data:any ;
-//  form: FormGroup;
   offers!: OfferDTO[];
   exchanges!: ExchangeDTO[];
   wishes!: WishDTO[];
+  exchangesinfo!: ExchangeInfoDTO;
 
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
@@ -41,7 +54,12 @@ export class MyexchangesComponent implements OnInit {
               private message: NzMessageService,
               private router: Router,
               private Categorylist: CategorylistService,
-              public authService:  AuthService) {}
+              public authService:  AuthService,
+              public BookResponse: BookResponseService,
+              private formBuilder: FormBuilder,
+              private ExchangeCard: ExchangeCardService,
+
+              ) {}
   showLogin() {
     this.dialog.open(AuthDialogComponent);
   }
@@ -66,7 +84,9 @@ export class MyexchangesComponent implements OnInit {
     this.showInfo = true;
   }
   ngOnInit(): void {
-
+    this.form = this.formBuilder.group({
+      Response: ["" ,[ Validators.required,]],
+     });
     this.loadData();
     if (this.authService.isAuthenticated()){
       this.isLoading=true;
@@ -84,6 +104,11 @@ export class MyexchangesComponent implements OnInit {
         }
       }
       this.authService.getAuthenticated().subscribe(observer);
+      const formData: BookNoteResponseDTO = {...this.form.value}
+      // @ts-ignore
+      formData.response = {...formData}
+
+     // this.BookResponse.CreateResponse(formData).subscribe(observer);
 
       this.isLoadingOffers = true;
       this.Categorylist.getOffer().subscribe(r => {
@@ -102,7 +127,10 @@ export class MyexchangesComponent implements OnInit {
       this.isLoadingExchanges = false;
       this.exchanges = h;
       console.dir(this.exchanges);
+
     });
+
+
     }
   }
   loadData(){
@@ -117,7 +145,19 @@ export class MyexchangesComponent implements OnInit {
     this.authService.signOut()
   }
 
+  selectedCardData: any;
+  showDetails(exchange: any) {
+    this.currentSection = 4; // Переключение на раздел 4
+    this.selectedCardData = exchange.id;
+    console.log(this.selectedCardData);// Сохранение данных выбранной карточки
+    this.ExchangeCard.GetExchangeInfo(this.selectedCardData).subscribe(x =>{
+    this.exchangesinfo = x;
+    console.dir(this.exchangesinfo);
+    });
+
+  }
 }
+
 
 
 
