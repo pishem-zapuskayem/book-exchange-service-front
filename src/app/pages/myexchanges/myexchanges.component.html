@@ -31,60 +31,56 @@
           <div *ngIf="currentSection">
             <div *ngIf="currentSection === 1">
               <div class="content">
-                <div class="content1">
-                 <div class="backgroundforname">
-                     <h2>Предложения для обмена</h2>
-                 </div>
-
-                <div class="sub-container">
-                  Полное совпадение
-
-                </div>
-                  <div class="sub-container2">
-                    <div></div>
-                    <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
-                      <div *ngFor="let exchange of exchanges">
-                        <div *ngIf="exchange.isFullMatch">
-                        <app-exchange-card [exchange]="exchange"></app-exchange-card>
+                <div class="content1" style="height: 720px">
+                     <div class="backgroundforname">
+                         <h2>Предложения для обмена</h2>
+                     </div>
+                  <div class="sub-container" style="width: 90%; margin-bottom: 0">
+                    Полное совпадение
+                  </div>
+                  <div class="centered-container3" style="  flex-direction: column; width: 92%; overflow-y: scroll; overflow-x: hidden;" >
+                      <div class="sub-container-no-center" style="background: #fff4cc">
+                        <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                          <div   *ngFor="let exchange of exchanges">
+                            <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="exchange.isFullMatch">
+                            <app-exchange-card [exchange]="exchange"></app-exchange-card>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="sub-container" style="width: 90%; margin: 0">
+                    Частичное совпадение
+                  </div>
+                  <div class="centered-container3" style="  flex-direction: column; width: 92%; overflow-y: scroll; overflow-x: hidden;" >
+                      <div class="sub-container-no-center" style="background: #fff4cc">
+                        <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                          <div  *ngFor="let exchange of exchanges">
+                            <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="!exchange.isFullMatch">
+                              <app-exchange-card [exchange]="exchange"></app-exchange-card>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>а
-                <div class="sub-container" >
-                  Частичное совпадение
-                  <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
-                    <div *ngFor="let exchange of exchanges">
-                      <div *ngIf="!exchange.isFullMatch">
-                        <app-exchange-card [exchange]="exchange"></app-exchange-card>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                  <div class="sub-container2">
-                    Эх
-                  </div>
-                <div class="sub-container" >Другие интересные предложения</div>
-                  <div class="sub-container2">
-                    Не интересные предложения
-                  </div>
                 </div>
                 </div>
             </div>
             <div *ngIf="currentSection === 2">
               <div class="content">
-                <div class="content1">
+                <div class="content1" style="height: 730px;">
                     <div class="backgroundforname">
                         <h2>Хочу обменять</h2>
                     </div>
-                  <div class="centered-container">
-                    <div class="sub-container2" style="background: #fff4cc">
+                          <div class="centered-container3" style=" width: 100%; overflow-y: scroll; overflow-x: hidden;" >
+                            <div class="sub-container-no-center" style="background: #fff4cc">
                       <!--                              todo здесь список карточек-->
-                      <div style=" overflow: auto" *ngIf="!isLoadingOffers && authService.isAuthenticated()">
-                        <div class="backgroundforbookformain" style=" width: 728px; margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
-                          {{offer.bookDTO.author.firstname }}
-                          {{offer.bookDTO.author.lastname }}<br>
-                          {{offer.bookDTO.bookName }}
-                          {{offer.bookDTO.publishYear }}
+                                  <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                                    <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
+                                      {{offer.bookDTO.author.firstname }}
+                                      {{offer.bookDTO.author.lastname }}<br>
+                                      {{offer.bookDTO.bookName }}
+                                      {{offer.bookDTO.publishYear }}
                                   </div>
                                 </div>
                               </div>
@@ -94,12 +90,12 @@
                  </div>
              <div *ngIf="currentSection === 3">
                <div class="content">
-                 <div class="content1">
+                 <div class="content1" style="height: 730px;">
                    <div class="backgroundforname">
                      <h2>Хочу Получить</h2>
                    </div>
-                   <div class="centered-container3 " style="overflow: auto; width: 728px; ">
-                     <div class="sub-container2" style="background: #fff4cc;">
+                   <div class="centered-container3 " style=" overflow-y: scroll; overflow-x: hidden; ">
+                     <div class="sub-container-no-center" style="background: #fff4cc;">
                        <!--                              todo здесь список карточек-->
                        <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
                          <div class="backgroundforbookformain" style=" margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">

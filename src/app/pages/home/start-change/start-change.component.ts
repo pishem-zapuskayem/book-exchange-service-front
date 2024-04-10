@@ -194,8 +194,7 @@ export class StartChangeComponent implements OnInit {
       }
     }
     this.isSubmitted = true;
-    console.log('on submiiiiiiiiiiiiiiiiiiiiiiiiiiiiit')
-
+    this.router.navigate(['/exchanges'])
     const offerData = this.offerListForm.value;
     const addressData = this.addressDetailsForm.value;
 
