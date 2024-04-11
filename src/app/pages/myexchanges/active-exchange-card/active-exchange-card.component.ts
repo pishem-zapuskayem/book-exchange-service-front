@@ -9,6 +9,12 @@ import {ExchangeInfoDTO} from "../../../core/interfaces/exchange-info.dto";
 })
 export class ActiveExchangeCardComponent {
   @Input() info !: ExchangeInfoDTO;
+  showForm: boolean = false;
+  showText: boolean = false;
+  toggle() {
+    this.showForm = !this.showForm;
+    this.showText = !this.showText;
+  }
 }
 
 

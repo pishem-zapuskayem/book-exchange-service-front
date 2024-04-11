@@ -1,25 +1,49 @@
 
-<div class="213">
-  <!--Левая карточка чо хочу -->
-  <div>
-  <div *ngFor="let cat of info.exchangeGiveDTO.categories">
-    <!--Список категорий-->
-    <div>{{cat.name}}</div>
-  </div>
-  <!--Согласен ли на обмен можно короче сделать *ngIf= и там оформить
-  чтоб если isAgreed false там одно высвечивалось а если true то другое -->
-  <div>{{info.exchangeGiveDTO.isAgreed}}</div>
-</div>
-  <!--Правая карточка наша книга -->
+<div class="centered-container">
+      <div class="backgroundforbook">
+        <div class="backgroundforbook1">
+          <div class="backgroundforbook2">
+            <div class="book1">
+              <div class="page left-page">
+                <div class="backgroundfornamepage">
+                  <h2>Хочу Получить</h2>
+                </div>
+                <div *ngFor="let cat of info.exchangeGiveDTO.categories">
+                  <!--Список категорий-->
+                  <div>{{cat.name}}</div>
+                </div>
+                <!--Согласен ли на обмен можно короче сделать *ngIf= и там оформить
+                чтоб если isAgreed false там одно высвечивалось а если true то другое -->
+                <div class="submit" *ngIf="info.exchangeGiveDTO.isAgreed">Обмен подтвержден</div>
+                <div class="submit"*ngIf="!info.exchangeGiveDTO.isAgreed">Обмен пока не подтвержден</div>
+              </div>
+              <div class="page right-page">
+                <div class="backgroundfornamepage">
+                  <h2>Хочу Отдать</h2>
+                </div>
+                <div class="backgroundforbookformain" >
+                  <div style="display: inline-block; margin-right: 10px;">{{info.exchangeMeDTO.offerBook.author.lastname}}</div>
+                  <div style="display: inline-block;">{{info.exchangeMeDTO.offerBook.author.firstname}}</div>
+                  <div><b>Книга: </b>{{info.exchangeMeDTO.offerBook.bookName}}</div>
+                  <div><b>ISBN: </b>{{info.exchangeMeDTO.offerBook.isbn}}</div>
+                  <div><b>Год: </b>{{info.exchangeMeDTO.offerBook.publishYear}}</div>
 
-    <div>
-      <!--инфа о нашей книге-->
-      <div>{{info.exchangeMeDTO.offerBook.author.lastname}}</div>
-      <div>{{info.exchangeMeDTO.offerBook.author.firstname}}</div>
-    <div>{{info.exchangeMeDTO.offerBook.bookName}}</div>
-      <div>{{info.exchangeMeDTO.offerBook.isbn}}</div>
-      <div>{{info.exchangeMeDTO.offerBook.publishYear}}</div>
-    <div>{{info.exchangeMeDTO.isAgreed}}</div>
-    <!--тут пока просто кнопку сделай без функционала красивую -->
-  </div>
-</div>
+                  <div><button *ngIf="!showText" (click)="toggle()">Подтвердить</button></div>
+                  <div *ngIf="showText">
+                    <div class="submit"> Обмен подтвержден</div>
+                  </div>
+                    <div *ngIf="showForm">
+                      <div>Номер отправления:</div>
+                      <input type="text">
+                      <button>Отправил</button>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+

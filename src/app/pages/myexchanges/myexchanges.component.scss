@@ -1,4 +1,6 @@
 body {
+  scrollbar-width: thin;
+  scrollbar-color:#a97650 #835136 ;
   overflow-x: hidden;
   background:
     linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
@@ -45,15 +47,14 @@ body {
 button:hover {
   transform: scale(1.05);
 }
-.buttons button{
-  background-color: #835136;
+.buttons{
+  background-color: #a97650;
   color: white;
-  padding: 16px 32px;
+  padding: 16px;
   margin: 0 10px;
   border: 0px;
-  border-radius: 5px;
+  border-radius: 20px;
   font-size: 16px;
-
 }
 a { font-size: 20px}
 
@@ -168,7 +169,8 @@ p {
 }
 
 .custom-button:hover {
-  background-color: #e0e0e0;
+  background-color: #ffce91;
+
   cursor: pointer;
 }
 input{
@@ -447,6 +449,7 @@ justify-content: center;
   width: 732px;
   height: 100%;
   margin: 10px;
+  padding: 10px;
   background: white ;
   border-radius: 20px;
   animation: fadeInUp 1s forwards;
@@ -483,4 +486,9 @@ justify-content: center;
   height: 8%;
   top: 0;
   animation: fadeInUp 1s forwards;
+}
+.active-section {
+  background-color: #a97650; /* Пример активного цвета фона */
+  color: white; /* Пример цвета текста на активной кнопке */
+  font-weight: bold; /* Пример сделать текст на активной кнопке жирным */
 }
