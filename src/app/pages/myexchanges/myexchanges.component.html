@@ -119,13 +119,15 @@
                  <div class="content1">
                    <div class="backgroundforname">
                      <h2>Активные обмены</h2>
-                     <app-active-exchange-card></app-active-exchange-card>
-                     <div *ngFor="let cat of selectedCardData">
-                     <div>{{cat.offerFirst.bookName}}</div>
-                     <div>{{cat.offerFirst.publishYear}}</div>
-                     <div>{{cat.id}}</div>
-                     </div>
                    </div>
+                     <div class="centered-container3 " style=" overflow-y: scroll; overflow-x: hidden; ">
+                       <div class="sub-container-no-center" style="background: #fff4cc;">
+                     <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                     <app-active-exchange-card [info]="info" ></app-active-exchange-card>
+                       </div>
+                       </div>
+                     </div>
+
                  </div>
                </div>
              </div>

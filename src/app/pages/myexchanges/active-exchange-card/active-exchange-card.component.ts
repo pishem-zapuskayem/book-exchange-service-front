@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, input, Input} from '@angular/core';
 import {ExchangeDTO} from "../../../core/interfaces/exchangeDTO";
+import {ExchangeInfoDTO} from "../../../core/interfaces/exchange-info.dto";
 
 @Component({
   selector: 'app-active-exchange-card',
@@ -7,6 +8,7 @@ import {ExchangeDTO} from "../../../core/interfaces/exchangeDTO";
   styleUrl: './active-exchange-card.component.scss'
 })
 export class ActiveExchangeCardComponent {
+  @Input() info !: ExchangeInfoDTO;
 }
 
 

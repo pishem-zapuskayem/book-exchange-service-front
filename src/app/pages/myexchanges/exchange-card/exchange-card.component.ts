@@ -8,5 +8,4 @@ import {ExchangeDTO} from "../../../core/interfaces/exchangeDTO";
 })
 export class ExchangeCardComponent {
 @Input() exchange !: ExchangeDTO;
-
 }

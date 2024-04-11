@@ -45,7 +45,7 @@ export class MyexchangesComponent implements OnInit {
   offers!: OfferDTO[];
   exchanges!: ExchangeDTO[];
   wishes!: WishDTO[];
-  exchangesinfo!: ExchangeInfoDTO;
+  info !: ExchangeInfoDTO;
 
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
@@ -127,7 +127,6 @@ export class MyexchangesComponent implements OnInit {
       this.isLoadingExchanges = false;
       this.exchanges = h;
       console.dir(this.exchanges);
-
     });
 
 
@@ -151,10 +150,9 @@ export class MyexchangesComponent implements OnInit {
     this.selectedCardData = exchange.id;
     console.log(this.selectedCardData);// Сохранение данных выбранной карточки
     this.ExchangeCard.GetExchangeInfo(this.selectedCardData).subscribe(x =>{
-    this.exchangesinfo = x;
-    console.dir(this.exchangesinfo);
+    this.info = x;
+    console.dir(this.info);
     });
-
   }
 }
 

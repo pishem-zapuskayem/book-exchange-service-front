@@ -1,3 +1,25 @@
 
 <div class="213">
+  <!--Левая карточка чо хочу -->
+  <div>
+  <div *ngFor="let cat of info.exchangeGiveDTO.categories">
+    <!--Список категорий-->
+    <div>{{cat.name}}</div>
+  </div>
+  <!--Согласен ли на обмен можно короче сделать *ngIf= и там оформить
+  чтоб если isAgreed false там одно высвечивалось а если true то другое -->
+  <div>{{info.exchangeGiveDTO.isAgreed}}</div>
+</div>
+  <!--Правая карточка наша книга -->
+
+    <div>
+      <!--инфа о нашей книге-->
+      <div>{{info.exchangeMeDTO.offerBook.author.lastname}}</div>
+      <div>{{info.exchangeMeDTO.offerBook.author.firstname}}</div>
+    <div>{{info.exchangeMeDTO.offerBook.bookName}}</div>
+      <div>{{info.exchangeMeDTO.offerBook.isbn}}</div>
+      <div>{{info.exchangeMeDTO.offerBook.publishYear}}</div>
+    <div>{{info.exchangeMeDTO.isAgreed}}</div>
+    <!--тут пока просто кнопку сделай без функционала красивую -->
+  </div>
 </div>
