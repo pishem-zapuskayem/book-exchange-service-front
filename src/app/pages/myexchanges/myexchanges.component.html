@@ -111,7 +111,23 @@
                  </div>
                </div>
              </div>
+            <div *ngIf="currentSection === 9">
+              <div class="content">
+                <div class="content1">
+                  <div class="backgroundforname">
+                    <h2>Карточка обмена</h2>
+                  </div>
+                  <div class="centered-container3 " style=" ">
+                    <div class="sub-container-no-center" style="background: #fff4cc;">
+                      <div *ngIf="authService.isAuthenticated()">
+                        <app-active-exchange-card [info]="info"  ></app-active-exchange-card>
+                      </div>
+                    </div>
+                  </div>
 
+                </div>
+              </div>
+            </div>
              <div *ngIf="currentSection === 4">
                <div class="content">
                  <div class="content1">
@@ -120,9 +136,7 @@
                    </div>
                      <div class="centered-container3 " style=" ">
                        <div class="sub-container-no-center" style="background: #fff4cc;">
-                     <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
-                     <app-active-exchange-card [info]="info" ></app-active-exchange-card>
-                       </div>
+
                        </div>
                      </div>
 

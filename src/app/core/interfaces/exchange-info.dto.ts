@@ -4,6 +4,7 @@ import {BookDTO} from "./book.dto";
 import {CategorysDTO} from "./categorys.dto";
 
 export interface ExchangeInfoDTO {
+  id:number;
   exchangeMeDTO: {
     offerBook: BookDTO;
     isAgreed: boolean;

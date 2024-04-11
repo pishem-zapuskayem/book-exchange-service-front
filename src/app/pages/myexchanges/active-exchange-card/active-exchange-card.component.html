@@ -22,13 +22,14 @@
                   <h2>Хочу Отдать</h2>
                 </div>
                 <div class="backgroundforbookformain" >
-                  <div style="display: inline-block; margin-right: 10px;">{{info.exchangeMeDTO.offerBook.author.lastname}}</div>
+                  <div style="display: inline-block; margin-right: 10px;"><b>Автор: </b>{{info.exchangeMeDTO.offerBook.author.lastname}}</div>
                   <div style="display: inline-block;">{{info.exchangeMeDTO.offerBook.author.firstname}}</div>
                   <div><b>Книга: </b>{{info.exchangeMeDTO.offerBook.bookName}}</div>
                   <div><b>ISBN: </b>{{info.exchangeMeDTO.offerBook.isbn}}</div>
                   <div><b>Год: </b>{{info.exchangeMeDTO.offerBook.publishYear}}</div>
 
-                  <div><button *ngIf="!showText" (click)="toggle()">Подтвердить</button></div>
+                  <div><button *ngIf="!info.exchangeMeDTO.isAgreed" (click)="EnterExchange(info.id)">Подтвердить</button></div>
+                  <div *ngIf="info.exchangeMeDTO.isAgreed">Подтверждено</div>
                   <div *ngIf="showText">
                     <div class="submit"> Обмен подтвержден</div>
                   </div>

@@ -20,6 +20,7 @@ import {id_ID} from "ng-zorro-antd/i18n";
 import {ExchangeCardService} from "../../core/services/exchange-card.service";
 import {ExchangeInfoDTO} from "../../core/interfaces/exchange-info.dto";
 
+
 @Component({
   selector: 'app-myexchanges',
   templateUrl: './myexchanges.component.html',
@@ -145,15 +146,21 @@ export class MyexchangesComponent implements OnInit {
   }
 
   selectedCardData: any;
+
   showDetails(exchange: any) {
-    this.currentSection = 4; // Переключение на раздел 4
+    this.currentSection = 9; // Переключение на раздел 4
     this.selectedCardData = exchange.id;
     console.log(this.selectedCardData);// Сохранение данных выбранной карточки
     this.ExchangeCard.GetExchangeInfo(this.selectedCardData).subscribe(x =>{
     this.info = x;
+    this.info.id=exchange.id;
+
+
     console.dir(this.info);
     });
+
   }
+
 }
 
 
