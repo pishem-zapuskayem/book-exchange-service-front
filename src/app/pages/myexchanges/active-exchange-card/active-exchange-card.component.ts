@@ -1,5 +1,5 @@
 import {Component, input, Input} from '@angular/core';
-import {ExchangeDTO} from "../../../core/interfaces/exchangeDTO";
+import {ExchangeDto} from "../../../core/interfaces/exchange.dto";
 import {ExchangeInfoDTO} from "../../../core/interfaces/exchange-info.dto";
 import {MatDialog} from "@angular/material/dialog";
 import {NzMessageService} from "ng-zorro-antd/message";

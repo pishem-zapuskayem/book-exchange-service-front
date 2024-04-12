@@ -11,7 +11,7 @@ import {AccountDTO} from "../../core/interfaces/account.dto";
 
 import {CategorylistService} from "../../core/services/categorylist.service";
 import {OfferDTO} from "../../core/interfaces/offer.dto";
-import {ExchangeDTO} from "../../core/interfaces/exchangeDTO";
+import {ExchangeDto} from "../../core/interfaces/exchange.dto";
 import {WishDTO} from "../../core/interfaces/wish.dto";
 import {BookResponseService} from "../../core/services/book-response.service";
 import {RegisterDTO} from "../../core/interfaces/register.dto";
@@ -44,7 +44,7 @@ export class MyexchangesComponent implements OnInit {
   Number: string = '';
   data:any ;
   offers!: OfferDTO[];
-  exchanges!: ExchangeDTO[];
+  exchanges!: ExchangeDto[];
   wishes!: WishDTO[];
   info !: ExchangeInfoDTO;
 
