@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment.dev";
 import {TokenStorageService} from "./token-storage.service";
 import {WishDTO} from "../interfaces/wish.dto";
 import {ExchangeDto} from "../interfaces/exchange.dto";
+import {ExchangeActiveDTO} from "../interfaces/exchange-active.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ import {ExchangeDto} from "../interfaces/exchange.dto";
 export class CategorylistService {
   private OfferUrl = environment.BASE_URL+'/offer-list';
   private WIshUrl = environment.BASE_URL+'/wish-list';
-
   private ExchangesUrl = environment.BASE_URL+'/exchanges';
+  private ExchangesActiveUrl = environment.BASE_URL+'/exchanges/active';
 
   constructor(private http: HttpClient,
   private TokenStorage: TokenStorageService) {
@@ -28,6 +29,9 @@ export class CategorylistService {
   }
   getExchanges(): Observable<ExchangeDto[]> {
     return this.http.get<ExchangeDto[]>(this.ExchangesUrl, {headers: this.TokenStorage.getAuthHeader()});
+  }
+  getActiveExchanges(): Observable<ExchangeDto[]> {
+    return this.http.get<ExchangeDto[]>(this.ExchangesActiveUrl, {headers: this.TokenStorage.getAuthHeader()});
   }
 }
 

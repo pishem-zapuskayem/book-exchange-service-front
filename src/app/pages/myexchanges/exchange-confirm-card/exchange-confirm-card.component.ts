@@ -12,12 +12,12 @@ import {ExchangeCardService} from "../../../core/services/exchange-card.service"
 
 
 @Component({
-  selector: 'app-active-exchange-card',
-  templateUrl: './active-exchange-card.component.html',
-  styleUrl: './active-exchange-card.component.scss'
+  selector: 'app-exchange-confirm-card',
+  templateUrl: './exchange-confirm-card.component.html',
+  styleUrl: './exchange-confirm-card.component.scss'
 })
 
-export class ActiveExchangeCardComponent {
+export class ExchangeConfirmCardComponent {
 
 
   constructor(public dialog: MatDialog,

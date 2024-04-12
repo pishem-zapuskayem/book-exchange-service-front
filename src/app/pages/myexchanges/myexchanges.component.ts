@@ -19,6 +19,7 @@ import {BookNoteResponseDTO} from "../../core/interfaces/book-note-response.dto"
 import {id_ID} from "ng-zorro-antd/i18n";
 import {ExchangeCardService} from "../../core/services/exchange-card.service";
 import {ExchangeInfoDTO} from "../../core/interfaces/exchange-info.dto";
+import {ExchangeActiveDTO} from "../../core/interfaces/exchange-active.dto";
 
 
 @Component({
@@ -45,8 +46,11 @@ export class MyexchangesComponent implements OnInit {
   data:any ;
   offers!: OfferDTO[];
   exchanges!: ExchangeDto[];
+  exchangesActive !: ExchangeDto[];
   wishes!: WishDTO[];
   info !: ExchangeInfoDTO;
+  activeExchanges !: ExchangeActiveDTO[];
+  activeExchange !: ExchangeActiveDTO;
 
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
@@ -125,12 +129,16 @@ export class MyexchangesComponent implements OnInit {
 
     this.isLoadingExchanges = true;
     this.Categorylist.getExchanges().subscribe(h => {
-      this.isLoadingExchanges = false;
-      this.exchanges = h;
-      console.dir(this.exchanges);
-    });
+        this.isLoadingExchanges = false;
+        this.exchanges = h;
+        console.dir(this.exchanges);
+      });
 
-
+      this.Categorylist.getActiveExchanges().subscribe(f => {
+        this.isLoadingExchanges = false;
+        this.exchangesActive = f;
+        console.dir(this.exchangesActive);
+      });
     }
   }
   loadData(){
@@ -157,6 +165,17 @@ export class MyexchangesComponent implements OnInit {
 
 
     console.dir(this.info);
+    });
+
+  }
+  showDetailsOfActive(exchangeActive: any) {
+    this.currentSection = 10; // Переключение на раздел 4
+    this.selectedCardData = exchangeActive.id;
+    console.log(this.selectedCardData);// Сохранение данных выбранной карточки
+    this.ExchangeCard.GetActiveExchangeInfo(this.selectedCardData).subscribe(x =>{
+      this.activeExchange = x;
+      this.activeExchange.id=exchangeActive.id;
+      console.dir(this.activeExchange);
     });
 
   }
