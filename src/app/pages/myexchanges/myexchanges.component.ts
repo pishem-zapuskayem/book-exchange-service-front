@@ -41,7 +41,7 @@ export class MyexchangesComponent implements OnInit {
   isLoadingWishes: boolean=false;
   isLoadingNotes: boolean=false;
   isLoadingExchanges: boolean=false;
-  currentSection: number = 2;
+  currentSection: number = 1;
   Number: string = '';
   data:any ;
   offers!: OfferDTO[];

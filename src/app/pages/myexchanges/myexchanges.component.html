@@ -82,11 +82,11 @@
                             <div class="sub-container-no-center" style="background: #fff4cc">
                       <!--                              todo здесь список карточек-->
                                   <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
-                                    <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
-                                      {{offer.bookDTO.author.firstname }}
+                                    <div class="backgroundforbookformain" style="width: 730px;  margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
+                                      <b>Автор: </b>{{offer.bookDTO.author.firstname }}
                                       {{offer.bookDTO.author.lastname }}<br>
-                                      {{offer.bookDTO.bookName }}
-                                      {{offer.bookDTO.publishYear }}
+                                      <b>Книга:</b> {{offer.bookDTO.bookName }}
+                                      <b> Год издания: </b>{{offer.bookDTO.publishYear }}
                                   </div>
                                 </div>
                               </div>
@@ -102,11 +102,11 @@
                    </div>
                  </div>
                  <div class="content1 " style="padding-top: 60px; height: 730px">
-                   <div class="centered-container3 " style="width: 90%; align-items: center; overflow-y: scroll; overflow-x: scroll; ">
-                     <div class="sub-container-no-center" style="background: #fff4cc;">
+                   <div class="centered-container3 " style="width: 90%; height: 100%; align-items: center; overflow-y: scroll; overflow-x: scroll; ">
+                     <div class="sub-container-no-center" style="background: #fff4cc; ">
                        <!--                              todo здесь список карточек-->
                        <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
-                         <div class="backgroundforbookformain" style="width: 100%; margin: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
+                         <div class="backgroundforbookformain" style="width: 100%; margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
                              <div *ngFor="let cat of offer.categoryDTOList">
                                <div style="margin: 10px; ">{{cat.name}}<br></div>
                              </div>
@@ -150,7 +150,7 @@
                       <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
                         <div  *ngFor="let exchangeActive of exchangesActive ">
                           <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" >
-                            <app-active-exchange-card [exchangeActive]="exchangeActive" ></app-active-exchange-card>
+                            <app-active-exchange-card style="flex: 1;" [exchangeActive]="exchangeActive" ></app-active-exchange-card>
                             <button class="buttons" (click)="showDetailsOfActive(activeExchange)">Перейти к обмену</button>
                           </div>
                         </div>
@@ -182,7 +182,7 @@
                   </div>
                 </div>
                 <div class="content1 " style="padding-top: 60px; height: 730px">
-                  <div class="centered-container3 " style="width: 90%; align-items: center; overflow-y: scroll; overflow-x: scroll; ">
+                  <div class="centered-container3 " style="">
                     <div class="sub-container-no-center" style="background: #fff4cc;">
                       <div *ngIf="authService.isAuthenticated()">
                         <app-active-exchange-card-full-info [activeExchange]="activeExchange" ></app-active-exchange-card-full-info>
