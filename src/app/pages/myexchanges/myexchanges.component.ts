@@ -41,7 +41,7 @@ export class MyexchangesComponent implements OnInit {
   isLoadingWishes: boolean=false;
   isLoadingNotes: boolean=false;
   isLoadingExchanges: boolean=false;
-  currentSection: number = 1;
+  currentSection: number = 2;
   Number: string = '';
   data:any ;
   offers!: OfferDTO[];
@@ -51,6 +51,7 @@ export class MyexchangesComponent implements OnInit {
   info !: ExchangeInfoDTO;
   activeExchanges !: ExchangeActiveDTO[];
   activeExchange !: ExchangeActiveDTO;
+  Archives!: ExchangeDto[];
 
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
@@ -64,7 +65,7 @@ export class MyexchangesComponent implements OnInit {
               private formBuilder: FormBuilder,
               private ExchangeCard: ExchangeCardService,
 
-              ) {}
+  ) {}
   showLogin() {
     this.dialog.open(AuthDialogComponent);
   }
@@ -91,7 +92,7 @@ export class MyexchangesComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       Response: ["" ,[ Validators.required,]],
-     });
+    });
     this.loadData();
     if (this.authService.isAuthenticated()){
       this.isLoading=true;
@@ -113,7 +114,7 @@ export class MyexchangesComponent implements OnInit {
       // @ts-ignore
       formData.response = {...formData}
 
-     // this.BookResponse.CreateResponse(formData).subscribe(observer);
+      // this.BookResponse.CreateResponse(formData).subscribe(observer);
 
       this.isLoadingOffers = true;
       this.Categorylist.getOffer().subscribe(r => {
@@ -121,14 +122,14 @@ export class MyexchangesComponent implements OnInit {
         this.offers = r;
       });
 
-    this.isLoadingWishes = true;
-    this.Categorylist.getWish().subscribe(x => {
-      this.isLoadingWishes = false;
-      this.wishes = x;
-    });
+      this.isLoadingWishes = true;
+      this.Categorylist.getWish().subscribe(x => {
+        this.isLoadingWishes = false;
+        this.wishes = x;
+      });
 
-    this.isLoadingExchanges = true;
-    this.Categorylist.getExchanges().subscribe(h => {
+      this.isLoadingExchanges = true;
+      this.Categorylist.getExchanges().subscribe(h => {
         this.isLoadingExchanges = false;
         this.exchanges = h;
         console.dir(this.exchanges);
@@ -138,6 +139,11 @@ export class MyexchangesComponent implements OnInit {
         this.isLoadingExchanges = false;
         this.exchangesActive = f;
         console.dir(this.exchangesActive);
+      });
+      this.ExchangeCard.GetArchive().subscribe(s => {
+        this.isLoadingOffers = false;
+        this.Archives=s;
+        console.dir(this.Archives);
       });
     }
   }
@@ -160,21 +166,21 @@ export class MyexchangesComponent implements OnInit {
     this.selectedCardData = exchange.id;
     console.log(this.selectedCardData);// Сохранение данных выбранной карточки
     this.ExchangeCard.GetExchangeInfo(this.selectedCardData).subscribe(x =>{
-    this.info = x;
-    this.info.id=exchange.id;
+      this.info = x;
+      this.info.id=exchange.id;
 
 
-    console.dir(this.info);
+      console.dir(this.info);
     });
 
   }
   showDetailsOfActive(exchangeActive: any) {
     this.currentSection = 10; // Переключение на раздел 4
-    this.selectedCardData = exchangeActive.id;
+    this.selectedCardData = exchangeActive;
     console.log(this.selectedCardData);// Сохранение данных выбранной карточки
     this.ExchangeCard.GetActiveExchangeInfo(this.selectedCardData).subscribe(x =>{
       this.activeExchange = x;
-      this.activeExchange.id=exchangeActive.id;
+      this.activeExchange.id=exchangeActive;
       console.dir(this.activeExchange);
     });
 

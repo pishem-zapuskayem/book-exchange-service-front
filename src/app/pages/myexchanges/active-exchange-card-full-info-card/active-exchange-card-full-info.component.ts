@@ -10,6 +10,8 @@ import {BookResponseService} from "../../../core/services/book-response.service"
 import {FormBuilder} from "@angular/forms";
 import {ExchangeCardService} from "../../../core/services/exchange-card.service";
 import {ExchangeActiveDTO} from "../../../core/interfaces/exchange-active.dto";
+import {TracknumberDTO} from "../../../core/interfaces/tracknumber.dto";
+import {RegisterDTO} from "../../../core/interfaces/register.dto";
 
 
 @Component({
@@ -28,6 +30,7 @@ export class ActiveExchangeCardFullInfoComponent {
   ) {
   }
 
+  number!:TracknumberDTO;
   @Input() activeExchange !: ExchangeActiveDTO;
 
   showForm: boolean = false;
@@ -37,7 +40,11 @@ export class ActiveExchangeCardFullInfoComponent {
   submit() {
     // Выполняем вашу логику при нажатии на кнопку
     if (this.isValidInput()) {
-      this.ExchangeCard.EnterTrackNumber(this.activeExchange.id, this.trackNumber).subscribe(x => {
+      console.log(this.trackNumber);
+      const formData: TracknumberDTO = {trackNumber:this.trackNumber}
+
+      console.log(formData);
+      this.ExchangeCard.EnterTrackNumber(this.activeExchange.id, formData).subscribe(x => {
         this.activeExchange.myStatus.trackNumber=this.trackNumber;
       });
       console.log("Поле содержит 14 цифр:", this.trackNumber);
@@ -50,10 +57,10 @@ export class ActiveExchangeCardFullInfoComponent {
   EnterRecivedBook(idOfExchange:any){
     idOfExchange=this.activeExchange.id;
     this.ExchangeCard.RecivedBook(idOfExchange).subscribe(x => {
-  this.activeExchange.myStatus.receiving=true;
-});
+      this.activeExchange.myStatus.receiving=true;
+    });
 
-}
+  }
 }
 
 

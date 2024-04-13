@@ -80,7 +80,6 @@
                 <div class="content1 " style="padding-top: 60px; height: 730px">
                           <div class="centered-container3" style=" width: 90%; overflow-y: scroll; overflow-x: hidden;" >
                             <div class="sub-container-no-center" style="background: #fff4cc">
-                      <!--                              todo здесь список карточек-->
                                   <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
                                     <div class="backgroundforbookformain" style="width: 730px;  margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
                                       {{offer.bookDTO.author.firstname }}
@@ -151,7 +150,7 @@
                         <div  *ngFor="let exchangeActive of exchangesActive ">
                           <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" >
                             <app-active-exchange-card style="flex: 1;" [exchangeActive]="exchangeActive" ></app-active-exchange-card>
-                            <button class="buttons" (click)="showDetailsOfActive(activeExchange)">Перейти к обмену</button>
+                            <button class="buttons" (click)="showDetailsOfActive(exchangeActive.id)">Перейти к обмену</button>
                           </div>
                         </div>
                       </div>
@@ -243,7 +242,16 @@
                    </div>
                  </div>
                  <div class="content1 " style="padding-top: 60px; height: 730px">
-
+                   <div class="centered-container3" style=" width: 90%; overflow-y: scroll; overflow-x: hidden;" >
+                     <div class="sub-container-no-center" style="background: #fff4cc">
+                       <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                         <div class="backgroundforbookformain" style="width: 730px;  margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let archive of Archives">
+                           <label style="flex: 2;"class="labelAccount"><b>Название книги:</b> {{archive.offerFirst.bookName}} </label><br>
+                           <label style="flex: 1;" class="labelAccount"><b>Год публикации:</b> {{archive.offerFirst.publishYear}} </label>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
                  </div>
                </div>
              </div>

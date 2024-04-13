@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               public dialog: MatDialog,
               private message: NzMessageService,
-  public authService:  AuthService,
+              public authService:  AuthService,
               public AuthRedirectService:  AuthredirectService,
   ) {
   }
@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         },
 
         error: (err: any) => {
+          this.authService.signOut()
         },
 
         next: (value: AccountDTO) => {
