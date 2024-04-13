@@ -106,9 +106,11 @@
                        <!--                              todo здесь список карточек-->
                        <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
                          <div class="backgroundforbookformain" style="width: 100%; margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
-                             <div *ngFor="let cat of offer.categoryDTOList">
-                               <div style="margin: 10px; ">{{cat.name}}<br></div>
+                               <div *ngFor="let wishw of wishes">
+                                 <div *ngFor="let wish of wishw.categoryList">
+                               <div style="margin: 10px; ">{{wish.name}}<br></div>
                              </div>
+                               </div>
                          </div>
                        </div>
                      </div>
