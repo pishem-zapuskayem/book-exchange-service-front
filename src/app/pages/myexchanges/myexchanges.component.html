@@ -83,10 +83,10 @@
                       <!--                              todo здесь список карточек-->
                                   <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
                                     <div class="backgroundforbookformain" style="width: 730px;  margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
-                                      <b>Автор: </b>{{offer.bookDTO.author.firstname }}
+                                      {{offer.bookDTO.author.firstname }}
                                       {{offer.bookDTO.author.lastname }}<br>
-                                      <b>Книга:</b> {{offer.bookDTO.bookName }}
-                                      <b> Год издания: </b>{{offer.bookDTO.publishYear }}
+                                      {{offer.bookDTO.bookName }}
+                                      {{offer.bookDTO.publishYear }}
                                   </div>
                                 </div>
                               </div>
