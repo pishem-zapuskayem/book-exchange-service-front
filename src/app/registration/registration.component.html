@@ -1,0 +1,100 @@
+
+<body>
+<div class="centered-container">
+  <div class="registration-form">
+    <form ng-submit="ctrl.submitForm()" [formGroup]="form" (ngSubmit)="submit()">
+      <button (click)="goToHomePage()" class = "btn-back" type="submit"> Вернуться на главную </button><br><br>
+      <div *ngIf="this.isSubmitted || rex.lastName.touched && form.controls.lastName.errors">
+        <label class = "warningval"  *ngIf="rex.lastName.errors?.required">Заполните фамилию</label>
+        <label class = "warningval"  *ngIf="rex.lastName.errors?.maxLength">Фамилия должна содержать менее 50 символов</label>
+      </div>
+      <label for="surname"> Фамилия* </label><br>
+      <input maxlength="50" formControlName="lastName" name="lname" class="forbox" type="text" id="surname" ng-model="ctrl.surname" required><br><br>
+      <div *ngIf="this.isSubmitted || rex.firstName.touched && form.controls.firstName.errors">
+        <label  class = "warningval" *ngIf="rex.firstName.errors?.required">Заполните имя</label>
+
+      </div>
+
+      <label for="name">Имя* </label><br>
+      <input maxlength="25" formControlName="firstName" class="forbox" type="text" id="name" ng-model="firstName" required><br><br>
+
+      <label for="middlename">Отчество </label><br>
+      <input maxlength="25" formControlName="secondName" class="forbox" type="text" id="middlename" ng-model="ctrl.middlename"><br><br>
+      <div *ngIf="this.isSubmitted || rex.email.touched && form.controls.email.errors">
+        <label class = "warningval" *ngIf="rex.email.errors?.required">Заполните Email</label>
+        <label class = "warningval" *ngIf="rex.email.errors?.email">Почта указана неправильно</label>
+      </div>
+      <label for="email">Email* </label><br>
+      <input maxlength="35" formControlName="email"  name="uEmail" class="forbox" type="email" id="email" ng-model="email" required><br><br>
+      <div *ngIf="this.isSubmitted || rex.username.touched && form.controls.username.errors">
+        <label class = "warningval" *ngIf="rex.username.errors?.required">Заполните Ник</label>
+      </div>
+      <label for="nickname">Ник* </label><br>
+      <input formControlName="username"  class="forbox" type="text" id="nickname" ng-model="ctrl.nickname" required><br><br>
+      <div *ngIf="this.isSubmitted || rex.password.touched && form.controls.password.errors">
+        <label class = "warningval" *ngIf="rex.password.errors?.required">Заполните пароль</label>
+      </div>
+      <label for="password">Пароль* </label><br>
+      <input   formControlName="password"  class="forbox" type="password" id="password" ng-model="ctrl.password" required><br><br>
+      <div>
+        <label class = "warningval1" *ngIf="this.isSubmitted || rex.addrIndex.touched && form.controls.addrIndex.errors">
+          <label *ngIf="rex.addrIndex.errors?.required">Заполните индекс</label>
+        </label>
+        <label class = "warningval1" *ngIf="this.isSubmitted || rex.addrCity.touched && form.controls.addrCity.errors" >
+          <label *ngIf="rex.addrCity.errors?.required">Заполните город</label>
+        </label>
+        <label class = "warningval1" *ngIf="this.isSubmitted || rex.addrStreet.touched && form.controls.addrStreet.errors" style="margin-left:10px;">
+          <label *ngIf="rex.addrStreet.errors?.required">  Заполните улицу </label>
+        </label>
+      </div>
+      <div class="flex">
+      <label for="index">Индекс* </label> <label class="text" for="city">Город* </label><label class="text1" for="street">Улица* </label><br>
+      </div>
+      <div class="flex">
+        <input maxlength="6" formControlName="addrIndex"  class="forbox1"  type="index" id="index" ng-model="ctrl.index" required>
+        <input maxlength="15"  formControlName="addrCity"  class="forbox1" type="city" id="city" ng-model="ctrl.city" required>
+        <input maxlength="25"   formControlName="addrStreet"  class="forbox1" type="street" id="street" ng-model="ctrl.street" required>
+      </div><br>
+      <div>
+      <label style="text-align: left;" class = "warningval1" *ngIf="this.isSubmitted || rex.addrHouse.touched && form.controls.addrHouse.errors" style="margin-left:10px;">
+        <label *ngIf="rex.addrHouse.errors?.required"> Заполните дом </label>
+      </label>
+
+      </div>
+      <label  for="house">Дом* </label> <label class="text2" for="strucher">Структура </label> <label class="text3" for="apartment">Квартира </label><br>
+      <div class="flex">
+        <input maxlength="5"  formControlName="addrHouse"  class="forbox1" type="house" id="house" ng-model="ctrl.house" required>
+        <input  maxlength="2"  formControlName="addrStructure"  class="forbox1" type="text" id="strucher" ng-model="ctrl.password">
+        <input maxlength="3" formControlName="addrApart"  class="forbox1" type="apartment" id="apartment" ng-model="ctrl.apartment" >
+      </div><br>
+      <div>
+
+      </div>
+      <label for="avatar">Аватар</label><br>
+      <input
+        formControlName="avatar"
+        class="forbox2" type="file"
+        id="avatar" (change)="onFileChanged($event)"
+      ><br><br>
+      <input type="checkbox" id="agreementCheckbox"> <label for="agreementCheckbox" required> Нажимая эту кнопку, вы подтверждаете, что прочитали и согласны с условиями пользовательского соглашения и даёте согласие на обработку ваших персональных данных.</label><br><br>
+      <button class = "custom-btn-reg" type="submit" [disabled]="form.invalid || isSubmitted">Зарегистрироваться</button><br><br>
+      <label> * - поля, обязательные к заполнению </label>
+      <div class = "warningval1" *ngIf="errormessage">{{errormessage}}</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  var app = angular.module('registrationApp', []);
+
+  app.controller('RegistrationController', function () {
+    this.submitForm = function () {
+// Автозаполнение
+      console.log('Username: ' + this.username);
+      console.log('Email: ' + this.email);
+      console.log('Password: ' + this.password);
+    };
+  });
+</script>
+</body>
+

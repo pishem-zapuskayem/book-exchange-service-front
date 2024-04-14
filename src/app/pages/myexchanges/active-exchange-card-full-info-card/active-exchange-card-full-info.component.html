@@ -1,0 +1,45 @@
+
+<div class="centered-container">
+  <div class="backgroundforbook">
+    <div class="backgroundforbook1">
+      <div class="backgroundforbook2">
+        <div class="book1">
+          <div class="page left-page">
+            <div class="backgroundfornamepage">
+              <h2>Хочу Получить</h2>
+            </div>
+            <div><b>Жанры:</b></div>
+            <div *ngFor="let cat of activeExchange.otherOffer.categories">
+              <!--Список категорий-->
+              <div>{{cat.name}}</div>
+            </div>
+            <div *ngIf="activeExchange.otherStatus.trackNumber==null">Номера для отслеживания пока нет</div>
+            <div *ngIf="activeExchange.otherStatus.trackNumber!=null"><b>Код отслеживания:</b><br>{{activeExchange.otherStatus.trackNumber}}</div>
+            <div *ngIf="activeExchange.otherStatus.receiving">Книга получена</div>
+          </div>
+          <div class="page right-page">
+            <div class="backgroundfornamepage">
+              <h2>Хочу Отдать</h2>
+            </div>
+            <div class="backgroundforbookformain" >
+              <div style="display: inline-block; margin-right: 10px;"><b>Автор: </b>{{activeExchange.myOffer.offerBook.author.lastname}}</div>
+              <div style="display: inline-block;">{{activeExchange.myOffer.offerBook.author.firstname}}</div>
+              <div><b>Книга: </b>{{activeExchange.myOffer.offerBook.bookName}}</div>
+              <div><b>ISBN: </b>{{activeExchange.myOffer.offerBook.isbn}}</div>
+              <div><b>Год: </b>{{activeExchange.myOffer.offerBook.publishYear}}</div>
+              <div><b>Введите номер для отслеживания:</b></div>
+              <input *ngIf="activeExchange.myStatus.trackNumber==null" maxlength="14" type="text" [(ngModel)]="trackNumber" [ngModelOptions]="{standalone: true}">
+              <div  *ngIf="activeExchange.myStatus.trackNumber==null"><button class="confirmbutton" [disabled]="!isValidInput()" (click)="submit()" >Подтвердить</button></div>
+              <div *ngIf="activeExchange.myStatus.trackNumber!=null"><b>Ваш код отслеживания: </b>{{activeExchange.myStatus.trackNumber}}</div>
+              <div *ngIf="activeExchange.otherStatus.trackNumber!=null&&!activeExchange.myStatus.receiving" (click)="EnterRecivedBook(activeExchange.id)"><button>Получил</button></div>
+              <div *ngIf="activeExchange.myStatus.receiving">Вы получили книгу</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

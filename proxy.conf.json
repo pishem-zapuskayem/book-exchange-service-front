@@ -1,0 +1,16 @@
+{
+  "/api": {
+    "target": "http://82.97.243.70:8085/api",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {"^/api" : ""}
+  },
+  "/files": {
+    "target": "http://82.97.243.70:8085",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {"^/api" : ""}
+  }
+}

@@ -1,0 +1,268 @@
+<body>
+
+<app-header></app-header>
+
+<div class="bottom-container">
+</div>
+<div class="centered-container">
+  <div class="backgroundforbook">
+    <div class="backgroundforbook1">
+      <div class="backgroundforbook2">
+        <div class="book">
+          <div class="vertical-menu">
+            <div *ngIf="user" class="user-info">
+
+              <a (click)="showSection(6)">{{user.username}}</a>
+              <img class="icon1"[src]="getAvatarOrDefault(user)">
+
+            </div>
+            <div  class="button-container">
+              <button  class="custom-button" (click)="showSection(1)" [ngClass]="{ 'active-section': currentSection === 1 }">Предложения для обмена</button>
+              <button  class="custom-button" (click)="showSection(2)" [ngClass]="{ 'active-section': currentSection === 2 }">Хочу обменять</button>
+              <button  class="custom-button" (click)="showSection(3)" [ngClass]="{ 'active-section': currentSection === 3 }">Хочу получить</button>
+              <button  class="custom-button" (click)="showSection(4)" [ngClass]="{ 'active-section': currentSection === 4 }">Активные обмены</button>
+              <button  class="custom-button" (click)="showSection(5)" [ngClass]="{ 'active-section': currentSection === 5 }">Отзывы на книги</button>
+              <button  class="custom-button" (click)="showSection(6)" [ngClass]="{ 'active-section': currentSection === 6 }">Личные данные</button>
+              <button  class="custom-button" (click)="showSection(7)" [ngClass]="{ 'active-section': currentSection === 7 }">Сообщения</button>
+              <button  class="custom-button" (click)="showSection(8)" [ngClass]="{ 'active-section': currentSection === 8 }">Архив</button>
+              <button  class="custom-button"  routerLink="/home" (click)="signOut()">Выход</button>
+            </div>
+          </div>
+
+          <div *ngIf="currentSection">
+            <div *ngIf="currentSection === 1">
+              <div class="content">
+                <div class="content1" >
+                    <div class="backgroundforname">
+                    <h2>Предложения для обмена</h2>
+                   </div>
+                </div>
+                <div class="content1 " style="padding-top: 60px">
+                  <div class="sub-container" style="width: 90%; margin-bottom: 0">
+                    Полное совпадение
+                  </div>
+                  <div class="centered-container3" style=" height: 250px; flex-direction: column;  width: 92%; overflow-y: scroll; overflow-x: hidden;" >
+                      <div class="sub-container-no-center" style=" background: #fff4cc">
+                        <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                          <div  *ngIf="exchanges">Совпадений пока нет :(</div>
+                          <div   *ngFor="let exchange of exchanges">
+                            <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="exchange.isFullMatch">
+                            <app-exchange-card style="flex: 1;" [exchange]="exchange"></app-exchange-card>
+                              <button class="buttons" (click)="showDetails(exchange)">Начать обмен</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="sub-container" style="width: 90%; margin: 0">
+                    Частичное совпадение
+                  </div>
+                  <div class="centered-container3" style="  flex-direction: column; width: 92%; overflow-y: scroll; overflow-x: hidden;" >
+                      <div class="sub-container-no-center" style=" height: 250px; background: #fff4cc">
+                        <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                          <div  *ngIf="exchanges">Совпадений пока нет :(</div>
+                          <div  *ngFor="let exchange of exchanges ">
+                            <div  *ngIf="exchanges&&!exchange.isFullMatch">Совпадений пока нет :(</div>
+                            <div class="backgroundforbookformain"  style="justify-content: right;width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="!exchange.isFullMatch">
+                              <app-exchange-card style="flex: 1;"[exchange]="exchange">  </app-exchange-card>
+                              <button class="buttons" (click)="showDetails(exchange)">Начать обмен</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div *ngIf="currentSection === 2">
+              <div class="content">
+                <div class="content1" >
+                  <div class="backgroundforname">
+                    <h2>Хочу обменять</h2>
+                  </div>
+                </div>
+                <div class="content1 " style="padding-top: 60px; height: 730px">
+                          <div class="centered-container3" style=" width: 90%; overflow-y: scroll; overflow-x: hidden;" >
+                            <div class="sub-container-no-center" style="background: #fff4cc">
+                                  <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                                    <div class="backgroundforbookformain" style="width: 730px;  margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
+                                      {{offer.bookDTO.author.firstname }}
+                                      {{offer.bookDTO.author.lastname }}<br>
+                                      {{offer.bookDTO.bookName }}
+                                      {{offer.bookDTO.publishYear }}
+                                  </div>
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                 </div>
+             <div *ngIf="currentSection === 3">
+               <div class="content">
+                 <div class="content1" >
+                   <div class="backgroundforname">
+                     <h2>Хочу Получить</h2>
+                   </div>
+                 </div>
+                 <div class="content1 " style="padding-top: 60px; height: 730px">
+                   <div class="centered-container3 " style="width: 90%; height: 100%; align-items: center; overflow-y: scroll; overflow-x: scroll; ">
+                     <div class="sub-container-no-center" style="background: #fff4cc; ">
+                       <!--                              todo здесь список карточек-->
+                       <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                         <div class="backgroundforbookformain" style="width: 100%; margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let wishw of wishes">
+                               <div *ngFor="let wish of wishw.categoryList">
+                               <div style="margin: 10px; ">{{wish.name}}<br></div>
+                             </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+            <div *ngIf="currentSection === 9">
+              <div class="content">
+                <div class="content1" >
+                  <div class="backgroundforname">
+                    <h2>Карточка обмена</h2>
+                  </div>
+                </div>
+                <div class="content1 " style="padding-top: 60px; height: 730px">
+                  <div class="centered-container3 " style=" ">
+                    <div class="sub-container-no-center" style="background: #fff4cc;">
+                      <div *ngIf="authService.isAuthenticated()">
+                        <app-exchange-confirm-card [info]="info"></app-exchange-confirm-card>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div *ngIf="currentSection === 4">
+              <div class="content">
+                <div class="content1" >
+                  <div class="backgroundforname">
+                    <h2>Активные обмены</h2>
+                  </div>
+                </div>
+                <div class="content1 " style="padding-top: 60px; height: 730px">
+
+                  <div class="centered-container3" style=" height: 100%; flex-direction: column;  width: 92%; overflow-y: scroll; overflow-x: hidden;" >
+                    <div class="sub-container-no-center" style=" background: #fff4cc">
+                      <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                        <div  *ngFor="let exchangeActive of exchangesActive ">
+                          <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" >
+                            <app-active-exchange-card style="flex: 1;" [exchangeActive]="exchangeActive" ></app-active-exchange-card>
+                            <button class="buttons" (click)="showDetailsOfActive(exchangeActive.id)">Перейти к обмену</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+             <div *ngIf="currentSection === 5">
+               <div class="content">
+                 <div class="content1" >
+                   <div class="backgroundforname">
+                     <h2>Отзывы на книги</h2>
+                   </div>
+                 </div>
+                 <div class="content1 " style="padding-top: 60px; height: 730px">
+
+                 </div>
+               </div>
+             </div>
+            <div *ngIf="currentSection === 10">
+              <div class="content">
+                <div class="content1" >
+                  <div class="backgroundforname">
+                    <h2>Карточка обмена</h2>
+                  </div>
+                </div>
+                <div class="content1 " style="padding-top: 60px; height: 730px">
+                  <div class="centered-container3 " style="">
+                    <div class="sub-container-no-center" style="background: #fff4cc;">
+                      <div *ngIf="authService.isAuthenticated()">
+                        <app-active-exchange-card-full-info [activeExchange]="activeExchange" ></app-active-exchange-card-full-info>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div *ngIf="currentSection === 6">
+               <div class="content">
+                 <div class="content1" >
+                   <div class="backgroundforname" >
+                     <h2>Личные данные</h2>
+                   </div>
+                 </div>
+                 <div class="content1 " style="padding-top: 60px;">
+                   <div class="centered-container3" style="padding: 10px; height: 100%; background: white; flex-direction: column;  width: 90%;  overflow-x: hidden;" >
+                         <h1 class="labelAccount">Аккаунт:</h1>
+                              <label class="labelAccount"><b>Имя:</b> {{user.firstName}} </label>
+                             <label class="labelAccount"><b>Фамилия:</b> {{user.lastName}} </label><br>
+                             <label class="labelAccount" style="margin-top:20px;"><b>Отчество:</b> {{user.secondName}} </label><br>
+                             <label class="labelAccount" style="margin-top:20px;"><b>Почта:</b> {{user.email}} </label>
+
+                   </div>
+                   <div class="centered-container3" style="padding: 10px; height: 460px; background: white; flex-direction: column;  width: 90%; overflow-y: scroll; overflow-x: hidden;" >
+
+                       <h1 class="labelAccount">Все адреса аккаунта:</h1>
+                       <div *ngFor="let address of user.addresses">
+                         <h1 class="labelAccount">Адрес:</h1>
+                          <label class="labelAccount"><b>Город:</b> {{address.addrCity}} </label><br>
+                          <label class="labelAccount"><b>Улица:</b> {{address.addrStreet}} </label>
+                          <label class="labelAccount"><b>Индекс:</b> {{address.addrIndex}} </label><br>
+                          <label class="labelAccount"><b>Дом:</b> {{address.addrHouse}} </label>
+                          <label class="labelAccount"><b>Квартира:</b> {{address.addrApart}} </label>
+                          <label class="labelAccount"><b>Структура:</b> {{address.addrStructure}} </label>
+                         </div>
+                     </div>
+                 </div>
+               </div>
+             </div>
+             <div *ngIf="currentSection === 7">
+               <div class="content">
+                 <div class="content1" >
+                   <div class="backgroundforname">
+                     <h2>Сообщения</h2>
+                   </div>
+                 </div>
+                 <div class="content1 " style="padding-top: 60px; height: 730px">
+
+               </div>
+             </div>
+             </div>
+             <div *ngIf="currentSection === 8">
+               <div class="content">
+                 <div class="content1" >
+                   <div class="backgroundforname">
+                     <h2>Архив</h2>
+                   </div>
+                 </div>
+                 <div class="content1 " style="padding-top: 60px; height: 730px">
+                   <div class="centered-container3" style=" width: 90%; overflow-y: scroll; overflow-x: hidden;" >
+                     <div class="sub-container-no-center" style="background: #fff4cc">
+                       <div  *ngIf="!isLoadingOffers && authService.isAuthenticated()">
+                         <div class="backgroundforbookformain" style="width: 730px;  margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let archive of Archives">
+                           <label style="flex: 2;"class="labelAccount"><b>Название книги:</b> {{archive.offerFirst.bookName}} </label><br>
+                           <label style="flex: 1;" class="labelAccount"><b>Год публикации:</b> {{archive.offerFirst.publishYear}} </label>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

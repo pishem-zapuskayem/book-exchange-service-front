@@ -1,0 +1,39 @@
+
+.auth-form{
+  width: 500px;
+  min-height: 300px;
+  border: 5px solid #fcf8ec;
+  padding:40px;
+
+  background-color: #fcf8ec;
+  .a{
+    position: center;
+  }
+}
+.forbox {
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding-left: 6px;
+}
+.custom-btn {
+  width: 100%;
+  background-color: #835136 ;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+.custom-btn:focus,
+.custom-btn:hover {
+  background: #4d2816;
+  box-shadow: inset 6.5em 0 0 0 var(--hover);
+
+}
+.custom-btn:disabled{
+  background: #7EBD91;
+}
+.error{
+  color: red;
+}
+
+

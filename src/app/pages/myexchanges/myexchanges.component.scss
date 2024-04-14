@@ -1,0 +1,490 @@
+body {
+  scrollbar-width: thin;
+  scrollbar-color:#a97650 #835136 ;
+  overflow-x: hidden;
+  background:
+    linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
+    linear-gradient(120deg, transparent 20%, #FBD161 ) left fixed,
+  linear-gradient(225deg, transparent 30%, #fbb561 20%) right fixed,
+  #7EBD91;
+
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+
+}
+.bottom-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: #997448 ;
+
+}
+.logo{
+  width: 230px;
+  height: auto;
+}
+
+.spin-container {
+  display: flex;
+  justify-content: center;
+  padding: 15% 0;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fcf8ec;
+  color: white;
+  padding: 15px;
+  border: 5px solid black;
+  border-width: 0px ; /* Верхняя и нижняя обводка */
+  border-color: #835136 #4d2816;
+  background-image: linear-gradient(white 0px, transparent 0px);
+  background-size: 100% 19px;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+.buttons{
+  background-color: #a97650;
+  color: white;
+  padding: 16px;
+  margin: 0 10px;
+  border: 0px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+a { font-size: 20px}
+
+.auth button {
+  background-color: #a97650;
+  color: white;
+  padding: 8px 16px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px
+}
+
+
+
+
+p {
+  font-size: 30px;
+  font-family: TimesNewRoman;
+}
+.segment-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  margin-block-end: 1rem;
+}
+
+.vertical-menu {
+  overflow: hidden;
+  background-color: #f2f2f2;
+  width: 30%;
+  left: 0;
+  height: 100%;
+  padding: 20px;
+  box-shadow: 0px 0 0px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+}
+.content{
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+  width: 70%;
+  background: #fff4cc;
+  position: absolute;
+  top: 0;
+}
+.content1{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  flex-direction: column;
+}
+.vertical-menu a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.vertical-menu a:hover {
+  color: #ff6600;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+
+.user-info a {
+  font-weight: bold;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.custom-button {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 250px;
+}
+
+.custom-button:hover {
+  background-color: #ffce91;
+
+  cursor: pointer;
+}
+input{
+  padding-left: 10px;
+}
+
+.centered-container{
+
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 10px;
+  animation: fadeInUp 1s forwards;
+}
+.centered-container3{
+
+  justify-content: center;
+  border-radius: 20px;
+  margin: 10px;
+  animation: fadeInUp 1s forwards;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.centered-container2{
+  align-self: flex-end;
+  border-radius: 20px;
+  background-color: white;
+  margin: 20px;
+  justify-content: space-between;
+}
+.backgroundforbook{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2c220c;
+  padding: 2px;
+  margin: 0;
+  border-radius: 10px;
+  animation: float 3s infinite;
+}
+.backgroundforbook1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4d2816;
+  padding: 2px;
+  margin: 0;
+  border-radius: 10px;
+}
+.backgroundforbook2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #835136;
+  padding: 2px;
+  margin: 0;
+  border-radius: 5px;
+}
+.book1 { //Главная книга
+  width: 800px;
+  height: 600px;
+  margin: 2px;
+  padding: 10px;
+  position: relative;
+  perspective: 1000px;
+  border: 5px solid #a97650;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+.page {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: #fcf8ec;
+  border: 3px solid #bbac8d;
+  padding: 10px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.containerfirst {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  overflow: hidden;
+}
+.left-page {
+
+  left: 0;
+  transform-origin: 100% 50%;
+
+}
+
+.right-page {
+
+  right: 0;
+  transform-origin: 0% 50%;
+  border-left: 3px solid #94826a;
+}
+//Предложения для обмена
+.backgroundforname{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #835136;
+  padding: 2px;
+  margin: 0;
+  border-radius: 10px;
+  width: 90%;
+  height: 8%;
+  top: 0;
+}
+.backgroundfornamepage
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  margin: 20px;
+  border-radius: 10px;
+  width: 90%;
+  height: 8%;
+  top: 0;
+  margin: 20px;
+}
+.sub-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #835136;
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+  height: 8%;
+  top: 0;
+  animation: fadeInUp 1s forwards;
+}
+.sub-container2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 2px;
+  margin: 4px;
+  border-radius: 10px;
+  height: 8%;
+  top: 0;
+  animation: fadeInUp 1s forwards;
+}
+
+.backgroundforname h2 {
+  margin: 4px;
+  color: whitesmoke;
+  font-family: URW Chancery L, cursive;
+}
+.book {
+  width: 1200px;
+  height: 720px;
+  margin: 2px;
+  padding: 10px;
+  position: relative;
+  perspective: 1000px;
+  border: 5px solid #a97650;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+
+.bookcontainer{
+  width: 400px;
+  height: 600px;
+  display: flex;
+  margin: 6px;
+  padding: 6px;
+  position: relative;
+
+  background: #fbb561;
+  border-radius: 5px;
+}
+
+.content2{
+  display: flex;
+
+}
+.forbook{
+  background-color: #ffa94f;
+  margin: 0;
+  width: 8%;
+  height: 100%;
+  font-family: URW Chancery L, cursive;
+}
+.backgroundfornameforbook{
+  display: flex;
+  justify-content: center;
+  background-color: #ffbc48;
+  padding: 2px;
+  margin: 0px;
+  width: 100%;
+  height: 8%;
+  font-family: URW Chancery L, cursive;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+.backgroundforbookformain{
+  justify-content: left;
+  display: flex;
+  font-size: 20px;
+  padding: 20px;
+  background-attachment: fixed;
+//  font-family: URW Chancery L, cursive;
+}
+.backgroundforbookformain left
+{
+  justify-content: left;
+}
+.backgroundforbookformain right
+{
+  justify-content: right;
+}
+.forbox {
+  width: 90%;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-left: 20px;
+}
+
+.btn-back {
+  width: 90%;
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-left: 20px;
+}
+.username{
+  font-size:20px;
+  color:black;
+  margin-right: 40px;
+
+}
+
+.icon{
+  margin-right: 50px;
+  width: 80px;
+  border-radius: 100px;
+  height: 80px;
+}
+.icon1{
+
+  width: 150px;
+  border-radius: 100px;
+  height: 150px;
+}
+.able{
+  margin-right: 20px;
+}
+.content_box{
+  width: 732px;
+  height: 100%;
+  margin: 10px;
+  padding: 10px;
+  background: white ;
+  border-radius: 20px;
+  animation: fadeInUp 1s forwards;
+}
+.left-content_box{
+  width: 50%;
+  height: 180px;
+
+  background: white ;
+  border-radius: 20px;
+  position: absolute;
+}
+.right-content_box{
+  width: 40%;
+  height: 180px;
+  background: white ;
+  border-radius: 20px;
+  position: absolute;
+  margin-left: 40%;
+
+}
+.labelAccount{
+  margin-left: 10px;
+  font-size: 20px;
+
+}
+.sub-container-no-center{
+  display: flex;
+  justify-content: left;
+  background-color: white;
+  border-radius: 10px;
+  height: 8%;
+  top: 0;
+  animation: fadeInUp 1s forwards;
+}
+.active-section {
+  background-color: #a97650; /* Пример активного цвета фона */
+  color: white; /* Пример цвета текста на активной кнопке */
+  font-weight: bold; /* Пример сделать текст на активной кнопке жирным */
+}
