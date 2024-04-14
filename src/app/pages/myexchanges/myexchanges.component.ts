@@ -113,38 +113,14 @@ export class MyexchangesComponent implements OnInit {
       const formData: BookNoteResponseDTO = {...this.form.value}
       // @ts-ignore
       formData.response = {...formData}
-
-      // this.BookResponse.CreateResponse(formData).subscribe(observer);
-
       this.isLoadingOffers = true;
       this.Categorylist.getOffer().subscribe(r => {
         this.isLoadingOffers = false;
         this.offers = r;
       });
-
       this.isLoadingWishes = true;
-      this.Categorylist.getWish().subscribe(x => {
-        this.isLoadingWishes = false;
-        this.wishes = x;
-      });
-
       this.isLoadingExchanges = true;
-      this.Categorylist.getExchanges().subscribe(h => {
-        this.isLoadingExchanges = false;
-        this.exchanges = h;
-        console.dir(this.exchanges);
-      });
 
-      this.Categorylist.getActiveExchanges().subscribe(f => {
-        this.isLoadingExchanges = false;
-        this.exchangesActive = f;
-        console.dir(this.exchangesActive);
-      });
-      this.ExchangeCard.GetArchive().subscribe(s => {
-        this.isLoadingOffers = false;
-        this.Archives=s;
-        console.dir(this.Archives);
-      });
     }
   }
   loadData(){
@@ -158,7 +134,43 @@ export class MyexchangesComponent implements OnInit {
   signOut() {
     this.authService.signOut()
   }
-
+getExchangeOffers() {
+  this.Categorylist.getExchanges().subscribe(h => {
+    this.isLoadingExchanges = false;
+    this.exchanges = h;
+    this.currentSection = 1;
+  });
+}
+  getOffers(){
+    this.Categorylist.getOffer().subscribe(r => {
+      this.isLoadingOffers = false;
+      this.offers = r;
+      this.currentSection = 2;
+    });
+  }
+  getWish(){
+    this.Categorylist.getWish().subscribe(x => {
+      this.isLoadingWishes = false;
+      this.wishes = x;
+      this.currentSection = 3;
+    });
+  }
+  getActive(){
+    this.Categorylist.getActiveExchanges().subscribe(f => {
+      this.isLoadingExchanges = false;
+      this.exchangesActive = f;
+      console.dir(this.exchangesActive);
+      this.currentSection = 4;
+    });
+  }
+  getArchive() {
+    this.ExchangeCard.GetArchive().subscribe(s => {
+      this.isLoadingOffers = false;
+      this.Archives = s;
+      console.dir(this.Archives);
+      this.currentSection = 8;
+    });
+  }
   selectedCardData: any;
 
   showDetails(exchange: any) {
@@ -174,6 +186,7 @@ export class MyexchangesComponent implements OnInit {
     });
 
   }
+
   showDetailsOfActive(exchangeActive: any) {
     this.currentSection = 10; // Переключение на раздел 4
     this.selectedCardData = exchangeActive;

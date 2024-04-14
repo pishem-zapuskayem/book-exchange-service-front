@@ -68,10 +68,12 @@ export class AuthDialogComponent {
           this.tokenStorage.setToken(value);
           this.errormessage=undefined;
           this.router.navigate(['/home']);
+
           this.isSubmitted = false;
           this.error = false;
           this.AuthRedirectService.invokeOnLogin();
           console.log('3');
+          window.location.reload();
         }
       }
     }
