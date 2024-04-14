@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
 
- user !: AccountDTO;
+  user !: AccountDTO;
   isLoading: boolean = false;
   subscription = new Subscription();
   constructor(private formBuilder: FormBuilder,
@@ -24,8 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private message: NzMessageService,
               public authService:  AuthService,
               public AuthRedirectService:  AuthredirectService,
-  ) {
-  }
+  )
+  {}
 
   ngOnInit() {
 

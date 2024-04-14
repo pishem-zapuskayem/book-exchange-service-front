@@ -52,7 +52,16 @@ export class MyexchangesComponent implements OnInit {
   activeExchanges !: ExchangeActiveDTO[];
   activeExchange !: ExchangeActiveDTO;
   Archives!: ExchangeDto[];
-
+  panels = [
+    {
+      active: true,
+      name: 'Полное совпадение',
+    },
+    {
+      active: false,
+      name: 'Частичное совпадение'
+    },
+  ];
   showSection(sectionNumber: number) {
     this.currentSection = sectionNumber;
   }
@@ -118,11 +127,33 @@ export class MyexchangesComponent implements OnInit {
         this.isLoadingOffers = false;
         this.offers = r;
       });
-      this.isLoadingWishes = true;
-      this.isLoadingExchanges = true;
 
+      this.isLoadingWishes = true;
+      this.Categorylist.getWish().subscribe(x => {
+        this.isLoadingWishes = false;
+        this.wishes = x;
+      });
+
+      this.isLoadingExchanges = true;
+      this.Categorylist.getExchanges().subscribe(h => {
+        this.isLoadingExchanges = false;
+        this.exchanges = h;
+        console.dir(this.exchanges);
+      });
+
+      this.Categorylist.getActiveExchanges().subscribe(f => {
+        this.isLoadingExchanges = false;
+        this.exchangesActive = f;
+        console.dir(this.exchangesActive);
+      });
+      this.ExchangeCard.GetArchive().subscribe(s => {
+        this.isLoadingOffers = false;
+        this.Archives=s;
+        console.dir(this.Archives);
+      });
     }
   }
+
   loadData(){
     this.Categorylist.getOffer().subscribe((response)=>{});
   }
@@ -134,13 +165,13 @@ export class MyexchangesComponent implements OnInit {
   signOut() {
     this.authService.signOut()
   }
-getExchangeOffers() {
-  this.Categorylist.getExchanges().subscribe(h => {
-    this.isLoadingExchanges = false;
-    this.exchanges = h;
-    this.currentSection = 1;
-  });
-}
+  getExchangeOffers() {
+    this.Categorylist.getExchanges().subscribe(h => {
+      this.isLoadingExchanges = false;
+      this.exchanges = h;
+      this.currentSection = 1;
+    });
+  }
   getOffers(){
     this.Categorylist.getOffer().subscribe(r => {
       this.isLoadingOffers = false;
@@ -200,7 +231,3 @@ getExchangeOffers() {
   }
 
 }
-
-
-
-

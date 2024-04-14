@@ -12,6 +12,8 @@ body {
   background-repeat: no-repeat;
 
 }
+
+
 .bottom-container {
   position: fixed;
   bottom: 0;
@@ -185,6 +187,7 @@ input{
   padding: 10px;
   animation: fadeInUp 1s forwards;
 }
+
 .centered-container3{
 
   justify-content: center;
@@ -259,7 +262,7 @@ input{
   transform-style: preserve-3d;
   transition: transform 1s;
   box-sizing: border-box;
-  overflow: auto;
+
 }
 
 .containerfirst {
@@ -391,6 +394,7 @@ input{
   flex: 2;
 }
 .backgroundforbookformain{
+  display: flex;
   justify-content: left;
   display: flex;
   font-size: 20px;
