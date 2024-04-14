@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
 import {AuthDialogComponent} from "../../../auth-dialog/auth-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -13,14 +13,10 @@ import {AuthredirectService} from "../../../core/services/authredirect.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  needExchange!: FormGroup;
-  Wanted!: FormGroup;
-  InfoDetail!: FormGroup;
-  exchange_step = false;
-  wanted_step = false;
-  info_step = false;
-  step = 1;
-  user !: AccountDTO;
+
+
+
+ user !: AccountDTO;
   isLoading: boolean = false;
   subscription = new Subscription();
   constructor(private formBuilder: FormBuilder,
@@ -47,6 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           console.log(value)
           this.user = value;
+
         }
       }
       this.authService.getAuthenticated().subscribe(observer);
@@ -65,42 +62,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-
-  next() {
-    if (this.step == 1) {
-      this.exchange_step = true;
-      if (this.needExchange.invalid) {
-        return
-      }
-      this.step++
-    }
-    if (this.step == 2) {
-      this.wanted_step = true;
-      if (this.Wanted.invalid) {
-        return
-      }
-      this.step++;
-    }
-  }
-
-  previous() {
-    this.step--
-    if (this.step == 1) {
-      this.exchange_step = false;
-    }
-    if (this.step == 2) {
-      this.info_step = false;
-    }
-  }
-
-  submit() {
-    if (this.step == 3) {
-      this.info_step = true;
-      if (this.InfoDetail.invalid) {
-        return
-      }
-    }
-  }
 
   showLogin() {
     this.dialog.open(AuthDialogComponent);

@@ -10,7 +10,8 @@
       <div class="backgroundforbook2">
         <div class="book">
           <div class="vertical-menu">
-            <div class="user-info">
+            <div *ngIf="user" class="user-info">
+
               <a (click)="showSection(6)">{{user.username}}</a>
               <img class="icon1"[src]="getAvatarOrDefault(user)">
 
@@ -43,6 +44,7 @@
                   <div class="centered-container3" style=" height: 250px; flex-direction: column;  width: 92%; overflow-y: scroll; overflow-x: hidden;" >
                       <div class="sub-container-no-center" style=" background: #fff4cc">
                         <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                          <div  *ngIf="exchanges">Совпадений пока нет :(</div>
                           <div   *ngFor="let exchange of exchanges">
                             <div class="backgroundforbookformain" style="width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="exchange.isFullMatch">
                             <app-exchange-card style="flex: 1;" [exchange]="exchange"></app-exchange-card>
@@ -58,7 +60,9 @@
                   <div class="centered-container3" style="  flex-direction: column; width: 92%; overflow-y: scroll; overflow-x: hidden;" >
                       <div class="sub-container-no-center" style=" height: 250px; background: #fff4cc">
                         <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()">
+                          <div  *ngIf="exchanges">Совпадений пока нет :(</div>
                           <div  *ngFor="let exchange of exchanges ">
+                            <div  *ngIf="exchanges&&!exchange.isFullMatch">Совпадений пока нет :(</div>
                             <div class="backgroundforbookformain"  style="justify-content: right;width: 730px;  margin: 10px; background: white ; border-radius: 20px;" *ngIf="!exchange.isFullMatch">
                               <app-exchange-card style="flex: 1;"[exchange]="exchange">  </app-exchange-card>
                               <button class="buttons" (click)="showDetails(exchange)">Начать обмен</button>
@@ -105,12 +109,10 @@
                      <div class="sub-container-no-center" style="background: #fff4cc; ">
                        <!--                              todo здесь список карточек-->
                        <div *ngIf="!isLoadingOffers && authService.isAuthenticated()">
-                         <div class="backgroundforbookformain" style="width: 100%; margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let offer of offers">
-                               <div *ngFor="let wishw of wishes">
-                                 <div *ngFor="let wish of wishw.categoryList">
+                         <div class="backgroundforbookformain" style="width: 100%; margin-bottom: 10px; background: white ; border-radius: 20px;" *ngFor="let wishw of wishes">
+                               <div *ngFor="let wish of wishw.categoryList">
                                <div style="margin: 10px; ">{{wish.name}}<br></div>
                              </div>
-                               </div>
                          </div>
                        </div>
                      </div>
@@ -211,8 +213,9 @@
                    </div>
                    <div class="centered-container3" style="padding: 10px; height: 460px; background: white; flex-direction: column;  width: 90%; overflow-y: scroll; overflow-x: hidden;" >
 
-                       <h1 class="labelAccount">Адрес:</h1>
+                       <h1 class="labelAccount">Все адреса аккаунта:</h1>
                        <div *ngFor="let address of user.addresses">
+                         <h1 class="labelAccount">Адрес:</h1>
                           <label class="labelAccount"><b>Город:</b> {{address.addrCity}} </label><br>
                           <label class="labelAccount"><b>Улица:</b> {{address.addrStreet}} </label>
                           <label class="labelAccount"><b>Индекс:</b> {{address.addrIndex}} </label><br>
