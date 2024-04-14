@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { FormGroup,Validators,FormBuilder } from '@angular/forms';
+import {FormGroup, Validators, FormBuilder, Form} from '@angular/forms';
 import {AuthDialogComponent} from "../../../auth-dialog/auth-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 import {CategoryDTO} from "../../../core/interfaces/category.dto";
 import {CategoriesService} from "../../../core/services/categories.service";
 import { NzFormatEmitEvent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
+import {AddressDTO} from "../../../core/interfaces/address.dto";
+import {HeaderComponent} from "../header/header.component";
 
 @Component({
   selector: 'app-multistep',
@@ -22,7 +24,6 @@ export class StartChangeComponent implements OnInit {
   wishDefaultExpandedKeys = ['100', '1001'];
   wishListKeys: any[] | undefined = [];
   offerListKeys: any[] | undefined = [];
-
   offerListNodes: NzTreeNodeOptions[] = [];
   wishListNodes: NzTreeNodeOptions[] = [];
   parentNodeIds: Set<string> = new Set<string>();
@@ -42,6 +43,7 @@ export class StartChangeComponent implements OnInit {
     );
   }
 
+  CheckForm!: FormGroup;
   offerListForm!: FormGroup;
   wishListForm!: FormGroup;
   addressDetailsForm!: FormGroup;
@@ -49,25 +51,29 @@ export class StartChangeComponent implements OnInit {
   wanted_step = false;
   info_step = false;
   step = 1;
-  user !: AccountDTO;
+  usera !: AccountDTO;
   isLoading: boolean = false;
   isSubmitted = false;
   error = false;
   showTree: boolean = true;
   categories: CategoryDTO[] = [];
 
+
   constructor(private formBuilder: FormBuilder,
               public dialog: MatDialog,
               private message: NzMessageService,
-  public authService:  AuthService,
+              public authService: AuthService,
               private router: Router,
-              private categoriesService: CategoriesService
+              private categoriesService: CategoriesService,
   ) {
+  }
+
+  ngOnInit() {
     this.offerListForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       publishYear: ['', Validators.required],
       isbn: [''],
-      key:[''],
+      key: [''],
       lastname: ['', Validators.required],
       firstname: ['', Validators.required],
     });
@@ -81,13 +87,13 @@ export class StartChangeComponent implements OnInit {
       addrHouse: ['', Validators.required],
       addrApart: [''],
       addrIndex: ['', Validators.required],
-      lastname: ['', Validators.required],
-      firstname: ['', Validators.required],
+      NameLast: ['', Validators.required],
+      Name: ['', Validators.required],
       middleName: ['', Validators.required],
     });
-  }
-
-  ngOnInit() {
+    this.CheckForm = this.formBuilder.group({
+      isChecked:[true],
+    });
     this.showTree = true; // Показываем дерево
     this.categoriesService.getCategories().subscribe(categories => {
       this.categories = categories;
@@ -99,23 +105,12 @@ export class StartChangeComponent implements OnInit {
       this.offerListNodes = this.convertToTreeNodes(categories);
       this.wishListNodes = this.convertToTreeNodes(categories);
     });
-
-    if (this.authService.isAuthenticated()) {
-      this.isLoading = true;
-      const observer: Observer<AccountDTO> = {
-        complete: () => {
-        },
-
-        error: (err: any) => {
-        },
-
-        next: (value: AccountDTO) => {
-          this.isLoading = false;
-          this.user = value;
-        }
-      }
-      this.authService.getAuthenticated().subscribe(observer);
-    }
+    //Если удалить этот запрос то будет выводится с первого раза
+    this.authService.getAuthenticated().subscribe(h => {
+      this.usera = h;
+      console.dir(this.usera);
+    });
+    //этот
   }
 
   toggleCheckbox(category: any): void {
@@ -160,6 +155,7 @@ export class StartChangeComponent implements OnInit {
     if (this.step == 2) {
       this.showTree = true;
       this.wanted_step = true;
+
       if (this.wishListForm.invalid) {
         return
       }
@@ -194,10 +190,8 @@ export class StartChangeComponent implements OnInit {
       }
     }
     this.isSubmitted = true;
-    this.router.navigate(['/exchanges'])
     const offerData = this.offerListForm.value;
     const addressData = this.addressDetailsForm.value;
-
     const formData: any = {
       offer: {
         book: {
@@ -236,12 +230,53 @@ export class StartChangeComponent implements OnInit {
       },
 
       next: (value: HttpResponse<any>) => {
+
         this.isSubmitted = false;
         this.error = false;
+        this.router.navigate(['/exchanges'])
       }
     }
 
     this.authService.Exchanging(formData).subscribe(observer);
+  }
+
+
+  checkboxChanged(inf:any) {
+
+    if (this.CheckForm) {
+
+      // Выполните вашу функцию здесь, когда чекбокс отмечен
+      this.addressDetailsForm.setValue({
+        addrCity: inf.addrCity,
+        addrStreet: inf.addrStreet,
+        addrStructure: inf.addrStructure,
+        addrHouse: inf.addrHouse,
+        addrApart:  inf.addrApart,
+        addrIndex: inf.addrIndex,
+        NameLast:'',
+        Name: '',
+        middleName:'',
+      })
+    } else {
+
+    }
+  }
+  inputclear() {
+    if (this.CheckForm) {
+      // Выполните вашу функцию здесь, когда чекбокс отмечен
+      this.addressDetailsForm.setValue({
+        addrCity:'',
+        addrStreet: '',
+        addrStructure: '',
+        addrHouse: '',
+        addrApart: '',
+        addrIndex: '',
+        NameLast:'',
+        Name: '',
+        middleName:'',
+      })
+    } else {
+    }
   }
 
 }
