@@ -15,14 +15,14 @@
 
             </div>
             <div  class="button-container">
-              <button  class="custom-button" (click)="showSection(1)" [ngClass]="{ 'active-section': currentSection === 1 }">Предложения для обмена</button>
-              <button  class="custom-button" (click)="showSection(2)" [ngClass]="{ 'active-section': currentSection === 2 }">Хочу обменять</button>
-              <button  class="custom-button" (click)="showSection(3)" [ngClass]="{ 'active-section': currentSection === 3 }">Хочу получить</button>
-              <button  class="custom-button" (click)="showSection(4)" [ngClass]="{ 'active-section': currentSection === 4 }">Активные обмены</button>
+              <button  class="custom-button" (click)="getExchangeOffers()" [ngClass]="{ 'active-section': currentSection === 1 }">Предложения для обмена</button>
+              <button  class="custom-button" (click)="getOffers()" [ngClass]="{ 'active-section': currentSection === 2 }">Хочу обменять</button>
+              <button  class="custom-button" (click)="getWish()" [ngClass]="{ 'active-section': currentSection === 3 }">Хочу получить</button>
+              <button  class="custom-button" (click)="getActive()" [ngClass]="{ 'active-section': currentSection === 4 }">Активные обмены</button>
               <button  class="custom-button" [disabled]="form.invalid" (click)="showSection(5)" [ngClass]="{ 'active-section': currentSection === 5 }">Отзывы на книги</button>
               <button  class="custom-button" (click)="showSection(6)" [ngClass]="{ 'active-section': currentSection === 6 }">Личные данные</button>
               <button  class="custom-button" [disabled]="form.invalid" (click)="showSection(7)" [ngClass]="{ 'active-section': currentSection === 7 }">Сообщения</button>
-              <button  class="custom-button" (click)="showSection(8)" [ngClass]="{ 'active-section': currentSection === 8 }">Архив</button>
+              <button  class="custom-button" (click)="getArchive()" [ngClass]="{ 'active-section': currentSection === 8 }">Архив</button>
               <button  class="custom-button"  routerLink="/home" (click)="signOut()">Выход</button>
             </div>
           </div>
