@@ -1,4 +1,6 @@
 body {
+  scrollbar-width: thin;
+  scrollbar-color:#a97650 #835136 ;
   overflow-x: hidden;
   background:
     linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
@@ -9,6 +11,9 @@ body {
   background-size: 50% 100%;
   background-repeat: no-repeat;
 
+}
+h2{
+  font-style: oblique;
 }
 .bottom-container {
   position: fixed;
@@ -50,7 +55,8 @@ button{
   color: white;
   width: 100%;
   padding: 10px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: 0px;
   border-radius: 20px;
   font-size: 16px;
@@ -271,14 +277,18 @@ input{
   overflow: hidden;
 }
 .left-page {
-
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 550px;
   left: 0;
   transform-origin: 100% 50%;
 
 }
 
 .right-page {
-
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 550px;
   right: 0;
   transform-origin: 0% 50%;
   border-left: 3px solid #94826a;
@@ -490,7 +500,8 @@ input{
   font-size: 20px;
 }
 .confirmbutton:disabled{
-  background: white ;
+  background: #fcf8ec ;
+  color: #fcf8ec;
 
 }
 

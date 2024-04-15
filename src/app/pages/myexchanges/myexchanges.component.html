@@ -166,7 +166,7 @@
                <div class="content">
                  <div class="content1 " style="">
                    <div class="centered-container3" style="padding: 10px; height: 100%; background: white; flex-direction: column;  width: 90%;  overflow-x: hidden;" >
-                         <h1 class="labelAccount">Аккаунт:</h1>
+                         <h1 class="labelAccount" style="font-style: oblique; font-size: 25px">Аккаунт:</h1>
                               <label class="labelAccount"><b>Имя:</b> {{user.firstName}} </label>
                              <label class="labelAccount"><b>Фамилия:</b> {{user.lastName}} </label><br>
                              <label class="labelAccount" style="margin-top:20px;"><b>Отчество:</b> {{user.secondName}} </label><br>
@@ -174,9 +174,9 @@
 
                    </div>
                    <div class="centered-container3" style="padding: 10px; max-height: 470px; background: white; flex-direction: column;  width: 90%; overflow-y: auto; overflow-x: hidden;" >
-                       <h1 class="labelAccount">Все адреса аккаунта:</h1>
+                       <h1 class="labelAccount" style="font-style: oblique; font-size: 25px">Все адреса аккаунта:</h1>
                        <div *ngFor="let address of user.addresses">
-                         <label class="labelAccount">Адрес:</label><br>
+                         <label class="labelAccount" style=" font-size: 25px">Адрес: </label><br>
                           <label class="labelAccount"><b>Город:</b> {{address.addrCity}} </label>
                           <label class="labelAccount"><b>Улица:</b> {{address.addrStreet}} </label>
                           <label class="labelAccount"><b>Индекс:</b> {{address.addrIndex}} </label><br>

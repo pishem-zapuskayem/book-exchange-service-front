@@ -82,8 +82,9 @@
         <form [formGroup]="wishListForm" [style.display]="step == 2 ? 'block' : 'none'">
           <fieldset class="book">
             <div class="page left-page">
+              <div class="category">
               <h2 class="word1">Хочу получить:</h2>
-              <ul class="second-tree">
+              <ul>
                 <nz-tree class="categories" style="  padding-top: 30px ;"
                          [nzData]="wishListNodes"
                          nzCheckable
@@ -91,7 +92,7 @@
                          (nzCheckBoxChange)="onWishListCheckBoxClick($event)"
                 ></nz-tree>
               </ul>
-
+              </div>
 
               <input (click)="previous()" type="button" value="Назад" name="previous"
                      class="previous action-button-previous"/>
@@ -116,16 +117,14 @@
                 <input formControlName="addrCity" class="forbox2" type="text" required
                        placeholder="Город">
                 <div *ngIf="info_step && addressDetailsForm.controls.addrCity.errors">
-                  <div *ngIf="info.addrCity.errors?.required" class="validator">Заполните город</div>
+                  <div *ngIf="info.addrCity?.errors?.required" class="validator">Заполните город</div>
                 </div>
               </div>
               <label class="label1"> Улица* </label>
               <label class="label3"> Индекс </label><br>
               <input formControlName="addrStreet" class="forbox5" type="text" required
                      placeholder="Название улицы">
-              <div *ngIf="info_step && addressDetailsForm.controls.addrStreet.errors">
-                <div *ngIf="info.addrStreet.errors?.required" class="warningval">Заполните улицу</div>
-              </div>
+
               <input maxlength="6" formControlName="addrIndex" class="forbox5" type="text"
                      placeholder="Заполните индекс"><br>
 
@@ -134,28 +133,25 @@
               <label class="label4"> Квартира </label><br>
               <input formControlName="addrStructure" class="forbox5" type="text"
                      placeholder="Строение">
-              <div *ngIf="info_step && addressDetailsForm.controls.addrStructure.errors">
-                <div *ngIf="info.addrStructure.errors?.required">Заполните строение</div>
-              </div>
+
               <input formControlName="addrHouse" class="forbox5" type="text"  required
                      placeholder="Дом">
-              <div *ngIf="info_step && addressDetailsForm.controls.addrHouse.errors">
-                <div *ngIf="info.addrHouse.errors?.required">Заполните дом</div>
-              </div>
+
               <input formControlName="addrApart" class="forbox5" type="text"  required
                      placeholder="Квартира"><br>
-              <label class="label3"> Ваши адреса: </label><br>
-              <div *ngIf="usera">
-                <div >
-              <div *ngFor="let inf of usera.addresses" [formGroup]="CheckForm">
-                <input type="radio" name="option" [formGroup]="offerListForm"  (change)="checkboxChanged(inf)">
-                <label >г.{{inf.addrCity}}, ул.{{inf.addrStreet}}, индекс {{inf.addrIndex}}</label>
+              <label class="label1"> Ваши адреса: </label>
+              <button class="buttons" type="button" name="option" [formGroup]="offerListForm" (click)="inputclear()"> Удалить выбор </button><br>
+                <div
+                  class="label" >
+                    <div >
+                        <div class="label5" *ngFor="let inf of usera.addresses" [formGroup]="CheckForm">
+                          <input type="radio" name="option" [formGroup]="offerListForm" (change)="checkboxChanged(inf)">
+                          <label > г.{{inf.addrCity}}, ул.{{inf.addrStreet}}, индекс {{inf.addrIndex}}</label>
+                        </div>
 
-              </div>
-              <input type="radio" name="option" [formGroup]="offerListForm" (change)="inputclear()">
-              <label> удалить выбор </label>
-              </div>
-              </div>
+
+                  </div>
+                </div>
             </div>
               <input (click)="previous()" type="button" name="previous" value="Назад"
                      class="previous action-button-previous"/>
