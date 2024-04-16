@@ -76,6 +76,24 @@
   margin-left: 30px;
 
 }
+.label
+{
+  width: 90%;
+  margin-left: 30px;
+  max-height: 200px;
+  overflow-x: auto;
+  overflow-y: auto;
+  border-radius: 20px;
+}
+.label5
+{
+  width: 80%;
+  background: white;
+  margin-top: 10px;
+  padding: 10px;
+
+  border-radius: 10px;
+}
 .label1 {
   position: center;
   color: black;
@@ -170,6 +188,8 @@ input{
   padding-left: 8px;
 }
 body {
+  scrollbar-width: thin;
+  scrollbar-color:#a97650 #835136 ;
   overflow-x: hidden;
   background: linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
   linear-gradient(120deg, transparent 20%, #FBD161 ) left fixed,
@@ -210,16 +230,19 @@ body {
 button:hover {
   transform: scale(1.05);
 }
-.buttons button{
-  background-color: #835136;
-  color: white;
-  padding: 16px 32px;
-  margin: 0 10px;
-  border: 0px;
-  border-radius: 5px;
-  font-size: 16px;
-
+button:hover {
+  transform: scale(1.05);
 }
+.buttons{
+  background-color: #a97650;
+  color: white;
+  padding: 10px;
+  margin-left: 200px;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
 a { font-size: 20px}
 
 .auth button {

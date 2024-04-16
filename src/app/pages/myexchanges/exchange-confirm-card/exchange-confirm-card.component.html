@@ -8,6 +8,7 @@
                 <div class="backgroundfornamepage">
                   <h2>Хочу Получить</h2>
                 </div>
+                <b>Жанры:</b>
                 <div *ngFor="let cat of info.exchangeGiveDTO.categories">
                   <!--Список категорий-->
                   <div>{{cat.name}}</div>
@@ -29,7 +30,9 @@
                   <div><b>Год: </b>{{info.exchangeMeDTO.offerBook.publishYear}}</div>
 
                   <div><button *ngIf="!info.exchangeMeDTO.isAgreed" (click)="EnterExchange(info.id)">Подтвердить</button></div>
-                  <div *ngIf="info.exchangeMeDTO.isAgreed">Подтверждено</div>
+                  <div class="submit" *ngIf="info.exchangeMeDTO.isAgreed">Подтверждено</div>
+                  <div  *ngIf="info.exchangeMeDTO.isAgreed">Перейдите в раздел -<strong> "Активные обмены" </strong>
+                    <br> и ждите подтверждение другого пользователя </div>
                   <div *ngIf="showText">
                     <div class="submit"> Обмен подтвержден</div>
                   </div>

@@ -21,10 +21,10 @@ export class AuthDialogComponent {
   error = false;
   errormessage: string | undefined;
   constructor(
-  private service: AuthService,
-  private tokenStorage: TokenStorageService,
-  private router: Router,
-  private AuthRedirectService: AuthredirectService,
+    private service: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private AuthRedirectService: AuthredirectService,
   ) {
 
     this.form = new FormGroup({

@@ -165,6 +165,8 @@
   margin-left: 30px;
 }
 body {
+  scrollbar-width: thin;
+  scrollbar-color:#a97650 #835136 ;
   overflow-x: hidden;
   background: linear-gradient(135deg, transparent 30%, #fbb561 20%) left fixed,
   linear-gradient(120deg, transparent 20%, #FBD161 20%) left fixed,
@@ -192,12 +194,9 @@ body {
 
 
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fcf8ec;
 
-  padding: 5px;
+  background-color: #fcf8ec;
+  padding: 15px;
   border: 5px solid black;
   border-width: 0px ; /* Верхняя и нижняя обводка */
   border-color: #835136 #4d2816;

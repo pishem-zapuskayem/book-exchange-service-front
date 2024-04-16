@@ -1,9 +1,8 @@
-
+<app-header></app-header>
 <body>
 <div class="centered-container">
   <div class="registration-form">
     <form ng-submit="ctrl.submitForm()" [formGroup]="form" (ngSubmit)="submit()">
-      <button (click)="goToHomePage()" class = "btn-back" type="submit"> Вернуться на главную </button><br><br>
       <div *ngIf="this.isSubmitted || rex.lastName.touched && form.controls.lastName.errors">
         <label class = "warningval"  *ngIf="rex.lastName.errors?.required">Заполните фамилию</label>
         <label class = "warningval"  *ngIf="rex.lastName.errors?.maxLength">Фамилия должна содержать менее 50 символов</label>
@@ -77,7 +76,7 @@
         id="avatar" (change)="onFileChanged($event)"
       ><br><br>
       <input type="checkbox" id="agreementCheckbox"> <label for="agreementCheckbox" required> Нажимая эту кнопку, вы подтверждаете, что прочитали и согласны с условиями пользовательского соглашения и даёте согласие на обработку ваших персональных данных.</label><br><br>
-      <button class = "custom-btn-reg" type="submit" [disabled]="form.invalid || isSubmitted">Зарегистрироваться</button><br><br>
+      <button class = "custom-btn" type="submit" [disabled]="form.invalid || isSubmitted">Зарегистрироваться</button><br><br>
       <label> * - поля, обязательные к заполнению </label>
       <div class = "warningval1" *ngIf="errormessage">{{errormessage}}</div>
     </form>

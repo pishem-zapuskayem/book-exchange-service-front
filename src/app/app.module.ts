@@ -24,6 +24,7 @@ import {ActiveExchangesCardComponent} from "./pages/myexchanges/active-exchanges
 import {
   ActiveExchangeCardFullInfoComponent
 } from "./pages/myexchanges/active-exchange-card-full-info-card/active-exchange-card-full-info.component";
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    NzCollapseModule,
   ],
   providers: [
     provideAnimationsAsync()

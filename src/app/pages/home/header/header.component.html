@@ -1,5 +1,37 @@
 <div class="header">
+  <header style=" display: flex;   justify-content: flex-start;">
+      <div style="  margin-right: auto; padding-left: 80px;">
+        <img src="assets\logo.png" alt="Logo" class="logo">
+      </div>
+    <div style="    padding-left: 0px;">
+        <a class="b" routerLink="/home">Главная</a>
+        <a class="b" routerLink="/exchange">Начать обмен</a>
+          <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
+            <ng-container *ngIf="!isLoading">
+              <a  class="b" routerLink="/exchanges">Мои обмены</a>
+            </ng-container>
+          </ng-container>
+          <ng-template #notAuthz>
+            <a class="b" nz-button (click)="createMessage('warning')" >Мои обмены</a>
+          </ng-template>
+          <a class="b" (click)="'info4'">Задать вопрос</a>
+    </div>
+    <div style=" margin-left: auto; padding-right: 80px; padding-top: 14px; ">
+          <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
+            <ng-container *ngIf="!isLoading">
+              <label class="username"> {{user.username}} </label>
+              <img  class="icon"[src]="getAvatarOrDefault(user)">
+            </ng-container>
+          </ng-container>
+          <ng-template #notAuth>
+            <a class="a"(click)="showLogin()" >Логин </a>
+            <a class="a" routerLink="/registration"> Регистрация</a>
+          </ng-template>
+    </div>
+  </header>
+</div>
 
+<!-- <div class="header">
   <header>
     <div class="top-header">
       <ng-container *ngIf="authService.isAuthenticated(); else notAuth">
@@ -9,7 +41,7 @@
         </ng-container>
       </ng-container>
       <ng-template #notAuth>
-        <a class="a"(click)="showLogin()">Логин </a>
+        <a class="a"(click)="showLogin()" >Логин </a>
         <a class="a" routerLink="/registration"> Регистрация</a>
       </ng-template>
     </div>
@@ -17,17 +49,16 @@
       <img src="assets\logo.png" alt="Logo" class="logo">
       <a class="b" routerLink="/home">Главная</a>
       <a class="b" routerLink="/exchange">Начать обмен</a>
-        <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
-          <ng-container *ngIf="!isLoading">
-            <a  class="b" routerLink="/exchanges">Мои обмены</a>
-          </ng-container>
+      <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
+        <ng-container *ngIf="!isLoading">
+          <a  class="b" routerLink="/exchanges">Мои обмены</a>
         </ng-container>
-        <ng-template #notAuthz>
-          <a class="b" nz-button (click)="createMessage('warning')">Мои обмены</a>
-        </ng-template>
+      </ng-container>
+      <ng-template #notAuthz>
+        <a class="b" nz-button (click)="createMessage('warning')" >Мои обмены</a>
+      </ng-template>
 
-    <a class="b" (click)="'info4'">Задать вопрос</a>
-  </div>
+      <a class="b" (click)="'info4'">Задать вопрос</a>
+    </div>
   </header>
-</div>
-
+</div> -->

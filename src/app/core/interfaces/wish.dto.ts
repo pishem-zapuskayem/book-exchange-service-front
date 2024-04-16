@@ -4,4 +4,5 @@ import {CategorysDTO} from "./categorys.dto";
 export interface WishDTO {
   categoryList: CategorysDTO[];
   accountDTO: AccountDTO;
+  id: number;
 }
