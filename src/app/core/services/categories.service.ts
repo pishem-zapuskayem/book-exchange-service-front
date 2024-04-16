@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoryDTO} from "../interfaces/category.dto";
 import { ExchangegoDTO} from "../interfaces/exchangego.dto";
+import {TokenStorageService} from "./token-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,13 @@ import { ExchangegoDTO} from "../interfaces/exchangego.dto";
 export class CategoriesService {
   private apiUrl = 'http://82.97.243.70:8085/api/v1/category/tree'; // замените на ваш URL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private TokenStorage: TokenStorageService) {
+
+  }
 
   getCategories(): Observable<CategoryDTO[]> {
-    return this.http.get<CategoryDTO[]>(this.apiUrl);
+    return this.http.get<CategoryDTO[]>(this.apiUrl,{headers: this.TokenStorage.getAuthHeader()});
   }
 
   getCategoryById(id: number): Observable<CategoryDTO> {
