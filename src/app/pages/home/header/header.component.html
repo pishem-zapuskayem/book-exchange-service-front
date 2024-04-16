@@ -5,7 +5,14 @@
       </div>
     <div style="    padding-left: 0px;">
         <a class="b" routerLink="/home">Главная</a>
-        <a class="b" routerLink="/exchange">Начать обмен</a>
+      <ng-container *ngIf="authService.isAuthenticated(); else notAutha">
+        <ng-container *ngIf="!isLoading">
+          <a class="b" routerLink="/exchange">Начать обмен</a>
+        </ng-container>
+      </ng-container>
+      <ng-template #notAutha>
+        <a class="b" nz-button (click)="createMessage('warning')" >Начать обмен</a>
+      </ng-template>
           <ng-container *ngIf="authService.isAuthenticated(); else notAuthz">
             <ng-container *ngIf="!isLoading">
               <a  class="b" routerLink="/exchanges">Мои обмены</a>
