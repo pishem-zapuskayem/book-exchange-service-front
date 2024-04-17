@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { CategoryDTO} from "../interfaces/category.dto";
 import { ExchangegoDTO} from "../interfaces/exchangego.dto";
 import {TokenStorageService} from "./token-storage.service";
+import {environment} from "../../../environments/environment.dev";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
-  private apiUrl = 'http://82.97.243.70:8085/api/v1/category/tree'; // замените на ваш URL
+  private apiUrl = environment.BASE_URL
 
   constructor(private http: HttpClient,
               private TokenStorage: TokenStorageService) {
@@ -17,7 +18,7 @@ export class CategoriesService {
   }
 
   getCategories(): Observable<CategoryDTO[]> {
-    return this.http.get<CategoryDTO[]>(this.apiUrl,{headers: this.TokenStorage.getAuthHeader()});
+    return this.http.get<CategoryDTO[]>(this.apiUrl + "/category/tree");
   }
 
   getCategoryById(id: number): Observable<CategoryDTO> {
