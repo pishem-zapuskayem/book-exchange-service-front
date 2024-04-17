@@ -35,7 +35,6 @@
                     <nz-collapse-panel  *ngFor="let panel of panels; let i=index" [nzHeader]="panel.name" [nzActive]="panel.active" >
                       <div style="overflow-y: auto; overflow-x: hidden; max-height: 520px;;" *ngIf="panel.name === 'Полное совпадение'" >
                           <div *ngIf="!isLoadingExchanges && authService.isAuthenticated()" >
-                            <div class="backgroundforbookformain" style="margin: 10px; background: #fff4cc; border-radius: 20px;" *ngIf="exchanges">Совпадений пока нет :(</div>
                             <div   *ngFor="let exchange of exchanges">
                               <div class="backgroundforbookformain" style="margin: 10px; background: #fff4cc; border-radius: 20px;" *ngIf="exchange.isFullMatch">
                                 <app-exchange-card style="flex: 1;" [exchange]="exchange"></app-exchange-card>

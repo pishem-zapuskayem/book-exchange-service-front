@@ -1,7 +1,7 @@
 import {AddressDTO} from "./address.dto";
 
 export interface RegisterDTO {
-  address: AddressDTO,
+  address: AddressDTO[],
   lastName: string,
   firstName: string,
   secondName: string,
